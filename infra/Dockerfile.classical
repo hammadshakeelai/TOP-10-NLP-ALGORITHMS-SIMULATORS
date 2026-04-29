@@ -1,0 +1,8 @@
+FROM python:3.11-slim
+
+WORKDIR /app
+COPY packages ./packages
+COPY services/classical-nlp-service ./services/classical-nlp-service
+RUN pip install --no-cache-dir -r services/classical-nlp-service/requirements.txt
+
+CMD ["python", "-m", "http.server", "8001"]

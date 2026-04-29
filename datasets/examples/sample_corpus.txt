@@ -1,0 +1,19 @@
+Natural language processing turns messy human text into structured signals. Tokenization is often the first step because every downstream model depends on the boundaries and offsets it creates.
+
+TF-IDF is a transparent vectorization method. It rewards terms that are common in one document and rare across the rest of the corpus, which makes it useful for ranking and retrieval demos.
+
+Naive Bayes classifiers are simple probabilistic baselines. They combine class priors with word likelihoods and smoothing so learners can see how evidence accumulates.
+
+Linear SVM classifiers work well with sparse text features. Their decision margins and feature coefficients make them useful for comparing positive and negative evidence.
+
+RAKE extracts candidate phrases by splitting text on stopwords and punctuation. It scores words by frequency and degree, then sums word scores into ranked key phrases.
+
+TextRank builds a graph from words or sentences. PageRank-style iteration assigns higher scores to nodes that are connected to other important nodes.
+
+Word embeddings place terms in a vector space. Similar words tend to appear near each other, and analogy experiments reveal how vector arithmetic can encode relationships.
+
+LSTM models process sequences one token at a time. Hidden state, cell state, and gates help demonstrate how recurrent networks carry information forward.
+
+Transformer attention compares every token with every other token. Attention weights, masks, and positional encodings make the mechanism visible for short sequences.
+
+Modern BERT, GPT, and T5 style models expose different transformer workflows. Masked prediction, generation, and text-to-text prompting can share a common simulator contract.

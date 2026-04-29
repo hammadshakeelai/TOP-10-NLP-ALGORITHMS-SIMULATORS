@@ -1,0 +1,46 @@
+services:
+  api-gateway:
+    build:
+      context: ..
+      dockerfile: infra/Dockerfile.api
+    ports:
+      - "8000:8000"
+    environment:
+      REDIS_URL: redis://redis:6379/0
+      DATABASE_URL: postgresql://nlp:nlp@postgres:5432/nlp_simulator
+    depends_on:
+      - postgres
+      - redis
+
+  classical-nlp:
+    build:
+      context: ..
+      dockerfile: infra/Dockerfile.classical
+    ports:
+      - "8001:8001"
+
+  transformer:
+    build:
+      context: ..
+      dockerfile: infra/Dockerfile.transformer
+    ports:
+      - "8002:8002"
+
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: nlp
+      POSTGRES_PASSWORD: nlp
+      POSTGRES_DB: nlp_simulator
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+
+volumes:
+  postgres-data:

@@ -1,0 +1,51 @@
+text,label
+"I loved the friendly interface and fast results.",positive
+"The simulator made TF IDF easy to understand.",positive
+"Charts loaded quickly and looked clear.",positive
+"The token trace helped my lesson.",positive
+"Students enjoyed exploring keyword scores.",positive
+"The classifier predicted the example correctly.",positive
+"Setup was simple and the API felt reliable.",positive
+"The visualizations made the math less intimidating.",positive
+"The export included all the details I needed.",positive
+"The catalog was organized and easy to scan.",positive
+"The examples were useful for a workshop.",positive
+"I liked the clean parameter controls.",positive
+"The trace viewer explained every step.",positive
+"Running the demo felt smooth.",positive
+"The graph view clarified TextRank behavior.",positive
+"The sample corpus was relevant and concise.",positive
+"The warnings were helpful instead of blocking me.",positive
+"The app responded quickly on small inputs.",positive
+"The model comparison was practical.",positive
+"The output schema was consistent.",positive
+"The tutorial data made classification approachable.",positive
+"The UI preserved my input after a warning.",positive
+"The keyword list matched my expectations.",positive
+"The heatmap was readable.",positive
+"The project is promising for NLP classes.",positive
+"The page crashed during a simple run.",negative
+"The classifier output was confusing.",negative
+"The graph had too many unlabeled nodes.",negative
+"The setup instructions were incomplete.",negative
+"The API returned an unclear error.",negative
+"The trace was missing important calculations.",negative
+"The interface felt slow on short text.",negative
+"The export file did not contain the scores.",negative
+"The parameter names were hard to understand.",negative
+"The example dataset was too small.",negative
+"The summary ignored the main point.",negative
+"The tokenizer offsets looked wrong.",negative
+"The model warning arrived too late.",negative
+"The catalog was difficult to browse.",negative
+"The confusion matrix was unreadable.",negative
+"The ranking changed without explanation.",negative
+"The run failed with no useful message.",negative
+"The chart labels overlapped.",negative
+"The defaults produced poor results.",negative
+"The simulator hid too much detail.",negative
+"The page did not keep my parameters.",negative
+"The CSV output was hard to parse.",negative
+"The text area lost my input.",negative
+"The documentation skipped test commands.",negative
+"The demo felt unfinished.",negative
