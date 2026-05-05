@@ -1,0 +1,47 @@
+  ---
+  NEXT SPRINT PROMPT (paste this at the start of the next session):
+
+  NLP Simulator Platform — Sprint 3 Handoff
+
+  Current verified state:
+  - python -m pytest tests -q → 49 passed (was 36, now 49 after demo metadata work)
+  - npm run build → passes (826KB bundle, non-fatal warning only)
+  - All 13 algorithm demo metadata files are fixed and syntax-clean
+  - GET /algorithms/{id}/demo endpoint is live
+  - 5 new frontend components exist: ReceiverModeSwitcher, StepTimeline,
+    FormulaPanel, ReferencesPanel, ExplanationPanel
+  - SimulatorPage has "Load Demo" button and all panels wired up
+
+  Sprint 3 objectives (in priority order):
+
+  1. FRONTEND RUNTIME VERIFICATION (not yet tested in browser)
+     Start both servers:
+       uvicorn main:app --app-dir apps/api-gateway --reload --port 8000
+       cd apps/web-ui && npm run dev
+     Test: Load Demo button, ReceiverMode switcher, StepTimeline expand,
+     FormulaPanel, ReferencesPanel. Fix any runtime errors found.
+
+  2. UPDATE DOCS
+     Edit docs/IMPLEMENTATION_STATUS.md to reflect:
+     - GET /algorithms/{id}/demo endpoint added
+     - 13 demo metadata entries
+     - 5 new frontend components
+     - Test count: 49
+
+  3. GITHUB PUBLISHING
+     Follow the guide in CLAUDE.md exactly:
+       git switch -c codex/nlp-simulator-platform
+       git add AGENTS.md CLAUDE.md README.md apps datasets docs infra packages services tests
+       git commit -m "Build NLP algorithm simulator platform"
+       git push -u origin codex/nlp-simulator-platform
+       gh pr create --draft --title "Build NLP algorithm simulator platform" ...
+
+  4. (Optional) BUNDLE SIZE — add manualChunks to apps/web-ui/vite.config.ts
+     to split react-flow and recharts into separate chunks, reducing main bundle
+     from 826KB.
+
+  5. (Optional) GITHUB ACTIONS CI
+     Create .github/workflows/ci.yml with two jobs:
+     backend (pip install + pytest) and frontend (npm install + npm run build).
+
+  Do NOT re-fix anything already working. Start with item 1.
