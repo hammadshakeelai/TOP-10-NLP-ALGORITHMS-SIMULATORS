@@ -66,16 +66,35 @@ Deep links return an HTTP **404 status** while serving the app shell. Users see
 the correct page; crawlers see a 404. Switching `BrowserRouter` to `HashRouter`
 would give clean 200s at the cost of `#/`-style URLs.
 
-## GitHub Pages setup
+## GitHub Pages
+
+Already set up and live:
+
+**https://hammadshakeelai.github.io/TOP-10-NLP-ALGORITHMS-SIMULATORS/**
 
 `.github/workflows/deploy-pages.yml` builds and publishes on every push to
-`main` or `codex/nlp-simulator-platform` that touches `apps/web-ui/**`, and on
-manual dispatch.
+`main` that touches `apps/web-ui/**`, and on manual dispatch
+(`gh workflow run deploy-pages.yml --ref main`).
 
-One-time repository setup — **Settings → Pages → Build and deployment →
-Source: GitHub Actions**. Without this the workflow fails at the deploy step.
+The repository deliberately keeps **one branch**. Pages deploys from `main`
+alone, so a second long-lived branch would mean whichever pushed last won the
+deployment.
 
-Published URL: `https://<owner>.github.io/<repo>/`
+Pages is configured with `build_type: workflow`. If it ever needs re-enabling:
+
+```powershell
+gh api -X POST repos/<owner>/<repo>/pages -f build_type=workflow
+```
+
+or **Settings → Pages → Build and deployment → Source: GitHub Actions**.
+Without it the workflow fails at `configure-pages` with "Get Pages site failed".
+
+## CI must run Node 24
+
+`npm ci` fails on Node 20 with `Missing: yaml@2.9.0 from lock file`. `yaml@2`
+is an *optional peer* of `postcss-load-config`; npm 11 omits it from the
+lockfile and npm 10 (bundled with Node 20) demands it. Any new workflow that
+runs `npm ci` needs `node-version: 24`.
 
 ## Other hosts
 

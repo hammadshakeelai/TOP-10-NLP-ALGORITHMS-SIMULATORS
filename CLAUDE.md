@@ -102,86 +102,71 @@ Frontend:
 
 ## Verification Status
 
-Verified commands:
+Verification commands:
 
 ```powershell
-npm install
-pip install -r services/classical-nlp-service/requirements.txt
-python -m pytest tests -q
-npm run build
-```
-
-Current result:
-
-- Backend tests pass: 49 passed.
-- Frontend production build passes.
-- npm reports two moderate audit findings in transitive dependencies.
-- Vite reports a non-fatal chunk-size warning for the production bundle.
-
-Last local catalog verification loaded 13 algorithm entries.
-
-## GitHub Publishing Guide
-
-Use this when asked to deploy or publish the project to GitHub.
-
-1. Check current work:
-
-```powershell
-git status --short
-```
-
-2. Create a branch:
-
-```powershell
-git switch -c codex/nlp-simulator-platform
-```
-
-3. Install and verify:
-
-```powershell
-pip install -r services/classical-nlp-service/requirements.txt
+pip install -r services/classical-nlp-service/requirements.txt pytest
 python -m pytest tests -q
 cd apps/web-ui
 npm install
 npm run build
-cd ..\..
 ```
 
-4. Review changed files:
+Status as of 2026-08-25:
+
+- Frontend production build: **passes**.
+- Static (backend-free) build: **passes**, deployed and verified live.
+- Backend tests: **not currently runnable on this machine.** No interpreter on
+  PATH has pytest — the Python 3.13 environment that once reported 49 passed is
+  gone. Rebuild an environment and re-run before claiming any pass count. Do
+  not repeat the 49 figure as verified.
+- npm reports two moderate audit findings in transitive dependencies.
+
+The catalog loads 13 algorithm entries.
+
+Node 24 is required. `npm ci` fails on Node 20 with
+`Missing: yaml@2.9.0 from lock file`, because `yaml@2` is an optional peer of
+`postcss-load-config` that npm 10 and npm 11 disagree about.
+
+## GitHub Publishing Guide
+
+The project is already published and deployed. Read this before any git work.
+
+**The repository keeps exactly one branch: `main`.** A previous
+`codex/nlp-simulator-platform` branch was fast-forwarded into `main` and
+deleted on both sides. Do not recreate it — GitHub Pages deploys from `main`
+alone, so a second long-lived branch means whichever pushed last wins the
+deployment.
+
+**Never stage whole directories.** An earlier `git add apps` ran before any
+`.gitignore` existed and committed 12,304 `node_modules` files. `.gitignore`
+now covers `node_modules/`, `dist/` and `__pycache__/`, but stage explicit
+paths anyway:
 
 ```powershell
-git diff --stat
-git diff
+git status --short
+git add <specific files>
+git commit -m "<message>"
+git push origin main
 ```
 
-5. Stage and commit:
+Pushing to `main` with changes under `apps/web-ui/**` triggers
+`.github/workflows/deploy-pages.yml`, which rebuilds and republishes the live
+site. Check it afterwards:
 
 ```powershell
-git add AGENTS.md CLAUDE.md README.md apps datasets docs infra packages services tests
-git commit -m "Build NLP algorithm simulator platform"
-```
-
-6. Push to GitHub:
-
-```powershell
-git push -u origin codex/nlp-simulator-platform
-```
-
-7. Open a pull request with GitHub CLI:
-
-```powershell
-gh pr create --draft --title "Build NLP algorithm simulator platform" --body "Implements the NLP simulator platform skeleton, shared schemas, classical and transformer registries, React UI, exports, tests, datasets, infrastructure, and documentation."
-```
-
-If `gh` is not authenticated:
-
-```powershell
-gh auth login
+gh run list --workflow=deploy-pages.yml --branch=main --limit 3
 ```
 
 ## Deployment Notes
 
-GitHub itself can host the repository and run CI. GitHub Pages can host only the static frontend build; it cannot run the FastAPI backend, PostgreSQL, Redis, or transformer services.
+**Live now:** https://hammadshakeelai.github.io/TOP-10-NLP-ALGORITHMS-SIMULATORS/
+
+That is the backend-free static build (`VITE_STATIC_MODE=true`), serving the
+pre-computed snapshots in `apps/web-ui/src/mocks/`. Custom input replays the
+reference run rather than simulating it. See `docs/STATIC_DEPLOY.md`.
+
+GitHub Pages can host only the static frontend; it cannot run the FastAPI backend, PostgreSQL, Redis, or transformer services.
 
 For a real running deployment, use one of these:
 
@@ -203,8 +188,17 @@ If deploying the frontend separately, set the frontend API base URL to the hoste
 
 ## Next Recommended Work
 
-- Add GitHub Actions for backend tests and frontend build.
-- Add frontend code splitting or manual chunks to reduce bundle size.
-- Replace placeholder independent service commands in `Dockerfile.classical` and `Dockerfile.transformer` with real service entrypoints if these become separately networked services.
+- Rebuild a Python environment so the backend test suite can be run again.
+- Add a backend CI workflow for pytest (needs the above first).
+- Tier-2 static mode: port tokenization, RAKE, TF-IDF, TextRank and Naive Bayes
+  to TypeScript so the static site simulates real user input instead of
+  replaying snapshots.
+- Replace placeholder service commands in `Dockerfile.classical` and
+  `Dockerfile.transformer` with real entrypoints if these become separately
+  networked services.
 - Add persistent storage for runs and exports.
-- Decide whether to rename `packages/shared-schemas` to `packages/shared_schemas` permanently.
+- Decide whether to rename `packages/shared-schemas` to `packages/shared_schemas`
+  permanently.
+
+Already done: GitHub Actions for the frontend build, frontend manual chunks,
+`.gitignore`, static deployment.
