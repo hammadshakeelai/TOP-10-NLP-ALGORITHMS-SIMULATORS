@@ -1,0 +1,685 @@
+{
+  "run_id": "95e26ec4-9159-41e7-b5ea-ea1993dc8a6c",
+  "status": "success",
+  "algorithm_id": "textrank",
+  "algorithm_version": "textrank-v1.0.0",
+  "input_fingerprint": "sha256:086b7f434855fc87",
+  "result": {
+    "mode": "keyword",
+    "ranked_output": [
+      {
+        "rank": 1,
+        "word": "pagerank",
+        "score": 0.10291
+      },
+      {
+        "rank": 2,
+        "word": "page",
+        "score": 0.100343
+      },
+      {
+        "rank": 3,
+        "word": "brin",
+        "score": 0.098057
+      },
+      {
+        "rank": 4,
+        "word": "larry",
+        "score": 0.058937
+      },
+      {
+        "rank": 5,
+        "word": "algorithms",
+        "score": 0.053944
+      }
+    ],
+    "node_count": 17,
+    "edge_count": 36
+  },
+  "trace": {
+    "mode": "keyword",
+    "node_count": 17,
+    "edge_count": 36,
+    "iterations": 9,
+    "ranked_output": [
+      {
+        "rank": 1,
+        "word": "pagerank",
+        "score": 0.10291
+      },
+      {
+        "rank": 2,
+        "word": "page",
+        "score": 0.100343
+      },
+      {
+        "rank": 3,
+        "word": "brin",
+        "score": 0.098057
+      },
+      {
+        "rank": 4,
+        "word": "larry",
+        "score": 0.058937
+      },
+      {
+        "rank": 5,
+        "word": "algorithms",
+        "score": 0.053944
+      }
+    ],
+    "convergence_log": [
+      {
+        "iteration": 1,
+        "max_delta": 0.060417
+      },
+      {
+        "iteration": 2,
+        "max_delta": 0.019258
+      },
+      {
+        "iteration": 3,
+        "max_delta": 0.007714
+      },
+      {
+        "iteration": 4,
+        "max_delta": 0.003151
+      },
+      {
+        "iteration": 5,
+        "max_delta": 0.001557
+      },
+      {
+        "iteration": 6,
+        "max_delta": 0.000575
+      },
+      {
+        "iteration": 7,
+        "max_delta": 0.00033
+      },
+      {
+        "iteration": 8,
+        "max_delta": 0.000161
+      },
+      {
+        "iteration": 9,
+        "max_delta": 7.7e-05
+      }
+    ],
+    "all_scores": {
+      "algorithm": 0.053546,
+      "algorithms": 0.053944,
+      "all": 0.05247,
+      "brin": 0.098057,
+      "company": 0.053496,
+      "developed": 0.053556,
+      "founded": 0.046766,
+      "google": 0.034621,
+      "known": 0.05351,
+      "larry": 0.058937,
+      "page": 0.100343,
+      "pagerank": 0.10291,
+      "search": 0.053934,
+      "sergey": 0.053797,
+      "stanford": 0.044959,
+      "started": 0.052678,
+      "university": 0.032477
+    },
+    "formula": "PR(V) = (1-d)/N + d × Σ (wji / Σ_k wjk) × PR(Vj)"
+  },
+  "visualization_specs": [
+    {
+      "type": "graph",
+      "title": "TextRank Graph — Keyword Mode",
+      "data": {
+        "nodes": [
+          {
+            "id": "algorithm",
+            "score": 0.053546
+          },
+          {
+            "id": "algorithms",
+            "score": 0.053944
+          },
+          {
+            "id": "all",
+            "score": 0.05247
+          },
+          {
+            "id": "brin",
+            "score": 0.098057
+          },
+          {
+            "id": "company",
+            "score": 0.053496
+          },
+          {
+            "id": "developed",
+            "score": 0.053556
+          },
+          {
+            "id": "founded",
+            "score": 0.046766
+          },
+          {
+            "id": "google",
+            "score": 0.034621
+          },
+          {
+            "id": "known",
+            "score": 0.05351
+          },
+          {
+            "id": "larry",
+            "score": 0.058937
+          },
+          {
+            "id": "page",
+            "score": 0.100343
+          },
+          {
+            "id": "pagerank",
+            "score": 0.10291
+          },
+          {
+            "id": "search",
+            "score": 0.053934
+          },
+          {
+            "id": "sergey",
+            "score": 0.053797
+          },
+          {
+            "id": "stanford",
+            "score": 0.044959
+          },
+          {
+            "id": "started",
+            "score": 0.052678
+          },
+          {
+            "id": "university",
+            "score": 0.032477
+          }
+        ],
+        "edges": [
+          {
+            "source": "google",
+            "target": "larry",
+            "weight": 2.0
+          },
+          {
+            "source": "founded",
+            "target": "google",
+            "weight": 2.0
+          },
+          {
+            "source": "founded",
+            "target": "larry",
+            "weight": 2.0
+          },
+          {
+            "source": "founded",
+            "target": "page",
+            "weight": 2.0
+          },
+          {
+            "source": "larry",
+            "target": "page",
+            "weight": 2.0
+          },
+          {
+            "source": "larry",
+            "target": "sergey",
+            "weight": 2.0
+          },
+          {
+            "source": "page",
+            "target": "sergey",
+            "weight": 2.0
+          },
+          {
+            "source": "page",
+            "target": "pagerank",
+            "weight": 2.0
+          },
+          {
+            "source": "brin",
+            "target": "page",
+            "weight": 4.0
+          },
+          {
+            "source": "brin",
+            "target": "sergey",
+            "weight": 2.0
+          },
+          {
+            "source": "brin",
+            "target": "company",
+            "weight": 2.0
+          },
+          {
+            "source": "brin",
+            "target": "known",
+            "weight": 2.0
+          },
+          {
+            "source": "brin",
+            "target": "started",
+            "weight": 2.0
+          },
+          {
+            "source": "brin",
+            "target": "developed",
+            "weight": 2.0
+          },
+          {
+            "source": "company",
+            "target": "sergey",
+            "weight": 2.0
+          },
+          {
+            "source": "company",
+            "target": "known",
+            "weight": 2.0
+          },
+          {
+            "source": "company",
+            "target": "search",
+            "weight": 2.0
+          },
+          {
+            "source": "known",
+            "target": "search",
+            "weight": 2.0
+          },
+          {
+            "source": "algorithms",
+            "target": "known",
+            "weight": 2.0
+          },
+          {
+            "source": "algorithms",
+            "target": "search",
+            "weight": 2.0
+          },
+          {
+            "source": "algorithms",
+            "target": "pagerank",
+            "weight": 2.0
+          },
+          {
+            "source": "pagerank",
+            "target": "search",
+            "weight": 2.0
+          },
+          {
+            "source": "pagerank",
+            "target": "started",
+            "weight": 2.0
+          },
+          {
+            "source": "pagerank",
+            "target": "stanford",
+            "weight": 2.0
+          },
+          {
+            "source": "pagerank",
+            "target": "university",
+            "weight": 2.0
+          },
+          {
+            "source": "algorithm",
+            "target": "algorithms",
+            "weight": 2.0
+          },
+          {
+            "source": "algorithm",
+            "target": "pagerank",
+            "weight": 2.0
+          },
+          {
+            "source": "algorithm",
+            "target": "started",
+            "weight": 2.0
+          },
+          {
+            "source": "algorithm",
+            "target": "all",
+            "weight": 2.0
+          },
+          {
+            "source": "all",
+            "target": "started",
+            "weight": 2.0
+          },
+          {
+            "source": "all",
+            "target": "brin",
+            "weight": 2.0
+          },
+          {
+            "source": "all",
+            "target": "page",
+            "weight": 2.0
+          },
+          {
+            "source": "developed",
+            "target": "page",
+            "weight": 2.0
+          },
+          {
+            "source": "developed",
+            "target": "pagerank",
+            "weight": 2.0
+          },
+          {
+            "source": "developed",
+            "target": "stanford",
+            "weight": 2.0
+          },
+          {
+            "source": "stanford",
+            "target": "university",
+            "weight": 2.0
+          }
+        ]
+      },
+      "config": {
+        "layout": "force",
+        "node_size_by": "score"
+      }
+    },
+    {
+      "type": "bar",
+      "title": "TextRank Scores",
+      "data": [
+        {
+          "label": "pagerank",
+          "score": 0.10291
+        },
+        {
+          "label": "page",
+          "score": 0.100343
+        },
+        {
+          "label": "brin",
+          "score": 0.098057
+        },
+        {
+          "label": "larry",
+          "score": 0.058937
+        },
+        {
+          "label": "algorithms",
+          "score": 0.053944
+        }
+      ],
+      "config": {
+        "x": "label",
+        "y": "score",
+        "color": "#8b5cf6",
+        "horizontal": true
+      }
+    },
+    {
+      "type": "line",
+      "title": "Score Convergence",
+      "data": [
+        {
+          "iteration": 1,
+          "max_delta": 0.060417
+        },
+        {
+          "iteration": 2,
+          "max_delta": 0.019258
+        },
+        {
+          "iteration": 3,
+          "max_delta": 0.007714
+        },
+        {
+          "iteration": 4,
+          "max_delta": 0.003151
+        },
+        {
+          "iteration": 5,
+          "max_delta": 0.001557
+        },
+        {
+          "iteration": 6,
+          "max_delta": 0.000575
+        },
+        {
+          "iteration": 7,
+          "max_delta": 0.00033
+        },
+        {
+          "iteration": 8,
+          "max_delta": 0.000161
+        },
+        {
+          "iteration": 9,
+          "max_delta": 7.7e-05
+        }
+      ],
+      "config": {
+        "x": "iteration",
+        "y": "max_delta"
+      }
+    }
+  ],
+  "metrics": {
+    "runtime_ms": 1.44,
+    "extra": {}
+  },
+  "warnings": [],
+  "export_links": [],
+  "demo_input": {
+    "text": "Google was founded by Larry Page and Sergey Brin. The company is known for search algorithms. PageRank is the algorithm that started it all. Brin and Page developed PageRank at Stanford University."
+  },
+  "auto_parameters": {
+    "max_iterations": 100,
+    "damping_factor": 0.85,
+    "min_word_length": 3,
+    "top_n": 5
+  },
+  "step_explanations": [
+    {
+      "step_id": "tr1",
+      "stage": "input_validation",
+      "title": "Validate Input Text",
+      "description": "Check text is non-empty and has enough content for graph construction.",
+      "input_preview": {
+        "text": "Google was founded by Larry Page..."
+      },
+      "output_preview": {
+        "valid": true,
+        "word_count": 28
+      },
+      "why_it_matters": "TextRank needs sufficient text to build a meaningful word co-occurrence graph.",
+      "visualization_type": "table"
+    },
+    {
+      "step_id": "tr2",
+      "stage": "preprocessing",
+      "title": "Tokenize and Filter Words",
+      "description": "Tokenize text, filter by length and stop words, then build vocabulary.",
+      "input_preview": {
+        "text": "Google was founded by Larry Page..."
+      },
+      "output_preview": {
+        "filtered_words": [
+          "google",
+          "founded",
+          "larry",
+          "page",
+          "..."
+        ]
+      },
+      "why_it_matters": "Filtering removes noise (stop words, short words) that would dilute the graph.",
+      "visualization_type": "table"
+    },
+    {
+      "step_id": "tr3",
+      "stage": "graph_construction",
+      "title": "Build Word Co-occurrence Graph",
+      "description": "Create a graph where nodes are words and edges connect words that co-occur within a sliding window.",
+      "input_preview": {
+        "words": [
+          "..."
+        ],
+        "window_size": 3
+      },
+      "output_preview": {
+        "nodes": 12,
+        "edges": 18,
+        "graph_density": 0.27
+      },
+      "why_it_matters": "The graph captures which words appear together, encoding semantic relationships through co-occurrence.",
+      "visualization_type": "graph"
+    },
+    {
+      "step_id": "tr4",
+      "stage": "computation",
+      "title": "Run PageRank Algorithm",
+      "description": "Iteratively compute PageRank scores for each node until convergence or max iterations.",
+      "formula": "PR(v) = (1-d) + d × Σ PR(u)/|Out(u)|",
+      "input_preview": {
+        "graph": {},
+        "damping": 0.85,
+        "max_iter": 100
+      },
+      "output_preview": {
+        "iterations": 23,
+        "converged": true,
+        "scores": {
+          "pagerank": 0.95
+        }
+      },
+      "why_it_matters": "PageRank identifies words that are central in the co-occurrence network - these are the key concepts in the text.",
+      "visualization_type": "scatter"
+    },
+    {
+      "step_id": "tr5",
+      "stage": "output",
+      "title": "Extract Top Keywords",
+      "description": "Sort words by PageRank score and return the top N as keywords.",
+      "input_preview": {
+        "scores": {},
+        "top_n": 5
+      },
+      "output_preview": {
+        "keywords": [
+          "pagerank",
+          "google",
+          "brin",
+          "page",
+          "algorithm"
+        ]
+      },
+      "why_it_matters": "The top-scoring words represent the most important concepts in the document.",
+      "visualization_type": "bar"
+    }
+  ],
+  "formula_cards": [
+    {
+      "title": "PageRank Formula",
+      "formula": "PR(v) = (1-d) + d × Σ_{u∈In(v)} PR(u) / |Out(u)|",
+      "explanation": "The PageRank score of node v is a weighted sum of scores from nodes pointing to v, with damping factor d (typically 0.85).",
+      "variables": {
+        "d": "damping factor (probability of following links)",
+        "In(v)": "nodes linking to v",
+        "Out(u)": "nodes u links to"
+      },
+      "example": "If node A (PR=0.5) links to v, and A has 2 out-links: contribution = 0.85 × 0.5/2 = 0.2125"
+    },
+    {
+      "title": "Word Co-occurrence Graph",
+      "formula": "edge(wᵢ, wⱼ) if co-occurrence(window, wᵢ, wⱼ) > 0",
+      "explanation": "Words are connected if they appear within a sliding window (typically 2-5 words) of each other in the text.",
+      "variables": {
+        "window": "sliding window size (e.g., 2, 3, 5 words)",
+        "co-occurrence": "number of times two words appear together in window"
+      },
+      "example": "Window=2: 'cat sat on' → edges: cat-sat, sat-on"
+    }
+  ],
+  "hover_annotations": [
+    {
+      "target": "PageRank",
+      "definition": "Algorithm that ranks nodes in a graph based on the importance of their connections.",
+      "formula_meaning": "PR(v) = (1-d) + d × Σ PR(u)/out_degree(u) - nodes with more/higher-quality links get higher scores",
+      "example": "Google uses PageRank to rank web pages based on which pages link to them",
+      "common_mistake": "Thinking PageRank counts only the number of links (it weights links by the source's own importance)"
+    },
+    {
+      "target": "damping_factor",
+      "definition": "Probability (1-d) that a random surfer stops following links and jumps to a random page.",
+      "formula_meaning": "d=0.85 means 85% chance of following links, 15% chance of random jump",
+      "example": "d=0.85 is standard; lower d means more random jumps (faster mixing but less stable rankings)",
+      "common_mistake": "Setting d too high (close to 1) can cause slow convergence; too low loses graph structure"
+    }
+  ],
+  "references": [
+    {
+      "title": "TextRank: Bringing Order into Texts",
+      "authors": "Mihalcea, R. and Tarau, P.",
+      "year": 2004,
+      "url": "https://aclanthology.org/W04-3252/",
+      "relevance": "Original TextRank paper - applies PageRank to text for keyword extraction and summarization."
+    },
+    {
+      "title": "The PageRank Citation Ranking: Bringing Order to the Web",
+      "authors": "Page, L., Brin, S., Motwani, R., and Winograd, T.",
+      "year": 1999,
+      "url": "https://ilpubs.stanford.edu:8090/422/",
+      "relevance": "Original PageRank paper from Stanford - the foundation for TextRank's graph algorithm."
+    }
+  ],
+  "receiver_mode_explanations": [
+    {
+      "mode": "beginner",
+      "explanation": "TextRank builds a network of words and finds the most 'popular' ones - like finding the most well-connected people at a party.",
+      "teaching_notes": "Use a text about a well-known topic. Show the word graph with nodes and edges."
+    },
+    {
+      "mode": "student",
+      "explanation": "TextRank builds a word co-occurrence graph and runs PageRank. Formula: PR(v) = (1-d) + d × Σ PR(u)/|Out(u)|. Top nodes = keywords.",
+      "technical_detail": "Window size controls edge creation (2-5 words typical). Undirected graph is common. Convergence typically in 20-50 iterations."
+    },
+    {
+      "mode": "researcher",
+      "explanation": "TextRank is unsupervised and domain-independent. Research shows it matches or beats RAKE for long texts but may underperform for very short texts (Wan & Xiao, 2008).",
+      "technical_detail": "Limitations: no global statistics, sensitive to window size and preprocessing. Extensions: PositionRank (incorporates word positions), SingleRank (weighted co-occurrence), TopicRank (topic-based clustering)."
+    },
+    {
+      "mode": "engineer",
+      "explanation": "TextRank is O(V²) for graph construction (V = vocabulary size) and O(E) per PageRank iteration (E = edges). Use NetworkX for graph operations.",
+      "technical_detail": "Complexity: build O(V²) or O(n×w) where n=words, w=window; PageRank O(E×iter). Memory: O(V²) for adjacency matrix or O(E) for sparse. API: networkx.pagerank."
+    },
+    {
+      "mode": "instructor",
+      "explanation": "TextRank introduces graph-based NLP. Students learn how web search algorithms apply to text analysis.",
+      "teaching_notes": "Quiz: Why does PageRank work for keywords? Exercise: Draw the word graph for a 2-sentence text. Compare TextRank vs. RAKE results."
+    }
+  ],
+  "research_context": "TextRank (Mihalcea & Tarau, 2004) adapts Google's PageRank algorithm for NLP. It's a graph-based unsupervised method that can extract both keywords and summary sentences. It's particularly effective for longer texts where co-occurrence patterns are meaningful.",
+  "teaching_notes": {
+    "summary": "TextRank applies PageRank to a word co-occurrence graph to extract important keywords from text.",
+    "quiz_questions": [
+      "How does TextRank build the word graph?",
+      "What does the damping factor control in PageRank?",
+      "Compare TextRank and RAKE: when would you use each?"
+    ],
+    "classroom_demo_tips": [
+      "Visualize the word graph with node sizes proportional to PageRank scores",
+      "Show convergence of PageRank scores over iterations",
+      "Compare keyword extraction with and without stop word removal"
+    ],
+    "common_misconceptions": [
+      "TextRank only works for keyword extraction (false - it also does sentence extraction for summarization)",
+      "More iterations always means better results (false - PageRank typically converges in 20-50 iterations)"
+    ]
+  }
+}

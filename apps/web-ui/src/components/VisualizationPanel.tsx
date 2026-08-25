@@ -216,14 +216,14 @@ function DiffViz({ data }: { data: { original?: string; cleaned?: string; prompt
   const left  = data?.original ?? data?.prompt ?? data?.source ?? "";
   const right = data?.cleaned  ?? data?.completion ?? data?.target ?? "";
   return (
-    <div className="grid grid-cols-2 gap-4 text-xs font-mono">
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-mono">
       <div>
         <div className="text-gray-500 mb-1">Before / Source</div>
-        <pre className="bg-gray-800 rounded p-3 whitespace-pre-wrap text-gray-300 max-h-40 overflow-auto">{left}</pre>
+        <pre className="bg-gray-800 rounded p-3 whitespace-pre-wrap text-gray-700 dark:text-gray-300 max-h-40 overflow-auto">{left}</pre>
       </div>
       <div>
         <div className="text-gray-500 mb-1">After / Target</div>
-        <pre className="bg-gray-800 rounded p-3 whitespace-pre-wrap text-green-300 max-h-40 overflow-auto">{right}</pre>
+        <pre className="bg-gray-800 rounded p-3 whitespace-pre-wrap text-emerald-700 dark:text-green-300 max-h-40 overflow-auto">{right}</pre>
       </div>
     </div>
   );

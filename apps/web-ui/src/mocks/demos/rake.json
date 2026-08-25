@@ -1,0 +1,210 @@
+{
+  "demo_input": {
+    "text": "Support Vector Machines are powerful classifiers for text. SVM algorithms build on statistical learning theory. The SVM classifier finds an optimal hyperplane."
+  },
+  "auto_parameters": {
+    "min_phrase_length": 1,
+    "max_phrase_length": 4,
+    "min_word_frequency": 1,
+    "use_pos_filtering": false
+  },
+  "expected_output_preview": {
+    "keywords": [
+      {
+        "phrase": "support vector machines",
+        "score": 8.5
+      },
+      {
+        "phrase": "powerful classifiers",
+        "score": 6.2
+      },
+      {
+        "phrase": "statistical learning theory",
+        "score": 5.8
+      }
+    ],
+    "top_keyword": "support vector machines"
+  },
+  "beginner_explanation": "RAKE (Rapid Automatic Keyword Extraction) finds important phrases in text by looking for words that appear together often and have high importance scores. It's like automatically underlining the key phrases in an article.",
+  "advanced_explanation": "RAKE extracts keywords by splitting text into candidate phrases using stop words as delimiters, then scoring phrases using word frequency and co-occurrence. The score for a phrase is the sum of (word frequency × word degree) for each word. The degree of a word is its co-occurrence count with other words in the same candidate phrase. RAKE ignores stop words and produces phrases, not just single words.",
+  "formula_cards": [
+    {
+      "title": "Word Score in RAKE",
+      "formula": "score(w) = freq(w) × degree(w)",
+      "explanation": "A word's RAKE score is its frequency multiplied by its co-occurrence degree (number of times it appears with other candidate words).",
+      "variables": {
+        "freq(w)": "frequency of word w",
+        "degree(w)": "co-occurrence count of w with other words"
+      },
+      "example": "If 'support' appears 2 times and co-occurs with 4 words, score = 2 × 4 = 8"
+    },
+    {
+      "title": "Phrase Score in RAKE",
+      "formula": "score(phrase) = Σ score(wᵢ) for wᵢ in phrase",
+      "explanation": "The phrase score is the sum of individual word scores in that phrase.",
+      "variables": {
+        "phrase": "candidate phrase",
+        "wᵢ": "i-th word in the phrase"
+      },
+      "example": "'support vector machines' = score('support') + score('vector') + score('machines') = 8 + 5 + 6 = 19"
+    }
+  ],
+  "step_explanations": [
+    {
+      "step_id": "rk1",
+      "stage": "input_validation",
+      "title": "Validate Input Text",
+      "description": "Check that input text is non-empty and has sufficient content for keyword extraction.",
+      "input_preview": {
+        "text": "Support Vector Machines are powerful..."
+      },
+      "output_preview": {
+        "valid": true,
+        "word_count": 20
+      },
+      "why_it_matters": "RAKE needs enough text with multiple words to form meaningful candidate phrases.",
+      "visualization_type": "table"
+    },
+    {
+      "step_id": "rk2",
+      "stage": "preprocessing",
+      "title": "Split into Candidate Phrases",
+      "description": "Use stop words as delimiters to extract candidate keyword phrases.",
+      "input_preview": {
+        "text": "Support Vector Machines are powerful classifiers..."
+      },
+      "output_preview": {
+        "candidates": [
+          "Support Vector Machines",
+          "powerful classifiers",
+          "text",
+          "..."
+        ]
+      },
+      "why_it_matters": "Stop words (the, is, are) naturally delimit meaningful phrases in English text.",
+      "visualization_type": "timeline"
+    },
+    {
+      "step_id": "rk3",
+      "stage": "computation",
+      "title": "Compute Word Frequency and Degree",
+      "description": "Count how often each word appears and how many times it co-occurs with other words in candidate phrases.",
+      "formula": "degree(w) = number of co-occurrences with other words in same phrase",
+      "input_preview": {
+        "candidate_phrases": [
+          "..."
+        ]
+      },
+      "output_preview": {
+        "freq": {
+          "support": 2,
+          "vector": 1
+        },
+        "degree": {
+          "support": 4,
+          "vector": 2
+        }
+      },
+      "why_it_matters": "Words that appear with many other words (high degree) and frequently (high freq) are likely important keywords.",
+      "visualization_type": "graph"
+    },
+    {
+      "step_id": "rk4",
+      "stage": "computation",
+      "title": "Score Phrases and Rank",
+      "description": "Calculate phrase scores by summing word scores, then rank phrases by score.",
+      "formula": "score(phrase) = Σ freq(w) × degree(w)",
+      "input_preview": {
+        "word_scores": {},
+        "candidate_phrases": [
+          "..."
+        ]
+      },
+      "output_preview": {
+        "ranked_keywords": [
+          [
+            "support vector machines",
+            19
+          ],
+          [
+            "powerful classifiers",
+            12
+          ],
+          "..."
+        ]
+      },
+      "why_it_matters": "Higher-scoring phrases are the most important keywords in the document.",
+      "visualization_type": "bar"
+    }
+  ],
+  "hover_annotations": [
+    {
+      "target": "candidate_phrases",
+      "definition": "Phrases extracted by splitting text on stop words. These are potential keywords.",
+      "formula_meaning": "Text is split on stop words like 'the', 'is', 'are' to get phrases",
+      "example": "'SVM algorithms build on theory' → ['SVM algorithms', 'build', 'theory']",
+      "common_mistake": "Thinking RAKE only extracts single words (it extracts multi-word phrases)"
+    },
+    {
+      "target": "degree",
+      "definition": "Co-occurrence count of a word with other words in the same candidate phrase.",
+      "formula_meaning": "degree(w) = number of edges in the word co-occurrence graph",
+      "example": "In phrase 'support vector machines', 'support' has degree 2 (co-occurs with 'vector' and 'machines')",
+      "common_mistake": "Confusing degree with frequency (degree measures connections, freq measures occurrences)"
+    }
+  ],
+  "references": [
+    {
+      "title": "Automatic Keyword Extraction from Individual Documents",
+      "authors": "Rose, S., Engel, D., Cramer, N., and Cowley, W.",
+      "year": 2010,
+      "url": "https://www.researchgate.net/publication/227211395_Automatic_Keyword_Extraction_from_Individual_Documents",
+      "relevance": "Original RAKE algorithm paper - describes the word degree and phrase scoring method."
+    }
+  ],
+  "receiver_mode_explanations": [
+    {
+      "mode": "beginner",
+      "explanation": "RAKE finds key phrases by looking at which words appear together and how often. It's like highlighting important phrases in an article.",
+      "teaching_notes": "Use a short paragraph. Show how candidate phrases are extracted after removing 'the', 'is', etc."
+    },
+    {
+      "mode": "student",
+      "explanation": "RAKE scores phrases using word frequency × word degree. Formula: score(phrase) = Σ freq(w) × degree(w). Stop words delimit phrases.",
+      "technical_detail": "RAKE doesn't need a corpus - it works on single documents. It's unsupervised and language-agnostic (just needs stop word list)."
+    },
+    {
+      "mode": "researcher",
+      "explanation": "RAKE is simple but effective for single-document keyword extraction. Research shows it performs competitively with more complex methods like TextRank for short texts (Mihalcea & Tarau, 2004).",
+      "technical_detail": "Limitations: no global statistics (unlike TF-IDF), sensitive to stop word list quality. Variants: RAKE with POS filtering, TopicRank, YAKE."
+    },
+    {
+      "mode": "engineer",
+      "explanation": "RAKE is O(n) where n is word count. It's extremely fast and doesn't need training. Use nltk's stop word lists or customize for your domain.",
+      "technical_detail": "Complexity: O(n). Memory: O(v) where v is vocabulary size. Easy to implement: split on stops → count freq/degree → score phrases."
+    },
+    {
+      "mode": "instructor",
+      "explanation": "RAKE introduces keyword extraction without needing a corpus. Great for teaching unsupervised NLP.",
+      "teaching_notes": "Quiz: Why use stop words as delimiters? Exercise: Manually compute RAKE scores for a 2-sentence text. Discuss: When would RAKE fail?"
+    }
+  ],
+  "research_context": "RAKE was introduced by Rose et al. (2010) as a simple, unsupervised keyword extraction method that works on individual documents without requiring a corpus. It's widely used in document summarization and content analysis.",
+  "teaching_notes": {
+    "summary": "RAKE extracts keywords by scoring phrases based on word frequency and co-occurrence degree.",
+    "quiz_questions": [
+      "How does RAKE identify candidate phrases?",
+      "What do 'frequency' and 'degree' mean in RAKE, and how are they combined?",
+      "Why doesn't RAKE need a corpus of documents?"
+    ],
+    "classroom_demo_tips": [
+      "Show the word co-occurrence graph visually",
+      "Compare RAKE keywords with TF-IDF top terms",
+      "Try RAKE on different document types (news, academic, social media)"
+    ],
+    "common_misconceptions": [
+      "RAKE only works on English (false - it works on any language with stop words)",
+      "RAKE needs training data (false - it's fully unsupervised)"
+    ]
+  }
+}

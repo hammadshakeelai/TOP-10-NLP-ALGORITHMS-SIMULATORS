@@ -15,15 +15,16 @@ const MODES: { value: ReceiverMode; label: string; color: string }[] = [
 
 export default function ReceiverModeSwitcher({ value, onChange }: Props) {
   return (
-    <div className="flex flex-wrap gap-2">
+    <div className="flex flex-wrap gap-2" role="group" aria-label="Receiver mode">
       {MODES.map((m) => (
         <button
           key={m.value}
           onClick={() => onChange(m.value)}
-          className={`px-3 py-1 rounded-full text-xs font-semibold transition ${
+          aria-pressed={value === m.value}
+          className={`px-3 py-1 rounded-full text-xs font-semibold transition focus-ring ${
             value === m.value
               ? m.color + " text-white ring-2 ring-white/30"
-              : "bg-gray-700 text-gray-300 hover:bg-gray-600"
+              : "bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-600"
           }`}
         >
           {m.label}

@@ -1,0 +1,675 @@
+{
+  "run_id": "1d95f9e8-c817-40f6-aae3-16f467d589f9",
+  "status": "success",
+  "algorithm_id": "naive_bayes",
+  "algorithm_version": "naive_bayes-v1.0.0",
+  "input_fingerprint": "sha256:8dcd1c542fa005ed",
+  "result": {
+    "predicted_class": "positive",
+    "predicted_probabilities": {
+      "negative": 0.2119,
+      "positive": 0.7881
+    },
+    "class_priors": {
+      "negative": 0.5,
+      "positive": 0.5
+    },
+    "accuracy": 1.0,
+    "confusion_matrix": [
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ]
+    ],
+    "class_labels": [
+      "negative",
+      "positive"
+    ]
+  },
+  "trace": {
+    "predicted_class": "positive",
+    "predicted_probabilities": {
+      "negative": 0.2119,
+      "positive": 0.7881
+    },
+    "class_priors": {
+      "negative": 0.5,
+      "positive": 0.5
+    },
+    "smoothing_alpha": 1.0,
+    "formula": "P(class|text) ∝ P(class) × ∏ P(word|class)^α",
+    "top_features_per_class": {
+      "negative": [
+        {
+          "feature": "written",
+          "log_prob": -2.6027
+        },
+        {
+          "feature": "wasted",
+          "log_prob": -2.6027
+        },
+        {
+          "feature": "time",
+          "log_prob": -2.6027
+        },
+        {
+          "feature": "terrible",
+          "log_prob": -2.6027
+        },
+        {
+          "feature": "my",
+          "log_prob": -2.6027
+        },
+        {
+          "feature": "poorly",
+          "log_prob": -2.6027
+        },
+        {
+          "feature": "boring",
+          "log_prob": -2.6027
+        },
+        {
+          "feature": "and",
+          "log_prob": -2.6027
+        },
+        {
+          "feature": "film",
+          "log_prob": -2.6027
+        },
+        {
+          "feature": "seen",
+          "log_prob": -3.2958
+        },
+        {
+          "feature": "have",
+          "log_prob": -3.2958
+        },
+        {
+          "feature": "movie",
+          "log_prob": -3.2958
+        },
+        {
+          "feature": "story",
+          "log_prob": -3.2958
+        },
+        {
+          "feature": "great",
+          "log_prob": -3.2958
+        },
+        {
+          "feature": "ever",
+          "log_prob": -3.2958
+        }
+      ],
+      "positive": [
+        {
+          "feature": "story",
+          "log_prob": -2.6391
+        },
+        {
+          "feature": "seen",
+          "log_prob": -2.6391
+        },
+        {
+          "feature": "amazing",
+          "log_prob": -2.6391
+        },
+        {
+          "feature": "acting",
+          "log_prob": -2.6391
+        },
+        {
+          "feature": "movie",
+          "log_prob": -2.6391
+        },
+        {
+          "feature": "have",
+          "log_prob": -2.6391
+        },
+        {
+          "feature": "best",
+          "log_prob": -2.6391
+        },
+        {
+          "feature": "and",
+          "log_prob": -2.6391
+        },
+        {
+          "feature": "ever",
+          "log_prob": -2.6391
+        },
+        {
+          "feature": "great",
+          "log_prob": -2.6391
+        },
+        {
+          "feature": "wasted",
+          "log_prob": -3.3322
+        },
+        {
+          "feature": "written",
+          "log_prob": -3.3322
+        },
+        {
+          "feature": "terrible",
+          "log_prob": -3.3322
+        },
+        {
+          "feature": "time",
+          "log_prob": -3.3322
+        },
+        {
+          "feature": "poorly",
+          "log_prob": -3.3322
+        }
+      ]
+    },
+    "confusion_matrix": [
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ]
+    ],
+    "class_labels": [
+      "negative",
+      "positive"
+    ],
+    "classification_report": {
+      "negative": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 1.0
+      },
+      "positive": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 1.0
+      },
+      "accuracy": 1.0,
+      "macro avg": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 2.0
+      },
+      "weighted avg": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 2.0
+      }
+    }
+  },
+  "visualization_specs": [
+    {
+      "type": "bar",
+      "title": "Predicted Class Probabilities",
+      "data": [
+        {
+          "class": "negative",
+          "probability": 0.2119
+        },
+        {
+          "class": "positive",
+          "probability": 0.7881
+        }
+      ],
+      "config": {
+        "x": "class",
+        "y": "probability",
+        "color": "#6366f1"
+      }
+    },
+    {
+      "type": "bar",
+      "title": "Top Features — Class: negative",
+      "data": [
+        {
+          "feature": "written",
+          "log_prob": -2.6027
+        },
+        {
+          "feature": "wasted",
+          "log_prob": -2.6027
+        },
+        {
+          "feature": "time",
+          "log_prob": -2.6027
+        },
+        {
+          "feature": "terrible",
+          "log_prob": -2.6027
+        },
+        {
+          "feature": "my",
+          "log_prob": -2.6027
+        },
+        {
+          "feature": "poorly",
+          "log_prob": -2.6027
+        },
+        {
+          "feature": "boring",
+          "log_prob": -2.6027
+        },
+        {
+          "feature": "and",
+          "log_prob": -2.6027
+        },
+        {
+          "feature": "film",
+          "log_prob": -2.6027
+        },
+        {
+          "feature": "seen",
+          "log_prob": -3.2958
+        },
+        {
+          "feature": "have",
+          "log_prob": -3.2958
+        },
+        {
+          "feature": "movie",
+          "log_prob": -3.2958
+        },
+        {
+          "feature": "story",
+          "log_prob": -3.2958
+        },
+        {
+          "feature": "great",
+          "log_prob": -3.2958
+        },
+        {
+          "feature": "ever",
+          "log_prob": -3.2958
+        }
+      ],
+      "config": {
+        "x": "feature",
+        "y": "log_prob",
+        "color": "#10b981"
+      }
+    },
+    {
+      "type": "bar",
+      "title": "Top Features — Class: positive",
+      "data": [
+        {
+          "feature": "story",
+          "log_prob": -2.6391
+        },
+        {
+          "feature": "seen",
+          "log_prob": -2.6391
+        },
+        {
+          "feature": "amazing",
+          "log_prob": -2.6391
+        },
+        {
+          "feature": "acting",
+          "log_prob": -2.6391
+        },
+        {
+          "feature": "movie",
+          "log_prob": -2.6391
+        },
+        {
+          "feature": "have",
+          "log_prob": -2.6391
+        },
+        {
+          "feature": "best",
+          "log_prob": -2.6391
+        },
+        {
+          "feature": "and",
+          "log_prob": -2.6391
+        },
+        {
+          "feature": "ever",
+          "log_prob": -2.6391
+        },
+        {
+          "feature": "great",
+          "log_prob": -2.6391
+        },
+        {
+          "feature": "wasted",
+          "log_prob": -3.3322
+        },
+        {
+          "feature": "written",
+          "log_prob": -3.3322
+        },
+        {
+          "feature": "terrible",
+          "log_prob": -3.3322
+        },
+        {
+          "feature": "time",
+          "log_prob": -3.3322
+        },
+        {
+          "feature": "poorly",
+          "log_prob": -3.3322
+        }
+      ],
+      "config": {
+        "x": "feature",
+        "y": "log_prob",
+        "color": "#10b981"
+      }
+    },
+    {
+      "type": "heatmap",
+      "title": "Confusion Matrix",
+      "data": {
+        "labels": [
+          "negative",
+          "positive"
+        ],
+        "matrix": [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ]
+        ]
+      },
+      "config": {
+        "colorscale": "Blues",
+        "annotate": true
+      }
+    }
+  ],
+  "metrics": {
+    "runtime_ms": 18.15,
+    "extra": {}
+  },
+  "warnings": [],
+  "export_links": [],
+  "demo_input": {
+    "documents": [
+      {
+        "id": "d1",
+        "text": "Great movie, really enjoyed it!",
+        "label": "positive"
+      },
+      {
+        "id": "d2",
+        "text": "Terrible film, wasted my time.",
+        "label": "negative"
+      },
+      {
+        "id": "d3",
+        "text": "Amazing story and great acting.",
+        "label": "positive"
+      },
+      {
+        "id": "d4",
+        "text": "Boring and poorly written.",
+        "label": "negative"
+      },
+      {
+        "id": "d5",
+        "text": "Best movie I have ever seen!",
+        "label": "positive"
+      },
+      {
+        "id": "d6",
+        "text": "Worst experience, avoid this film.",
+        "label": "negative"
+      }
+    ],
+    "labels": [
+      "positive",
+      "negative"
+    ]
+  },
+  "auto_parameters": {
+    "alpha": 1.0,
+    "fit_prior": true,
+    "model_type": "multinomial"
+  },
+  "step_explanations": [
+    {
+      "step_id": "nb1",
+      "stage": "input_validation",
+      "title": "Validate Labeled Documents",
+      "description": "Ensure documents have labels and there are at least 2 classes with sufficient examples.",
+      "input_preview": {
+        "document_count": 6,
+        "classes": [
+          "positive",
+          "negative"
+        ]
+      },
+      "output_preview": {
+        "valid": true,
+        "class_distribution": {
+          "positive": 3,
+          "negative": 3
+        }
+      },
+      "why_it_matters": "Naive Bayes is supervised - it needs labeled examples to learn class-conditional word probabilities.",
+      "visualization_type": "bar"
+    },
+    {
+      "step_id": "nb2",
+      "stage": "preprocessing",
+      "title": "Extract Features (Bag of Words)",
+      "description": "Convert text to word counts for each document, creating a feature matrix.",
+      "input_preview": {
+        "documents": [
+          "..."
+        ],
+        "labels": [
+          "..."
+        ]
+      },
+      "output_preview": {
+        "feature_matrix_shape": [
+          6,
+          10
+        ],
+        "vocabulary": [
+          "great",
+          "movie",
+          "terrible",
+          "..."
+        ]
+      },
+      "why_it_matters": "The feature matrix represents documents numerically, enabling probabilistic computation.",
+      "visualization_type": "table"
+    },
+    {
+      "step_id": "nb3",
+      "stage": "training",
+      "title": "Compute Class Priors P(C)",
+      "description": "Calculate the prior probability of each class from the training data.",
+      "formula": "P(C) = count(C) / total_documents",
+      "input_preview": {
+        "class_counts": {
+          "positive": 3,
+          "negative": 3
+        }
+      },
+      "output_preview": {
+        "priors": {
+          "positive": 0.5,
+          "negative": 0.5
+        }
+      },
+      "why_it_matters": "Priors encode the base rate of each class. Imbalanced data leads to skewed priors.",
+      "visualization_type": "bar"
+    },
+    {
+      "step_id": "nb4",
+      "stage": "training",
+      "title": "Compute Word Likelihoods P(w|C) with Smoothing",
+      "description": "For each class, count word frequencies and apply Laplace smoothing to handle unseen words.",
+      "formula": "P(w|C) = (count(w,C) + α) / (N_C + α×|V|)",
+      "input_preview": {
+        "class_word_counts": {}
+      },
+      "output_preview": {
+        "word_probs": {
+          "great|positive": 0.15,
+          "terrible|negative": 0.12
+        }
+      },
+      "why_it_matters": "These likelihoods are the core of the model - they determine which words are characteristic of each class.",
+      "visualization_type": "heatmap"
+    },
+    {
+      "step_id": "nb5",
+      "stage": "prediction",
+      "title": "Predict New Document",
+      "description": "For a new document, compute P(C|document) for each class and pick the highest.",
+      "formula": "P(C|D) ∝ P(C) × Π P(wᵢ|C)",
+      "input_preview": {
+        "new_text": "Great movie, really enjoyed it!",
+        "tokenized": [
+          "great",
+          "movie",
+          "..."
+        ]
+      },
+      "output_preview": {
+        "predicted": "positive",
+        "probabilities": {
+          "positive": 0.85,
+          "negative": 0.15
+        }
+      },
+      "why_it_matters": "This is the actual classification step - the model applies what it learned to new text.",
+      "visualization_type": "bar"
+    }
+  ],
+  "formula_cards": [
+    {
+      "title": "Bayes' Theorem",
+      "formula": "P(C|D) = P(D|C) × P(C) / P(D)",
+      "explanation": "The probability of class C given document D equals the likelihood times the prior, divided by the evidence.",
+      "variables": {
+        "C": "class",
+        "D": "document",
+        "P(C)": "prior probability of class"
+      },
+      "example": "P(positive|'great movie') ∝ P('great movie'|positive) × P(positive)"
+    },
+    {
+      "title": "Naive Bayes Classifier",
+      "formula": "P(C|D) ∝ P(C) × Πᵢ P(wᵢ|C)",
+      "explanation": "With the naive assumption, document probability equals class prior times product of word probabilities.",
+      "variables": {
+        "wᵢ": "i-th word in document",
+        "P(wᵢ|C)": "probability of word given class"
+      },
+      "example": "P(positive|'great movie') ∝ P(positive) × P('great'|positive) × P('movie'|positive)"
+    },
+    {
+      "title": "Laplace Smoothing",
+      "formula": "P(wᵢ|C) = (count(wᵢ,C) + α) / (N_C + α×|V|)",
+      "explanation": "Smoothing prevents zero probabilities for unseen words by adding α to all counts.",
+      "variables": {
+        "α": "smoothing parameter (typically 1)",
+        "N_C": "total word count in class C",
+        "|V|": "vocabulary size"
+      },
+      "example": "With α=1, even unseen words get probability 1/(N_C + |V|)"
+    }
+  ],
+  "hover_annotations": [
+    {
+      "target": "P(C|D)",
+      "definition": "Posterior probability: chance of class C given the document D.",
+      "formula_meaning": "P(C|D) ∝ P(D|C) × P(C) / P(D) - but P(D) is constant across classes so we drop it",
+      "example": "P(positive|'great movie') = 0.85 means 85% chance the review is positive",
+      "common_mistake": "Forgetting that posterior is proportional, not equal (missing normalization)"
+    },
+    {
+      "target": "alpha",
+      "definition": "Laplace smoothing parameter to avoid zero probabilities.",
+      "formula_meaning": "Adding α to all word counts ensures no P(w|C) = 0",
+      "example": "α=1 (default) is Laplace smoothing; α=0.01 is Lidstone smoothing",
+      "common_mistake": "Setting α=0 which causes zero probabilities for unseen words"
+    }
+  ],
+  "references": [
+    {
+      "title": "Naive (Bayes) at Forty: The Independence Assumption in Information Retrieval",
+      "authors": "Lewis, D.D.",
+      "year": 1998,
+      "url": "https://www.cs.utexas.edu/~ml/papers/lewis-98.pdf",
+      "relevance": "Comprehensive analysis of Naive Bayes for text classification, including the independence assumption."
+    },
+    {
+      "title": "A Comparison of Event Models for Naive Bayes Text Classification",
+      "authors": "McCallum, A. and Nigam, K.",
+      "year": 1998,
+      "url": "https://www.cs.cmu.edu/~knigam/papers/multinomial-aaai.ps",
+      "relevance": "Compares Multinomial, Bernoulli, and Gaussian Naive Bayes for text. Multinomial works best for word counts."
+    }
+  ],
+  "receiver_mode_explanations": [
+    {
+      "mode": "beginner",
+      "explanation": "Naive Bayes counts words in positive and negative reviews, then uses those counts to guess if a new review is positive or negative.",
+      "teaching_notes": "Use movie reviews. Show how 'great' appears mostly in positive examples."
+    },
+    {
+      "mode": "student",
+      "explanation": "Naive Bayes uses P(C|D) ∝ P(C) × Π P(w|C). It assumes words are independent (the 'naive' part). Laplace smoothing handles unseen words.",
+      "technical_detail": "Multinomial NB for word counts, Bernoulli NB for binary occurrence. The independence assumption is wrong but often doesn't hurt performance much."
+    },
+    {
+      "mode": "researcher",
+      "explanation": "Naive Bayes is optimal if the independence assumption holds. For text, it often works well despite violations. Research shows it's competitive with SVMs on many text tasks (Rennie et al., 2003).",
+      "technical_detail": "Limitations: can't learn feature interactions, sensitive to correlated features. Variants: Complement NB (for imbalanced data), TAN (Tree-Augmented Naive Bayes)."
+    },
+    {
+      "mode": "engineer",
+      "explanation": "MultinomialNB in sklearn is O(N×L) training, O(L) prediction. Use log probabilities to avoid underflow. Alpha=1 is Laplace smoothing.",
+      "technical_detail": "Complexity: train O(NL), predict O(L) per doc. Memory: O(|C|×|V|) for probability table. API: sklearn.naive_bayes.MultinomialNB."
+    },
+    {
+      "mode": "instructor",
+      "explanation": "Naive Bayes introduces probabilistic ML. Show how the 'naive' assumption simplifies computation. Compare with logistic regression later.",
+      "teaching_notes": "Quiz: Why 'naive'? Exercise: Manually compute P(positive|'great movie'). Discuss: When would NB fail?"
+    }
+  ],
+  "research_context": "Naive Bayes for text classification was popularized by Lewis (1998) and McCallum & Nigam (1998). Despite the unrealistic independence assumption, it remains competitive due to its simplicity, speed, and ability to handle high-dimensional sparse features.",
+  "teaching_notes": {
+    "summary": "Naive Bayes applies Bayes' theorem with feature independence to classify text.",
+    "quiz_questions": [
+      "Why is the algorithm called 'naive'?",
+      "What does Laplace smoothing do and why do we need it?",
+      "Calculate P(positive|'great movie') manually with a 2-document training set."
+    ],
+    "classroom_demo_tips": [
+      "Show the probability table as a heatmap",
+      "Add a document with completely new words - show smoothing in action",
+      "Compare with k-NN or SVM on the same data"
+    ],
+    "common_misconceptions": [
+      "Naive Bayes assumes features are uncorrelated (it assumes conditional independence given class, which is different)",
+      "Higher P(C|D) always means correct classification (it's just a probability estimate)"
+    ]
+  }
+}

@@ -1,0 +1,206 @@
+{
+  "demo_input": {
+    "text": "I love this movie because the acting was amazing and the plot kept me engaged.",
+    "task": "sentiment"
+  },
+  "auto_parameters": {
+    "hidden_size": 128,
+    "num_layers": 1,
+    "dropout": 0.2,
+    "bidirectional": false
+  },
+  "expected_output_preview": {
+    "predicted_sentiment": "positive",
+    "confidence": 0.92,
+    "sequence_length": 15,
+    "hidden_states_shape": [
+      15,
+      128
+    ]
+  },
+  "beginner_explanation": "LSTM is a type of neural network that reads text one word at a time and remembers important information while forgetting irrelevant details. It's like reading a story and remembering the main plot points while forgetting small details.",
+  "advanced_explanation": "LSTM (Long Short-Term Memory) networks use gating mechanisms to control information flow and maintain long-term dependencies. The core LSTM cell has three gates: forget gate f_t = σ(W_f·[h_{t-1}, x_t] + b_f), input gate i_t = σ(W_i·[h_{t-1}, x_t] + b_i), and output gate o_t = σ(W_o·[h_{t-1}, x_t] + b_o). The cell state c_t = f_t ⊙ c_{t-1} + i_t ⊙ tanh(W_c·[h_{t-1}, x_t] + b_c), and hidden state h_t = o_t ⊙ tanh(c_t). LSTMs solve the vanishing gradient problem of standard RNNs.",
+  "formula_cards": [
+    {
+      "title": "Forget Gate",
+      "formula": "f_t = σ(W_f·[h_{t-1}, x_t] + b_f)",
+      "explanation": "Decides what information to discard from the cell state. σ is sigmoid (0=forget, 1=keep all).",
+      "variables": {
+        "f_t": "forget gate output",
+        "h_{t-1}": "previous hidden state",
+        "x_t": "current input"
+      },
+      "example": "f_t = [0.9, 0.1, 0.8, ...] means forget 10% of info in dimension 2"
+    },
+    {
+      "title": "Input Gate & Cell Update",
+      "formula": "i_t = σ(W_i·[h_{t-1}, x_t] + b_i); c̃_t = tanh(W_c·[h_{t-1}, x_t] + b_c); c_t = f_t⊙c_{t-1} + i_t⊙c̃_t",
+      "explanation": "Decides what new information to store in the cell state. i_t controls how much new info to add; c̃_t is the candidate value.",
+      "variables": {
+        "i_t": "input gate",
+        "c̃_t": "candidate cell state",
+        "c_t": "new cell state",
+        "⊙": "Hadamard (element-wise) product"
+      },
+      "example": "If i_t=0.8 and c̃_t=0.5, add 0.4 to cell state in that dimension"
+    },
+    {
+      "title": "Output Gate & Hidden State",
+      "formula": "o_t = σ(W_o·[h_{t-1}, x_t] + b_o); h_t = o_t ⊙ tanh(c_t)",
+      "explanation": "Decides what parts of the cell state to output as the hidden state, which is passed to the next timestep and used for predictions.",
+      "variables": {
+        "o_t": "output gate",
+        "h_t": "hidden state (output)"
+      },
+      "example": "o_t=0.7 means output 70% of the transformed cell state"
+    }
+  ],
+  "step_explanations": [
+    {
+      "step_id": "ls1",
+      "stage": "input_validation",
+      "title": "Validate Input Sequence",
+      "description": "Check that input text is non-empty and can be tokenized into a sequence.",
+      "input_preview": {
+        "text": "I love this movie because..."
+      },
+      "output_preview": {
+        "valid": true,
+        "sequence_length": 15
+      },
+      "why_it_matters": "LSTM processes sequences - needs valid text to convert to token/embedding sequence.",
+      "visualization_type": "table"
+    },
+    {
+      "step_id": "ls2",
+      "stage": "preprocessing",
+      "title": "Embed Input Tokens",
+      "description": "Convert tokens to dense embedding vectors that the LSTM can process.",
+      "input_preview": {
+        "tokens": [
+          "i",
+          "love",
+          "this",
+          "..."
+        ]
+      },
+      "output_preview": {
+        "embeddings": "shape [15, 300]",
+        "vocab_size": 10000
+      },
+      "why_it_matters": "LSTM operates on continuous vectors, not discrete tokens.",
+      "visualization_type": "scatter"
+    },
+    {
+      "step_id": "ls3",
+      "stage": "forward_pass",
+      "title": "LSTM Forward Pass (Timestep 1 to T)",
+      "description": "Process each token sequentially: update forget/input/output gates and cell/hidden states.",
+      "formula": "f_t, i_t, o_t, c_t, h_t computed at each timestep",
+      "input_preview": {
+        "embeddings": "[15, 300]",
+        "h_0": "zeros",
+        "c_0": "zeros"
+      },
+      "output_preview": {
+        "h_t": "shape [15, 128]",
+        "c_t": "shape [15, 128]"
+      },
+      "why_it_matters": "This is the core computation - the LSTM 'reads' the sequence and builds an internal representation.",
+      "visualization_type": "timeline"
+    },
+    {
+      "step_id": "ls4",
+      "stage": "prediction",
+      "title": "Generate Prediction from Final Hidden State",
+      "description": "Use the last hidden state h_T (or all hidden states) to predict sentiment or next word.",
+      "formula": "y = softmax(W_y·h_T + b_y)",
+      "input_preview": {
+        "h_T": "[128]"
+      },
+      "output_preview": {
+        "predicted": "positive",
+        "confidence": 0.92
+      },
+      "why_it_matters": "The final hidden state summarizes the entire input sequence and is used for the downstream task.",
+      "visualization_type": "bar"
+    }
+  ],
+  "hover_annotations": [
+    {
+      "target": "cell_state",
+      "definition": "The LSTM's memory - a vector that carries information across timesteps, updated by gates.",
+      "formula_meaning": "c_t = f_t⊙c_{t-1} + i_t⊙c̃_t - controls what's remembered vs. forgotten",
+      "example": "c_t shape [128] - can remember info from 50+ timesteps ago",
+      "common_mistake": "Confusing cell state (long-term memory) with hidden state (short-term output)"
+    },
+    {
+      "target": "hidden_state",
+      "definition": "The LSTM's output at each timestep, used for predictions and passed to the next timestep.",
+      "formula_meaning": "h_t = o_t ⊙ tanh(c_t) - filtered version of cell state",
+      "example": "h_t shape [128] - encodes the 'current understanding' after reading token t",
+      "common_mistake": "Thinking h_t is the same as c_t (it's a transformed subset of c_t, controlled by output gate)"
+    }
+  ],
+  "references": [
+    {
+      "title": "Long Short-Term Memory",
+      "authors": "Hochreiter, S. and Schmidhuber, J.",
+      "year": 1997,
+      "doi": "10.1162/neco.1997.9.8.1735",
+      "relevance": "Original LSTM paper introducing the gating mechanism to solve vanishing gradients in RNNs."
+    },
+    {
+      "title": "Deep Learning",
+      "authors": "Goodfellow, I., Bengio, Y., and Courville, A.",
+      "year": 2016,
+      "url": "https://www.deeplearningbook.org/contents/rnn.html",
+      "relevance": "Chapter 10 covers RNNs and LSTMs with clear diagrams of the gating mechanism."
+    }
+  ],
+  "receiver_mode_explanations": [
+    {
+      "mode": "beginner",
+      "explanation": "LSTM reads text word by word, remembering important things and forgetting unimportant details. Like remembering the main plot of a movie.",
+      "teaching_notes": "Use a simple sentence. Show how the 'memory' (cell state) changes at each word."
+    },
+    {
+      "mode": "student",
+      "explanation": "LSTM has three gates: forget (what to discard), input (what new info to add), output (what to output). Formulas: f_t = σ(W_f·[h_{t-1}, x_t]), etc.",
+      "technical_detail": "Cell state c_t carries long-term info. Hidden state h_t is the output. Bidirectional LSTM reads both forward and backward. Stacked LSTM has multiple layers."
+    },
+    {
+      "mode": "researcher",
+      "explanation": "LSTM solves vanishing gradients via additive cell updates (gradients flow unchanged through additions). Still widely used, though Transformers have largely replaced LSTMs for NLP. Research shows LSTMs can capture ~100-200 timesteps of dependency.",
+      "technical_detail": "Limitations: sequential (can't parallelize), still struggles with very long dependencies. Variants: GRU (simpler, 2 gates), BiLSTM (bidirectional), Stacked LSTM (multiple layers)."
+    },
+    {
+      "mode": "engineer",
+      "explanation": "LSTM forward pass is O(T×H²) where T=timesteps, H=hidden size. Use PyTorch nn.LSTM. For NLP, embed tokens first (nn.Embedding). Bidirectional doubles parameters.",
+      "technical_detail": "Complexity: O(T×H²) for hidden-hidden matmuls. Memory: O(L×T×H) for hidden states (L=layers). API: torch.nn.LSTM, tf.keras.layers.LSTM."
+    },
+    {
+      "mode": "instructor",
+      "explanation": "LSTM introduces gating mechanisms in neural networks. Great for teaching why RNNs fail and how LSTMs fix it.",
+      "teaching_notes": "Quiz: What does each gate do? Exercise: Trace an LSTM forward pass manually for a 3-word sentence. Compare RNN vs. LSTM vanishing gradient."
+    }
+  ],
+  "research_context": "LSTM (Hochreiter & Schmidhuber, 1997) revolutionized sequence modeling by solving the vanishing gradient problem. It remained state-of-the-art for NLP until the Transformer (2017). LSTMs are still widely used for time series, speech, and resource-constrained applications.",
+  "teaching_notes": {
+    "summary": "LSTM uses gating mechanisms to maintain long-term dependencies in sequential data.",
+    "quiz_questions": [
+      "What problem does LSTM solve that standard RNN cannot?",
+      "What does each of the three gates (forget, input, output) control?",
+      "What's the difference between cell state and hidden state?"
+    ],
+    "classroom_demo_tips": [
+      "Visualize gate activations as a heatmap over timesteps",
+      "Show vanishing gradient in RNN vs. stable gradient in LSTM",
+      "Compare unidirectional vs. bidirectional LSTM predictions"
+    ],
+    "common_misconceptions": [
+      "LSTM understands language (false - it models statistical patterns in sequences)",
+      "More layers always improves performance (false - can overfit or be hard to train)"
+    ]
+  }
+}

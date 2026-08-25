@@ -1,0 +1,284 @@
+{
+  "demo_input": {
+    "text": "king queen man woman royal palace throne",
+    "mode": "similarity"
+  },
+  "auto_parameters": {
+    "model_type": "toy_svd",
+    "vector_dim": 5,
+    "context_window": 2,
+    "min_count": 1,
+    "target_word": "king",
+    "top_k_neighbors": 5,
+    "analogy": {
+      "a": "king",
+      "b": "man",
+      "c": "woman"
+    }
+  },
+  "expected_output_preview": {
+    "vocabulary_size": 6,
+    "embedding_dim": 100,
+    "similarity_pairs": [
+      [
+        "king",
+        "queen",
+        0.85
+      ],
+      [
+        "man",
+        "woman",
+        0.82
+      ]
+    ],
+    "analogy_top": [
+      [
+        "king",
+        "man",
+        "woman"
+      ]
+    ]
+  },
+  "beginner_explanation": "Word embeddings turn words into lists of numbers (vectors) so that similar words have similar number lists. 'King' and 'queen' will have close vectors, just like 'man' and 'woman'.",
+  "advanced_explanation": "Word2Vec (Mikolov et al., 2013) learns dense vector representations where semantic relationships are encoded as geometric relationships in vector space. Skip-gram predicts context words given a center word: maximize Σ log P(w_context|w_center). Negative sampling approximates softmax: P(w|w_c) ≈ σ(v_w·v_wc) for positive pairs and 1-σ(·) for negative samples. Analogies emerge: king - man + woman ≈ queen.",
+  "formula_cards": [
+    {
+      "title": "Skip-gram Objective",
+      "formula": "J(θ) = Σ log P(w_O|w_I)",
+      "explanation": "Skip-gram maximizes the probability of context words w_O given input word w_I.",
+      "variables": {
+        "w_I": "input (center) word",
+        "w_O": "output (context) word",
+        "θ": "model parameters"
+      },
+      "example": "For 'king' with context ['queen', 'man', 'royal'], maximize P(queen|king) + P(man|king) + P(royal|king)"
+    },
+    {
+      "title": "Negative Sampling",
+      "formula": "log σ(v_c·v_w) + Σ log σ(-v_c·v_n)",
+      "explanation": "Instead of full softmax, use binary classification: positive for real context words, negative for sampled noise words.",
+      "variables": {
+        "v_c": "context word vector",
+        "v_w": "center word vector",
+        "v_n": "negative sample vector"
+      },
+      "example": "Positive: σ(v_queen·v_king) ≈ 0.85. Negative: σ(-v_car·v_king) ≈ 0.1"
+    },
+    {
+      "title": "Word Analogy",
+      "formula": "v_queen ≈ v_king - v_man + v_woman",
+      "explanation": "Semantic relationships appear as vector offsets. Analogy: king is to man as queen is to woman.",
+      "variables": {
+        "v_w": "vector representation of word w"
+      },
+      "example": "vector('king') - vector('man') + vector('woman') ≈ vector('queen')"
+    }
+  ],
+  "step_explanations": [
+    {
+      "step_id": "we1",
+      "stage": "input_validation",
+      "title": "Validate Vocabulary",
+      "description": "Check that input text has sufficient words to build meaningful embeddings.",
+      "input_preview": {
+        "words": 6,
+        "text": "king queen man woman..."
+      },
+      "output_preview": {
+        "valid": true,
+        "vocab_size": 6
+      },
+      "why_it_matters": "Need enough words to learn meaningful relationships. Real training uses millions of words.",
+      "visualization_type": "table"
+    },
+    {
+      "step_id": "we2",
+      "stage": "preprocessing",
+      "title": "Build Vocabulary and Word Frequencies",
+      "description": "Count word frequencies and assign indices to each unique word.",
+      "input_preview": {
+        "words": [
+          "king",
+          "queen",
+          "man",
+          "..."
+        ]
+      },
+      "output_preview": {
+        "vocab": {
+          "king": 0,
+          "queen": 1
+        },
+        "freqs": {
+          "king": 1,
+          "queen": 1
+        }
+      },
+      "why_it_matters": "Vocabulary mapping is needed to look up embedding vectors during training and inference.",
+      "visualization_type": "bar"
+    },
+    {
+      "step_id": "we3",
+      "stage": "training",
+      "title": "Generate Training Pairs (Skip-gram)",
+      "description": "For each word, create (center, context) pairs within the sliding window.",
+      "input_preview": {
+        "vocab": [
+          "..."
+        ],
+        "window": 5
+      },
+      "output_preview": {
+        "pairs": [
+          [
+            "king",
+            "queen"
+          ],
+          [
+            "king",
+            "man"
+          ],
+          "..."
+        ],
+        "pair_count": 12
+      },
+      "why_it_matters": "These pairs are the training data - the model learns to predict context words from center words.",
+      "visualization_type": "scatter"
+    },
+    {
+      "step_id": "we4",
+      "stage": "training",
+      "title": "Train Embeddings with Negative Sampling",
+      "description": "Learn word vectors by maximizing similarity for positive pairs and minimizing it for negative samples.",
+      "formula": "log σ(v_c·v_w) + Σ log σ(-v_c·v_n)",
+      "input_preview": {
+        "training_pairs": [
+          "..."
+        ],
+        "negative_samples": 5
+      },
+      "output_preview": {
+        "embedding_shape": [
+          6,
+          100
+        ],
+        "loss": 0.35
+      },
+      "why_it_matters": "This is the core learning step - the model discovers semantic relationships encoded in vector geometry.",
+      "visualization_type": "scatter"
+    },
+    {
+      "step_id": "we5",
+      "stage": "output",
+      "title": "Compute Word Similarities & Analogies",
+      "description": "Measure cosine similarity between word vectors and solve analogy tasks like king - man + woman ≈ queen.",
+      "formula": "sim(w₁, w₂) = (v₁·v₂) / (||v₁|| × ||v₂||)",
+      "input_preview": {
+        "embeddings": [
+          "..."
+        ],
+        "query": "king - man + woman"
+      },
+      "output_preview": {
+        "similarities": [
+          [
+            "queen",
+            0.85
+          ],
+          [
+            "royal",
+            0.72
+          ],
+          "..."
+        ],
+        "analogy": "queen"
+      },
+      "why_it_matters": "High similarity between related words confirms the embeddings captured semantic meaning.",
+      "visualization_type": "heatmap"
+    }
+  ],
+  "hover_annotations": [
+    {
+      "target": "embedding_vector",
+      "definition": "A list of numbers (typically 50-300 dimensions) representing a word's meaning in vector space.",
+      "formula_meaning": "v_w ∈ ℝ^d where d is embedding dimension (typically 100-300)",
+      "example": "v_king might be [0.2, -0.5, 0.8, ...] in 100-dimensional space",
+      "common_mistake": "Thinking each dimension has a human-interpretable meaning (they're distributed representations)"
+    },
+    {
+      "target": "cosine_similarity",
+      "definition": "Measures how similar two vectors are, ignoring magnitude. Range: -1 (opposite) to 1 (identical).",
+      "formula_meaning": "cos(θ) = (v₁·v₂) / (||v₁|| × ||v₂||) = dot product divided by product of magnitudes",
+      "example": "cosine_sim('king', 'queen') ≈ 0.85 means they're very similar",
+      "common_mistake": "Using Euclidean distance instead - cosine is better for high-dimensional sparse vectors"
+    }
+  ],
+  "references": [
+    {
+      "title": "Efficient Estimation of Word Representations in Vector Space",
+      "authors": "Mikolov, T., Sutskever, I., Chen, K., Corrado, G., and Dean, J.",
+      "year": 2013,
+      "arxiv_id": "1301.3781",
+      "relevance": "Original Word2Vec paper introducing Skip-gram and CBOW models with negative sampling."
+    },
+    {
+      "title": "Distributed Representations of Words and Phrases and their Compositionality",
+      "authors": "Mikolov, T., et al.",
+      "year": 2013,
+      "arxiv_id": "1310.4546",
+      "relevance": "Extends Word2Vec with negative sampling, subsampling, and demonstrates word analogies."
+    },
+    {
+      "title": "GloVe: Global Vectors for Word Representation",
+      "authors": "Pennington, J., Socher, R., and Manning, C.D.",
+      "year": 2014,
+      "arxiv_id": "1405.4053",
+      "relevance": "Alternative to Word2Vec that uses global word co-occurrence statistics instead of local context windows."
+    }
+  ],
+  "receiver_mode_explanations": [
+    {
+      "mode": "beginner",
+      "explanation": "Word embeddings turn words into number lists so that similar words have similar lists. Like giving each word a unique 'fingerprint'.",
+      "teaching_notes": "Show 2D visualization of word vectors. Use colors to show related words clustering together."
+    },
+    {
+      "mode": "student",
+      "explanation": "Word2Vec learns embeddings by predicting context words (Skip-gram) or center words (CBOW). Objective: maximize log P(w_context|w_center).",
+      "technical_detail": "Skip-gram: predict context from center word. Negative sampling: train binary classifier to distinguish real from noise pairs. 100-300 dimensions typical."
+    },
+    {
+      "mode": "researcher",
+      "explanation": "Word2Vec showed that semantic relationships are linear in embedding space (king - man + woman ≈ queen). Limitations: no polysemy handling, static embeddings. Research led to contextualized embeddings (BERT, ELMo).",
+      "technical_detail": "Limitations: same word → same vector regardless of context (polysemy). Alternatives: GloVe (global stats), fastText (subword info), ELMo (contextual), BERT (deep contextual)."
+    },
+    {
+      "mode": "engineer",
+      "explanation": "Word2Vec training is O(corpus_size × window × dim). Use gensim or PyTorch. For inference, it's O(1) to look up a word vector. Typically 100-300 dimensions.",
+      "technical_detail": "Complexity: train O(N×w×d), inference O(1). Memory: O(V×d) for embeddings. API: gensim.models.Word2Vec, or pre-trained: spaCy, torchtext."
+    },
+    {
+      "mode": "instructor",
+      "explanation": "Word embeddings are the foundation of modern NLP. Show how analogies work geometrically in vector space.",
+      "teaching_notes": "Quiz: Why does king - man + woman ≈ queen? Exercise: Visualize 3D embeddings with PCA/t-SNE. Discuss: Why are embeddings useful for downstream tasks?"
+    }
+  ],
+  "research_context": "Word2Vec (Mikolov et al., 2013) revolutionized NLP by showing that semantic meaning can be captured in dense vector representations learned from unlabeled text. It enabled transfer learning in NLP, paving the way for contextual embeddings (BERT, GPT).",
+  "teaching_notes": {
+    "summary": "Word embeddings map words to dense vectors where semantic similarity corresponds to vector similarity.",
+    "quiz_questions": [
+      "What does the Skip-gram objective maximize?",
+      "Why does cosine similarity work better than Euclidean distance for word embeddings?",
+      "Solve: king - man + woman = ? Explain why this works."
+    ],
+    "classroom_demo_tips": [
+      "Visualize embeddings in 2D/3D with PCA or t-SNE",
+      "Show word analogy completion interactively",
+      "Compare Word2Vec vs. GloVe vs. fastText embeddings"
+    ],
+    "common_misconceptions": [
+      "Each dimension has a clear meaning (false - they're distributed representations)",
+      "Word2Vec understands language (false - it captures statistical patterns, not meaning)"
+    ]
+  }
+}

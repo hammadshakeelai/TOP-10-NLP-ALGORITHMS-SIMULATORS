@@ -1,5 +1,6 @@
 import { useState } from "react";
 import type { TraceLevel } from "../types/api";
+import CopyButton from "./CopyButton";
 
 interface Props {
   trace: unknown;
@@ -13,17 +14,25 @@ export default function TraceViewer({ trace, result, level }: Props) {
 
   return (
     <section className="bg-gray-900 border border-gray-800 rounded-xl p-5">
-      <div className="flex items-center justify-between mb-3">
+      <div className="flex items-center justify-between mb-3 gap-3">
         <h2 className="font-semibold">Trace</h2>
-        <button
-          onClick={() => setExpanded((e) => !e)}
-          className="text-xs text-gray-500 hover:text-gray-300"
-        >
-          {expanded ? "Collapse" : "Expand"}
-        </button>
+        <div className="flex items-center gap-3">
+          <CopyButton value={() => JSON.stringify(trace, null, 2)} label="Copy JSON" />
+          <button
+            onClick={() => setExpanded((e) => !e)}
+            aria-expanded={expanded}
+            className="text-xs text-gray-500 hover:text-gray-300 focus-ring rounded"
+          >
+            {expanded ? "Collapse" : "Expand"}
+          </button>
+        </div>
       </div>
       {expanded ? (
-        <pre className="text-xs font-mono text-gray-300 overflow-auto max-h-96">
+        <pre
+          tabIndex={0}
+          aria-label="Full trace output"
+          className="text-xs font-mono text-gray-600 dark:text-gray-300 overflow-auto max-h-96 rounded-lg bg-gray-950/60 dark:bg-transparent p-2 dark:p-0"
+        >
           {JSON.stringify(trace, null, 2)}
         </pre>
       ) : (
@@ -44,7 +53,7 @@ function SummaryView({ trace, result }: { trace: unknown; result: Record<string,
         return (
           <div key={k} className="bg-gray-800 rounded-lg p-3">
             <dt className="text-gray-500 text-xs mb-1">{k}</dt>
-            <dd className="font-mono text-gray-200 truncate" title={display}>{display}</dd>
+            <dd className="font-mono text-gray-700 dark:text-gray-200 truncate" title={display}>{display}</dd>
           </div>
         );
       })}

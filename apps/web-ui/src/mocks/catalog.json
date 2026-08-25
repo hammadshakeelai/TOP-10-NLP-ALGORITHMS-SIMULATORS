@@ -1,0 +1,794 @@
+[
+  {
+    "id": "tokenization",
+    "name": "Tokenization",
+    "family": "preprocessing",
+    "description": "Segment raw text into tokens with character offsets, normalization, and subword splitting.",
+    "use_cases": [
+      "preprocessing pipeline",
+      "vocabulary analysis",
+      "subword understanding"
+    ],
+    "input_types": [
+      "text"
+    ],
+    "parameter_schema": [
+      {
+        "name": "tokenizer_type",
+        "type": "string",
+        "default": "whitespace",
+        "description": "Tokenization strategy.",
+        "options": [
+          "whitespace",
+          "regex",
+          "bpe_demo",
+          "wordpiece"
+        ]
+      },
+      {
+        "name": "lowercase",
+        "type": "bool",
+        "default": true,
+        "description": "Lowercase all tokens."
+      },
+      {
+        "name": "remove_stopwords",
+        "type": "bool",
+        "default": false,
+        "description": "Filter common stopwords."
+      },
+      {
+        "name": "stemming",
+        "type": "bool",
+        "default": false,
+        "description": "Apply rule-based stemming."
+      },
+      {
+        "name": "remove_punctuation",
+        "type": "bool",
+        "default": false,
+        "description": "Drop punctuation tokens."
+      },
+      {
+        "name": "regex_pattern",
+        "type": "string",
+        "default": "\\b\\w+\\b",
+        "description": "Regex pattern for regex tokenizer mode."
+      },
+      {
+        "name": "bpe_num_merges",
+        "type": "int",
+        "default": 10,
+        "description": "Number of BPE merge operations to demonstrate.",
+        "min": 1,
+        "max": 50
+      }
+    ],
+    "supported_modes": [
+      "learning",
+      "experiment"
+    ],
+    "complexity": "O(n)",
+    "requires_gpu": false,
+    "is_async": false
+  },
+  {
+    "id": "tfidf",
+    "name": "TF-IDF",
+    "family": "vectorization",
+    "description": "Term Frequency-Inverse Document Frequency weighting with cosine similarity and query ranking.",
+    "use_cases": [
+      "document ranking",
+      "keyword extraction",
+      "text similarity"
+    ],
+    "input_types": [
+      "documents",
+      "text"
+    ],
+    "parameter_schema": [
+      {
+        "name": "ngram_range",
+        "type": "array",
+        "default": [
+          1,
+          1
+        ],
+        "description": "(min_n, max_n) for n-gram extraction."
+      },
+      {
+        "name": "smooth_idf",
+        "type": "bool",
+        "default": true,
+        "description": "Apply scikit-learn-style IDF smoothing."
+      },
+      {
+        "name": "normalize",
+        "type": "bool",
+        "default": true,
+        "description": "L2-normalize TF-IDF vectors."
+      },
+      {
+        "name": "tf_scheme",
+        "type": "string",
+        "default": "raw",
+        "description": "Term frequency counting scheme.",
+        "options": [
+          "raw",
+          "freq",
+          "log",
+          "bool"
+        ]
+      },
+      {
+        "name": "top_n",
+        "type": "int",
+        "default": 10,
+        "description": "Top-N terms to show per document.",
+        "min": 1,
+        "max": 100
+      },
+      {
+        "name": "query",
+        "type": "string",
+        "description": "Optional query text for document similarity ranking."
+      }
+    ],
+    "supported_modes": [
+      "learning",
+      "experiment"
+    ],
+    "complexity": "O(N × V)",
+    "requires_gpu": false,
+    "is_async": false
+  },
+  {
+    "id": "naive_bayes",
+    "name": "Naïve Bayes",
+    "family": "classification",
+    "description": "Multinomial Naïve Bayes text classifier with class priors, feature likelihoods, and Laplace smoothing.",
+    "use_cases": [
+      "spam detection",
+      "sentiment analysis",
+      "topic classification"
+    ],
+    "input_types": [
+      "documents"
+    ],
+    "parameter_schema": [
+      {
+        "name": "smoothing_alpha",
+        "type": "float",
+        "default": 1.0,
+        "description": "Laplace smoothing parameter α. Higher = more smoothing.",
+        "min": 0.001,
+        "max": 10.0
+      },
+      {
+        "name": "ngram_range",
+        "type": "array",
+        "default": [
+          1,
+          1
+        ],
+        "description": "N-gram range for feature extraction."
+      },
+      {
+        "name": "test_size",
+        "type": "float",
+        "default": 0.2,
+        "description": "Fraction of data to hold out for evaluation.",
+        "min": 0.1,
+        "max": 0.5
+      }
+    ],
+    "supported_modes": [
+      "learning",
+      "experiment"
+    ],
+    "complexity": "O(N × V)",
+    "requires_gpu": false,
+    "is_async": false
+  },
+  {
+    "id": "svm",
+    "name": "SVM",
+    "family": "classification",
+    "description": "Linear SVM text classifier with TF-IDF features, decision margins, and top-feature ranking.",
+    "use_cases": [
+      "text classification",
+      "sentiment analysis",
+      "intent detection"
+    ],
+    "input_types": [
+      "documents"
+    ],
+    "parameter_schema": [
+      {
+        "name": "C",
+        "type": "float",
+        "default": 1.0,
+        "description": "Regularization parameter. Smaller = wider margin.",
+        "min": 0.001,
+        "max": 100.0
+      },
+      {
+        "name": "ngram_range",
+        "type": "array",
+        "default": [
+          1,
+          1
+        ],
+        "description": "N-gram range for TF-IDF features."
+      },
+      {
+        "name": "class_weight",
+        "type": "string",
+        "description": "Adjust class weights for imbalanced datasets.",
+        "options": [
+          null,
+          "balanced"
+        ]
+      }
+    ],
+    "supported_modes": [
+      "learning",
+      "experiment"
+    ],
+    "complexity": "O(N × V)",
+    "requires_gpu": false,
+    "is_async": false
+  },
+  {
+    "id": "rake",
+    "name": "RAKE",
+    "family": "extraction",
+    "description": "Rapid Automatic Keyword Extraction — stopword-delimited phrase scoring via word co-occurrence.",
+    "use_cases": [
+      "keyword extraction",
+      "tag generation",
+      "document indexing"
+    ],
+    "input_types": [
+      "text"
+    ],
+    "parameter_schema": [
+      {
+        "name": "top_n",
+        "type": "int",
+        "default": 10,
+        "description": "Number of top-ranked keywords to return.",
+        "min": 1,
+        "max": 50
+      },
+      {
+        "name": "min_phrase_words",
+        "type": "int",
+        "default": 1,
+        "description": "Minimum words in a candidate phrase.",
+        "min": 1,
+        "max": 5
+      },
+      {
+        "name": "max_phrase_words",
+        "type": "int",
+        "default": 5,
+        "description": "Maximum words in a candidate phrase.",
+        "min": 1,
+        "max": 10
+      },
+      {
+        "name": "min_score",
+        "type": "float",
+        "default": 0.0,
+        "description": "Minimum RAKE score threshold.",
+        "min": 0.0
+      },
+      {
+        "name": "stopwords",
+        "type": "array",
+        "default": [],
+        "description": "Additional stopwords to add to the default list."
+      }
+    ],
+    "supported_modes": [
+      "learning",
+      "experiment"
+    ],
+    "complexity": "O(n²)",
+    "requires_gpu": false,
+    "is_async": false
+  },
+  {
+    "id": "textrank",
+    "name": "TextRank",
+    "family": "extraction",
+    "description": "Graph-based ranking for keyword extraction and extractive summarization (Mihalcea & Tarau, 2004).",
+    "use_cases": [
+      "keyword extraction",
+      "extractive summarization",
+      "sentence ranking"
+    ],
+    "input_types": [
+      "text"
+    ],
+    "parameter_schema": [
+      {
+        "name": "mode",
+        "type": "string",
+        "default": "keyword",
+        "description": "'keyword' for word-level ranking; 'summary' for sentence-level.",
+        "options": [
+          "keyword",
+          "summary"
+        ]
+      },
+      {
+        "name": "damping",
+        "type": "float",
+        "default": 0.85,
+        "description": "PageRank damping factor.",
+        "min": 0.1,
+        "max": 0.99
+      },
+      {
+        "name": "top_n",
+        "type": "int",
+        "default": 5,
+        "description": "Number of top-ranked keywords or sentences.",
+        "min": 1,
+        "max": 20
+      },
+      {
+        "name": "window_size",
+        "type": "int",
+        "default": 2,
+        "description": "Word co-occurrence window (keyword mode only).",
+        "min": 1,
+        "max": 10
+      },
+      {
+        "name": "convergence_tol",
+        "type": "float",
+        "default": 0.0001,
+        "description": "PageRank convergence tolerance."
+      }
+    ],
+    "supported_modes": [
+      "learning",
+      "experiment"
+    ],
+    "complexity": "O(V² × iterations)",
+    "requires_gpu": false,
+    "is_async": false
+  },
+  {
+    "id": "word_embeddings",
+    "name": "Word Embeddings",
+    "family": "vectorization",
+    "description": "Toy SVD and optional pretrained Word2Vec/GloVe embeddings with similarity, analogy, and 2D projection views.",
+    "use_cases": [
+      "semantic similarity",
+      "nearest neighbors",
+      "analogy exploration"
+    ],
+    "input_types": [
+      "text",
+      "documents"
+    ],
+    "parameter_schema": [
+      {
+        "name": "model_type",
+        "type": "string",
+        "default": "toy_svd",
+        "description": "Embedding backend.",
+        "options": [
+          "toy_svd",
+          "word2vec",
+          "glove"
+        ]
+      },
+      {
+        "name": "target_word",
+        "type": "string",
+        "default": "",
+        "description": "Word to inspect."
+      },
+      {
+        "name": "context_window",
+        "type": "int",
+        "default": 2,
+        "description": "Co-occurrence context window for toy mode.",
+        "min": 1,
+        "max": 10
+      },
+      {
+        "name": "vector_dim",
+        "type": "int",
+        "default": 50,
+        "description": "Embedding dimensionality.",
+        "min": 2,
+        "max": 300
+      },
+      {
+        "name": "min_count",
+        "type": "int",
+        "default": 2,
+        "description": "Minimum token frequency in toy vocabulary.",
+        "min": 1,
+        "max": 20
+      },
+      {
+        "name": "top_k_neighbors",
+        "type": "int",
+        "default": 10,
+        "description": "Nearest neighbors to return.",
+        "min": 1,
+        "max": 50
+      }
+    ],
+    "supported_modes": [
+      "learning",
+      "experiment"
+    ],
+    "complexity": "O(V^3) toy SVD",
+    "requires_gpu": false,
+    "is_async": false
+  },
+  {
+    "id": "lstm",
+    "name": "LSTM",
+    "family": "sequence",
+    "description": "Traceable toy LSTM showing token steps, hidden/cell state, and gate activations.",
+    "use_cases": [
+      "sequence modeling education",
+      "gate visualization",
+      "padding and truncation demos"
+    ],
+    "input_types": [
+      "text"
+    ],
+    "parameter_schema": [
+      {
+        "name": "max_seq_len",
+        "type": "int",
+        "default": 50,
+        "description": "Maximum sequence length.",
+        "min": 1,
+        "max": 200
+      },
+      {
+        "name": "hidden_size",
+        "type": "int",
+        "default": 8,
+        "description": "Hidden state size.",
+        "min": 2,
+        "max": 64
+      },
+      {
+        "name": "input_size",
+        "type": "int",
+        "default": 16,
+        "description": "Toy embedding size.",
+        "min": 2,
+        "max": 128
+      },
+      {
+        "name": "random_seed",
+        "type": "int",
+        "default": 42,
+        "description": "Seed for reproducible toy weights."
+      }
+    ],
+    "supported_modes": [
+      "learning",
+      "experiment"
+    ],
+    "complexity": "O(T * H^2)",
+    "requires_gpu": false,
+    "is_async": false
+  },
+  {
+    "id": "transformer_attention",
+    "name": "Transformer Attention",
+    "family": "transformer",
+    "description": "From-scratch multi-head self-attention with Q/K/V matrices, positional encodings, and optional causal masks.",
+    "use_cases": [
+      "attention heatmaps",
+      "masking demonstrations",
+      "positional encoding demos"
+    ],
+    "input_types": [
+      "text"
+    ],
+    "parameter_schema": [
+      {
+        "name": "d_model",
+        "type": "int",
+        "default": 32,
+        "description": "Model dimension.",
+        "min": 8,
+        "max": 256
+      },
+      {
+        "name": "num_heads",
+        "type": "int",
+        "default": 4,
+        "description": "Number of attention heads.",
+        "min": 1,
+        "max": 16
+      },
+      {
+        "name": "causal_mask",
+        "type": "bool",
+        "default": false,
+        "description": "Apply left-to-right causal masking."
+      },
+      {
+        "name": "positional_encoding",
+        "type": "bool",
+        "default": true,
+        "description": "Add sinusoidal positional encodings."
+      },
+      {
+        "name": "seed",
+        "type": "int",
+        "default": 42,
+        "description": "Seed for reproducible projection weights."
+      }
+    ],
+    "supported_modes": [
+      "learning",
+      "experiment"
+    ],
+    "complexity": "O(H * T^2 * d)",
+    "requires_gpu": false,
+    "is_async": false
+  },
+  {
+    "id": "bert",
+    "name": "BERT",
+    "family": "transformer",
+    "description": "HuggingFace-backed BERT-style simulator for masked language modeling and understanding tasks.",
+    "use_cases": [
+      "masked token prediction",
+      "sentiment",
+      "NER",
+      "question answering"
+    ],
+    "input_types": [
+      "text"
+    ],
+    "parameter_schema": [
+      {
+        "name": "task",
+        "type": "string",
+        "default": "mlm",
+        "description": "Pipeline task.",
+        "options": [
+          "mlm",
+          "sentiment",
+          "ner",
+          "qa"
+        ]
+      },
+      {
+        "name": "checkpoint",
+        "type": "string",
+        "default": "",
+        "description": "Optional HuggingFace checkpoint override."
+      },
+      {
+        "name": "top_k",
+        "type": "int",
+        "default": 5,
+        "description": "Top predictions to show.",
+        "min": 1,
+        "max": 20
+      },
+      {
+        "name": "question",
+        "type": "string",
+        "default": "",
+        "description": "Question for QA task."
+      }
+    ],
+    "supported_modes": [
+      "learning",
+      "experiment"
+    ],
+    "complexity": "Model-dependent",
+    "requires_gpu": false,
+    "is_async": true
+  },
+  {
+    "id": "gpt",
+    "name": "GPT-Style Generation",
+    "family": "transformer",
+    "description": "Autoregressive text generation simulator with decoding parameters, stop sequences, and warnings for expensive runs.",
+    "use_cases": [
+      "prompting",
+      "sampling controls",
+      "generation traces"
+    ],
+    "input_types": [
+      "text"
+    ],
+    "parameter_schema": [
+      {
+        "name": "checkpoint",
+        "type": "string",
+        "default": "distilgpt2",
+        "description": "HuggingFace generation checkpoint."
+      },
+      {
+        "name": "max_new_tokens",
+        "type": "int",
+        "default": 100,
+        "description": "Maximum generated tokens.",
+        "min": 1,
+        "max": 512
+      },
+      {
+        "name": "temperature",
+        "type": "float",
+        "default": 0.8,
+        "description": "Sampling temperature.",
+        "min": 0.0,
+        "max": 2.0
+      },
+      {
+        "name": "top_k",
+        "type": "int",
+        "default": 50,
+        "description": "Top-k sampling cutoff.",
+        "min": 0,
+        "max": 200
+      },
+      {
+        "name": "top_p",
+        "type": "float",
+        "default": 0.95,
+        "description": "Nucleus sampling cutoff.",
+        "min": 0.0,
+        "max": 1.0
+      },
+      {
+        "name": "stop_sequences",
+        "type": "array",
+        "default": [],
+        "description": "Sequences that stop generation."
+      }
+    ],
+    "supported_modes": [
+      "learning",
+      "experiment"
+    ],
+    "complexity": "Model-dependent",
+    "requires_gpu": false,
+    "is_async": true
+  },
+  {
+    "id": "t5",
+    "name": "T5 / Sequence-to-Sequence",
+    "family": "transformer",
+    "description": "Text-to-text sequence simulator for summarization, translation-style prompts, QA, and beam candidates.",
+    "use_cases": [
+      "summarization",
+      "translation",
+      "text-to-text task framing"
+    ],
+    "input_types": [
+      "text"
+    ],
+    "parameter_schema": [
+      {
+        "name": "task_prefix",
+        "type": "string",
+        "default": "summarize:",
+        "description": "Text-to-text task prefix."
+      },
+      {
+        "name": "checkpoint",
+        "type": "string",
+        "default": "t5-small",
+        "description": "HuggingFace checkpoint."
+      },
+      {
+        "name": "num_beams",
+        "type": "int",
+        "default": 4,
+        "description": "Beam width.",
+        "min": 1,
+        "max": 8
+      },
+      {
+        "name": "max_new_tokens",
+        "type": "int",
+        "default": 80,
+        "description": "Maximum decoded tokens.",
+        "min": 1,
+        "max": 256
+      },
+      {
+        "name": "length_penalty",
+        "type": "float",
+        "default": 1.0,
+        "description": "Beam-search length penalty.",
+        "min": 0.1,
+        "max": 4.0
+      }
+    ],
+    "supported_modes": [
+      "learning",
+      "experiment"
+    ],
+    "complexity": "Model-dependent",
+    "requires_gpu": false,
+    "is_async": true
+  },
+  {
+    "id": "fasttext",
+    "name": "FastText",
+    "family": "classification",
+    "description": "Subword-aware text classification simulator with character n-gram breakdown and supervised classification.",
+    "use_cases": [
+      "fast text classification",
+      "misspelling robustness",
+      "subword visualization"
+    ],
+    "input_types": [
+      "documents",
+      "text"
+    ],
+    "parameter_schema": [
+      {
+        "name": "min_n",
+        "type": "int",
+        "default": 3,
+        "description": "Minimum character n-gram length.",
+        "min": 1,
+        "max": 6
+      },
+      {
+        "name": "max_n",
+        "type": "int",
+        "default": 6,
+        "description": "Maximum character n-gram length.",
+        "min": 1,
+        "max": 10
+      },
+      {
+        "name": "epochs",
+        "type": "int",
+        "default": 5,
+        "description": "Training epochs when supervised mode is available.",
+        "min": 1,
+        "max": 50
+      },
+      {
+        "name": "lr",
+        "type": "float",
+        "default": 0.1,
+        "description": "Learning rate.",
+        "min": 0.001,
+        "max": 1.0
+      },
+      {
+        "name": "word_ngrams",
+        "type": "int",
+        "default": 1,
+        "description": "Word n-gram feature length.",
+        "min": 1,
+        "max": 5
+      }
+    ],
+    "supported_modes": [
+      "learning",
+      "experiment"
+    ],
+    "complexity": "O(N * ngrams)",
+    "requires_gpu": false,
+    "is_async": false
+  }
+]

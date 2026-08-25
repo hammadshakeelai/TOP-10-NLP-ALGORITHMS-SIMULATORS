@@ -182,13 +182,17 @@ class WordEmbeddingsSimulator(BaseSimulator):
             }
 
         # 2D projection
+        # Project exactly the words that made it into display_vecs — the word
+        # list and the vector rows must stay index-aligned even when the
+        # target word is missing from the vocabulary.
         display_words = list({target} | {n["word"] for n in neighbors[:20]})
-        display_vecs = np.array([embeddings[idx_map[w]] for w in display_words if w in idx_map])
-        if len(display_vecs) >= 2:
+        projected_words = [w for w in display_words if w in idx_map]
+        display_vecs = np.array([embeddings[idx_map[w]] for w in projected_words])
+        if len(projected_words) >= 2:
             proj = pca_2d(display_vecs)
             projection_2d = [
                 {"word": w, "x": round(float(proj[i, 0]), 4), "y": round(float(proj[i, 1]), 4)}
-                for i, w in enumerate(display_words) if w in idx_map
+                for i, w in enumerate(projected_words)
             ]
         else:
             projection_2d = []

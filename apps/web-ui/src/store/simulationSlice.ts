@@ -165,7 +165,8 @@ const simulationSlice = createSlice({
       .addCase(submitRun.fulfilled, (state, action) => {
         state.runStatus = "success";
         state.currentRun = action.payload;
-        state.runHistory = [action.payload, ...state.runHistory].slice(0, 10);
+        const stamped = { ...action.payload, timestamp: new Date().toISOString() };
+        state.runHistory = [stamped, ...state.runHistory].slice(0, 10);
       })
       .addCase(submitRun.rejected, (state, action) => {
         state.runStatus = "error";
@@ -182,7 +183,8 @@ const simulationSlice = createSlice({
       .addCase(loadAndRunDemo.fulfilled, (state, action) => {
         state.runStatus = "success";
         state.currentRun = action.payload;
-        state.runHistory = [action.payload, ...state.runHistory].slice(0, 10);
+        const stamped = { ...action.payload, timestamp: new Date().toISOString() };
+        state.runHistory = [stamped, ...state.runHistory].slice(0, 10);
       })
       .addCase(loadAndRunDemo.rejected, (state, action) => {
         state.runStatus = "error";

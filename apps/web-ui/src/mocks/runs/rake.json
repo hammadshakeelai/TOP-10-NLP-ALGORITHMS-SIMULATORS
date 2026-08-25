@@ -1,0 +1,882 @@
+{
+  "run_id": "f16ce9c4-31ef-4499-83ba-47c9c912cc25",
+  "status": "success",
+  "algorithm_id": "rake",
+  "algorithm_version": "rake-v1.0.0",
+  "input_fingerprint": "sha256:63d95ba3e6774d0d",
+  "result": {
+    "ranked_keywords": [
+      {
+        "phrase": "support vector machines",
+        "words": [
+          "support",
+          "vector",
+          "machines"
+        ],
+        "score": 9.0,
+        "word_scores": {
+          "support": 3.0,
+          "vector": 3.0,
+          "machines": 3.0
+        },
+        "rank": 1
+      },
+      {
+        "phrase": "svm algorithms build",
+        "words": [
+          "svm",
+          "algorithms",
+          "build"
+        ],
+        "score": 9.0,
+        "word_scores": {
+          "svm": 3.0,
+          "algorithms": 3.0,
+          "build": 3.0
+        },
+        "rank": 2
+      },
+      {
+        "phrase": "statistical learning theory",
+        "words": [
+          "statistical",
+          "learning",
+          "theory"
+        ],
+        "score": 9.0,
+        "word_scores": {
+          "statistical": 3.0,
+          "learning": 3.0,
+          "theory": 3.0
+        },
+        "rank": 3
+      },
+      {
+        "phrase": "svm classifier finds",
+        "words": [
+          "svm",
+          "classifier",
+          "finds"
+        ],
+        "score": 9.0,
+        "word_scores": {
+          "svm": 3.0,
+          "classifier": 3.0,
+          "finds": 3.0
+        },
+        "rank": 4
+      },
+      {
+        "phrase": "powerful classifiers",
+        "words": [
+          "powerful",
+          "classifiers"
+        ],
+        "score": 4.0,
+        "word_scores": {
+          "powerful": 2.0,
+          "classifiers": 2.0
+        },
+        "rank": 5
+      },
+      {
+        "phrase": "optimal hyperplane",
+        "words": [
+          "optimal",
+          "hyperplane"
+        ],
+        "score": 4.0,
+        "word_scores": {
+          "optimal": 2.0,
+          "hyperplane": 2.0
+        },
+        "rank": 6
+      },
+      {
+        "phrase": "text",
+        "words": [
+          "text"
+        ],
+        "score": 1.0,
+        "word_scores": {
+          "text": 1.0
+        },
+        "rank": 7
+      }
+    ],
+    "candidate_phrase_count": 7,
+    "unique_words": 16
+  },
+  "trace": {
+    "candidate_phrase_count": 7,
+    "unique_words": 16,
+    "top_n": 10,
+    "ranked_keywords": [
+      {
+        "phrase": "support vector machines",
+        "words": [
+          "support",
+          "vector",
+          "machines"
+        ],
+        "score": 9.0,
+        "word_scores": {
+          "support": 3.0,
+          "vector": 3.0,
+          "machines": 3.0
+        },
+        "rank": 1
+      },
+      {
+        "phrase": "svm algorithms build",
+        "words": [
+          "svm",
+          "algorithms",
+          "build"
+        ],
+        "score": 9.0,
+        "word_scores": {
+          "svm": 3.0,
+          "algorithms": 3.0,
+          "build": 3.0
+        },
+        "rank": 2
+      },
+      {
+        "phrase": "statistical learning theory",
+        "words": [
+          "statistical",
+          "learning",
+          "theory"
+        ],
+        "score": 9.0,
+        "word_scores": {
+          "statistical": 3.0,
+          "learning": 3.0,
+          "theory": 3.0
+        },
+        "rank": 3
+      },
+      {
+        "phrase": "svm classifier finds",
+        "words": [
+          "svm",
+          "classifier",
+          "finds"
+        ],
+        "score": 9.0,
+        "word_scores": {
+          "svm": 3.0,
+          "classifier": 3.0,
+          "finds": 3.0
+        },
+        "rank": 4
+      },
+      {
+        "phrase": "powerful classifiers",
+        "words": [
+          "powerful",
+          "classifiers"
+        ],
+        "score": 4.0,
+        "word_scores": {
+          "powerful": 2.0,
+          "classifiers": 2.0
+        },
+        "rank": 5
+      },
+      {
+        "phrase": "optimal hyperplane",
+        "words": [
+          "optimal",
+          "hyperplane"
+        ],
+        "score": 4.0,
+        "word_scores": {
+          "optimal": 2.0,
+          "hyperplane": 2.0
+        },
+        "rank": 6
+      },
+      {
+        "phrase": "text",
+        "words": [
+          "text"
+        ],
+        "score": 1.0,
+        "word_scores": {
+          "text": 1.0
+        },
+        "rank": 7
+      }
+    ],
+    "word_scores": {
+      "support": {
+        "frequency": 1,
+        "degree": 3,
+        "score": 3.0
+      },
+      "vector": {
+        "frequency": 1,
+        "degree": 3,
+        "score": 3.0
+      },
+      "machines": {
+        "frequency": 1,
+        "degree": 3,
+        "score": 3.0
+      },
+      "powerful": {
+        "frequency": 1,
+        "degree": 2,
+        "score": 2.0
+      },
+      "classifiers": {
+        "frequency": 1,
+        "degree": 2,
+        "score": 2.0
+      },
+      "text": {
+        "frequency": 1,
+        "degree": 1,
+        "score": 1.0
+      },
+      "svm": {
+        "frequency": 2,
+        "degree": 6,
+        "score": 3.0
+      },
+      "algorithms": {
+        "frequency": 1,
+        "degree": 3,
+        "score": 3.0
+      },
+      "build": {
+        "frequency": 1,
+        "degree": 3,
+        "score": 3.0
+      },
+      "statistical": {
+        "frequency": 1,
+        "degree": 3,
+        "score": 3.0
+      },
+      "learning": {
+        "frequency": 1,
+        "degree": 3,
+        "score": 3.0
+      },
+      "theory": {
+        "frequency": 1,
+        "degree": 3,
+        "score": 3.0
+      },
+      "classifier": {
+        "frequency": 1,
+        "degree": 3,
+        "score": 3.0
+      },
+      "finds": {
+        "frequency": 1,
+        "degree": 3,
+        "score": 3.0
+      },
+      "optimal": {
+        "frequency": 1,
+        "degree": 2,
+        "score": 2.0
+      },
+      "hyperplane": {
+        "frequency": 1,
+        "degree": 2,
+        "score": 2.0
+      }
+    },
+    "candidate_phrases": [
+      {
+        "phrase": "support vector machines",
+        "words": [
+          "support",
+          "vector",
+          "machines"
+        ],
+        "score": 9.0,
+        "word_scores": {
+          "support": 3.0,
+          "vector": 3.0,
+          "machines": 3.0
+        },
+        "rank": 1
+      },
+      {
+        "phrase": "powerful classifiers",
+        "words": [
+          "powerful",
+          "classifiers"
+        ],
+        "score": 4.0,
+        "word_scores": {
+          "powerful": 2.0,
+          "classifiers": 2.0
+        },
+        "rank": 5
+      },
+      {
+        "phrase": "text",
+        "words": [
+          "text"
+        ],
+        "score": 1.0,
+        "word_scores": {
+          "text": 1.0
+        },
+        "rank": 7
+      },
+      {
+        "phrase": "svm algorithms build",
+        "words": [
+          "svm",
+          "algorithms",
+          "build"
+        ],
+        "score": 9.0,
+        "word_scores": {
+          "svm": 3.0,
+          "algorithms": 3.0,
+          "build": 3.0
+        },
+        "rank": 2
+      },
+      {
+        "phrase": "statistical learning theory",
+        "words": [
+          "statistical",
+          "learning",
+          "theory"
+        ],
+        "score": 9.0,
+        "word_scores": {
+          "statistical": 3.0,
+          "learning": 3.0,
+          "theory": 3.0
+        },
+        "rank": 3
+      },
+      {
+        "phrase": "svm classifier finds",
+        "words": [
+          "svm",
+          "classifier",
+          "finds"
+        ],
+        "score": 9.0,
+        "word_scores": {
+          "svm": 3.0,
+          "classifier": 3.0,
+          "finds": 3.0
+        },
+        "rank": 4
+      },
+      {
+        "phrase": "optimal hyperplane",
+        "words": [
+          "optimal",
+          "hyperplane"
+        ],
+        "score": 4.0,
+        "word_scores": {
+          "optimal": 2.0,
+          "hyperplane": 2.0
+        },
+        "rank": 6
+      }
+    ],
+    "formula": "phrase_score = Σ word_score(w)  where  word_score(w) = degree(w) / freq(w)"
+  },
+  "visualization_specs": [
+    {
+      "type": "bar",
+      "title": "RAKE Keyword Scores",
+      "data": [
+        {
+          "phrase": "support vector machines",
+          "score": 9.0
+        },
+        {
+          "phrase": "svm algorithms build",
+          "score": 9.0
+        },
+        {
+          "phrase": "statistical learning theory",
+          "score": 9.0
+        },
+        {
+          "phrase": "svm classifier finds",
+          "score": 9.0
+        },
+        {
+          "phrase": "powerful classifiers",
+          "score": 4.0
+        },
+        {
+          "phrase": "optimal hyperplane",
+          "score": 4.0
+        },
+        {
+          "phrase": "text",
+          "score": 1.0
+        }
+      ],
+      "config": {
+        "x": "phrase",
+        "y": "score",
+        "color": "#f59e0b",
+        "horizontal": true
+      }
+    },
+    {
+      "type": "table",
+      "title": "Phrase Scoring Breakdown",
+      "data": [
+        {
+          "phrase": "support vector machines",
+          "words": [
+            "support",
+            "vector",
+            "machines"
+          ],
+          "score": 9.0,
+          "word_scores": {
+            "support": 3.0,
+            "vector": 3.0,
+            "machines": 3.0
+          },
+          "rank": 1
+        },
+        {
+          "phrase": "svm algorithms build",
+          "words": [
+            "svm",
+            "algorithms",
+            "build"
+          ],
+          "score": 9.0,
+          "word_scores": {
+            "svm": 3.0,
+            "algorithms": 3.0,
+            "build": 3.0
+          },
+          "rank": 2
+        },
+        {
+          "phrase": "statistical learning theory",
+          "words": [
+            "statistical",
+            "learning",
+            "theory"
+          ],
+          "score": 9.0,
+          "word_scores": {
+            "statistical": 3.0,
+            "learning": 3.0,
+            "theory": 3.0
+          },
+          "rank": 3
+        },
+        {
+          "phrase": "svm classifier finds",
+          "words": [
+            "svm",
+            "classifier",
+            "finds"
+          ],
+          "score": 9.0,
+          "word_scores": {
+            "svm": 3.0,
+            "classifier": 3.0,
+            "finds": 3.0
+          },
+          "rank": 4
+        },
+        {
+          "phrase": "powerful classifiers",
+          "words": [
+            "powerful",
+            "classifiers"
+          ],
+          "score": 4.0,
+          "word_scores": {
+            "powerful": 2.0,
+            "classifiers": 2.0
+          },
+          "rank": 5
+        },
+        {
+          "phrase": "optimal hyperplane",
+          "words": [
+            "optimal",
+            "hyperplane"
+          ],
+          "score": 4.0,
+          "word_scores": {
+            "optimal": 2.0,
+            "hyperplane": 2.0
+          },
+          "rank": 6
+        },
+        {
+          "phrase": "text",
+          "words": [
+            "text"
+          ],
+          "score": 1.0,
+          "word_scores": {
+            "text": 1.0
+          },
+          "rank": 7
+        }
+      ],
+      "config": {}
+    },
+    {
+      "type": "graph",
+      "title": "Word Co-occurrence Graph",
+      "data": {
+        "nodes": [
+          {
+            "id": "support",
+            "score": 3.0
+          },
+          {
+            "id": "vector",
+            "score": 3.0
+          },
+          {
+            "id": "machines",
+            "score": 3.0
+          },
+          {
+            "id": "powerful",
+            "score": 2.0
+          },
+          {
+            "id": "classifiers",
+            "score": 2.0
+          },
+          {
+            "id": "text",
+            "score": 1.0
+          },
+          {
+            "id": "svm",
+            "score": 3.0
+          },
+          {
+            "id": "algorithms",
+            "score": 3.0
+          },
+          {
+            "id": "build",
+            "score": 3.0
+          },
+          {
+            "id": "statistical",
+            "score": 3.0
+          },
+          {
+            "id": "learning",
+            "score": 3.0
+          },
+          {
+            "id": "theory",
+            "score": 3.0
+          },
+          {
+            "id": "classifier",
+            "score": 3.0
+          },
+          {
+            "id": "finds",
+            "score": 3.0
+          },
+          {
+            "id": "optimal",
+            "score": 2.0
+          },
+          {
+            "id": "hyperplane",
+            "score": 2.0
+          }
+        ],
+        "edges": [
+          {
+            "source": "support",
+            "target": "vector",
+            "weight": 2
+          },
+          {
+            "source": "machines",
+            "target": "support",
+            "weight": 2
+          },
+          {
+            "source": "machines",
+            "target": "vector",
+            "weight": 2
+          },
+          {
+            "source": "classifiers",
+            "target": "powerful",
+            "weight": 2
+          },
+          {
+            "source": "algorithms",
+            "target": "svm",
+            "weight": 2
+          },
+          {
+            "source": "build",
+            "target": "svm",
+            "weight": 2
+          },
+          {
+            "source": "algorithms",
+            "target": "build",
+            "weight": 2
+          },
+          {
+            "source": "learning",
+            "target": "statistical",
+            "weight": 2
+          },
+          {
+            "source": "statistical",
+            "target": "theory",
+            "weight": 2
+          },
+          {
+            "source": "learning",
+            "target": "theory",
+            "weight": 2
+          },
+          {
+            "source": "classifier",
+            "target": "svm",
+            "weight": 2
+          },
+          {
+            "source": "finds",
+            "target": "svm",
+            "weight": 2
+          },
+          {
+            "source": "classifier",
+            "target": "finds",
+            "weight": 2
+          },
+          {
+            "source": "hyperplane",
+            "target": "optimal",
+            "weight": 2
+          }
+        ]
+      },
+      "config": {}
+    }
+  ],
+  "metrics": {
+    "runtime_ms": 0.48,
+    "extra": {}
+  },
+  "warnings": [],
+  "export_links": [],
+  "demo_input": {
+    "text": "Support Vector Machines are powerful classifiers for text. SVM algorithms build on statistical learning theory. The SVM classifier finds an optimal hyperplane."
+  },
+  "auto_parameters": {
+    "min_phrase_length": 1,
+    "max_phrase_length": 4,
+    "min_word_frequency": 1,
+    "use_pos_filtering": false
+  },
+  "step_explanations": [
+    {
+      "step_id": "rk1",
+      "stage": "input_validation",
+      "title": "Validate Input Text",
+      "description": "Check that input text is non-empty and has sufficient content for keyword extraction.",
+      "input_preview": {
+        "text": "Support Vector Machines are powerful..."
+      },
+      "output_preview": {
+        "valid": true,
+        "word_count": 20
+      },
+      "why_it_matters": "RAKE needs enough text with multiple words to form meaningful candidate phrases.",
+      "visualization_type": "table"
+    },
+    {
+      "step_id": "rk2",
+      "stage": "preprocessing",
+      "title": "Split into Candidate Phrases",
+      "description": "Use stop words as delimiters to extract candidate keyword phrases.",
+      "input_preview": {
+        "text": "Support Vector Machines are powerful classifiers..."
+      },
+      "output_preview": {
+        "candidates": [
+          "Support Vector Machines",
+          "powerful classifiers",
+          "text",
+          "..."
+        ]
+      },
+      "why_it_matters": "Stop words (the, is, are) naturally delimit meaningful phrases in English text.",
+      "visualization_type": "timeline"
+    },
+    {
+      "step_id": "rk3",
+      "stage": "computation",
+      "title": "Compute Word Frequency and Degree",
+      "description": "Count how often each word appears and how many times it co-occurs with other words in candidate phrases.",
+      "formula": "degree(w) = number of co-occurrences with other words in same phrase",
+      "input_preview": {
+        "candidate_phrases": [
+          "..."
+        ]
+      },
+      "output_preview": {
+        "freq": {
+          "support": 2,
+          "vector": 1
+        },
+        "degree": {
+          "support": 4,
+          "vector": 2
+        }
+      },
+      "why_it_matters": "Words that appear with many other words (high degree) and frequently (high freq) are likely important keywords.",
+      "visualization_type": "graph"
+    },
+    {
+      "step_id": "rk4",
+      "stage": "computation",
+      "title": "Score Phrases and Rank",
+      "description": "Calculate phrase scores by summing word scores, then rank phrases by score.",
+      "formula": "score(phrase) = Σ freq(w) × degree(w)",
+      "input_preview": {
+        "word_scores": {},
+        "candidate_phrases": [
+          "..."
+        ]
+      },
+      "output_preview": {
+        "ranked_keywords": [
+          [
+            "support vector machines",
+            19
+          ],
+          [
+            "powerful classifiers",
+            12
+          ],
+          "..."
+        ]
+      },
+      "why_it_matters": "Higher-scoring phrases are the most important keywords in the document.",
+      "visualization_type": "bar"
+    }
+  ],
+  "formula_cards": [
+    {
+      "title": "Word Score in RAKE",
+      "formula": "score(w) = freq(w) × degree(w)",
+      "explanation": "A word's RAKE score is its frequency multiplied by its co-occurrence degree (number of times it appears with other candidate words).",
+      "variables": {
+        "freq(w)": "frequency of word w",
+        "degree(w)": "co-occurrence count of w with other words"
+      },
+      "example": "If 'support' appears 2 times and co-occurs with 4 words, score = 2 × 4 = 8"
+    },
+    {
+      "title": "Phrase Score in RAKE",
+      "formula": "score(phrase) = Σ score(wᵢ) for wᵢ in phrase",
+      "explanation": "The phrase score is the sum of individual word scores in that phrase.",
+      "variables": {
+        "phrase": "candidate phrase",
+        "wᵢ": "i-th word in the phrase"
+      },
+      "example": "'support vector machines' = score('support') + score('vector') + score('machines') = 8 + 5 + 6 = 19"
+    }
+  ],
+  "hover_annotations": [
+    {
+      "target": "candidate_phrases",
+      "definition": "Phrases extracted by splitting text on stop words. These are potential keywords.",
+      "formula_meaning": "Text is split on stop words like 'the', 'is', 'are' to get phrases",
+      "example": "'SVM algorithms build on theory' → ['SVM algorithms', 'build', 'theory']",
+      "common_mistake": "Thinking RAKE only extracts single words (it extracts multi-word phrases)"
+    },
+    {
+      "target": "degree",
+      "definition": "Co-occurrence count of a word with other words in the same candidate phrase.",
+      "formula_meaning": "degree(w) = number of edges in the word co-occurrence graph",
+      "example": "In phrase 'support vector machines', 'support' has degree 2 (co-occurs with 'vector' and 'machines')",
+      "common_mistake": "Confusing degree with frequency (degree measures connections, freq measures occurrences)"
+    }
+  ],
+  "references": [
+    {
+      "title": "Automatic Keyword Extraction from Individual Documents",
+      "authors": "Rose, S., Engel, D., Cramer, N., and Cowley, W.",
+      "year": 2010,
+      "url": "https://www.researchgate.net/publication/227211395_Automatic_Keyword_Extraction_from_Individual_Documents",
+      "relevance": "Original RAKE algorithm paper - describes the word degree and phrase scoring method."
+    }
+  ],
+  "receiver_mode_explanations": [
+    {
+      "mode": "beginner",
+      "explanation": "RAKE finds key phrases by looking at which words appear together and how often. It's like highlighting important phrases in an article.",
+      "teaching_notes": "Use a short paragraph. Show how candidate phrases are extracted after removing 'the', 'is', etc."
+    },
+    {
+      "mode": "student",
+      "explanation": "RAKE scores phrases using word frequency × word degree. Formula: score(phrase) = Σ freq(w) × degree(w). Stop words delimit phrases.",
+      "technical_detail": "RAKE doesn't need a corpus - it works on single documents. It's unsupervised and language-agnostic (just needs stop word list)."
+    },
+    {
+      "mode": "researcher",
+      "explanation": "RAKE is simple but effective for single-document keyword extraction. Research shows it performs competitively with more complex methods like TextRank for short texts (Mihalcea & Tarau, 2004).",
+      "technical_detail": "Limitations: no global statistics (unlike TF-IDF), sensitive to stop word list quality. Variants: RAKE with POS filtering, TopicRank, YAKE."
+    },
+    {
+      "mode": "engineer",
+      "explanation": "RAKE is O(n) where n is word count. It's extremely fast and doesn't need training. Use nltk's stop word lists or customize for your domain.",
+      "technical_detail": "Complexity: O(n). Memory: O(v) where v is vocabulary size. Easy to implement: split on stops → count freq/degree → score phrases."
+    },
+    {
+      "mode": "instructor",
+      "explanation": "RAKE introduces keyword extraction without needing a corpus. Great for teaching unsupervised NLP.",
+      "teaching_notes": "Quiz: Why use stop words as delimiters? Exercise: Manually compute RAKE scores for a 2-sentence text. Discuss: When would RAKE fail?"
+    }
+  ],
+  "research_context": "RAKE was introduced by Rose et al. (2010) as a simple, unsupervised keyword extraction method that works on individual documents without requiring a corpus. It's widely used in document summarization and content analysis.",
+  "teaching_notes": {
+    "summary": "RAKE extracts keywords by scoring phrases based on word frequency and co-occurrence degree.",
+    "quiz_questions": [
+      "How does RAKE identify candidate phrases?",
+      "What do 'frequency' and 'degree' mean in RAKE, and how are they combined?",
+      "Why doesn't RAKE need a corpus of documents?"
+    ],
+    "classroom_demo_tips": [
+      "Show the word co-occurrence graph visually",
+      "Compare RAKE keywords with TF-IDF top terms",
+      "Try RAKE on different document types (news, academic, social media)"
+    ],
+    "common_misconceptions": [
+      "RAKE only works on English (false - it works on any language with stop words)",
+      "RAKE needs training data (false - it's fully unsupervised)"
+    ]
+  }
+}

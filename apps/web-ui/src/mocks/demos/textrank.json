@@ -1,0 +1,236 @@
+{
+  "demo_input": {
+    "text": "Google was founded by Larry Page and Sergey Brin. The company is known for search algorithms. PageRank is the algorithm that started it all. Brin and Page developed PageRank at Stanford University."
+  },
+  "auto_parameters": {
+    "max_iterations": 100,
+    "damping_factor": 0.85,
+    "min_word_length": 3,
+    "top_n": 5
+  },
+  "expected_output_preview": {
+    "keywords": [
+      {
+        "word": "pagerank",
+        "score": 0.95
+      },
+      {
+        "word": "google",
+        "score": 0.82
+      },
+      {
+        "word": "brin",
+        "score": 0.78
+      },
+      {
+        "word": "page",
+        "score": 0.75
+      },
+      {
+        "word": "algorithm",
+        "score": 0.68
+      }
+    ],
+    "top_keyword": "pagerank"
+  },
+  "beginner_explanation": "TextRank is like a popularity contest for words. Words that appear near other important words become important themselves. It's based on Google's PageRank algorithm - the same one used to rank web pages.",
+  "advanced_explanation": "TextRank applies the PageRank algorithm to a graph of words (or sentences). Words are nodes, and edges are created based on co-occurrence within a sliding window. The PageRank algorithm iteratively updates node scores: PR(v) = (1-d) + d × Σ PR(u)/out_degree(u) for all u linking to v. After convergence, top-scoring words are extracted as keywords. TextRank can also extract sentences for summarization.",
+  "formula_cards": [
+    {
+      "title": "PageRank Formula",
+      "formula": "PR(v) = (1-d) + d × Σ_{u∈In(v)} PR(u) / |Out(u)|",
+      "explanation": "The PageRank score of node v is a weighted sum of scores from nodes pointing to v, with damping factor d (typically 0.85).",
+      "variables": {
+        "d": "damping factor (probability of following links)",
+        "In(v)": "nodes linking to v",
+        "Out(u)": "nodes u links to"
+      },
+      "example": "If node A (PR=0.5) links to v, and A has 2 out-links: contribution = 0.85 × 0.5/2 = 0.2125"
+    },
+    {
+      "title": "Word Co-occurrence Graph",
+      "formula": "edge(wᵢ, wⱼ) if co-occurrence(window, wᵢ, wⱼ) > 0",
+      "explanation": "Words are connected if they appear within a sliding window (typically 2-5 words) of each other in the text.",
+      "variables": {
+        "window": "sliding window size (e.g., 2, 3, 5 words)",
+        "co-occurrence": "number of times two words appear together in window"
+      },
+      "example": "Window=2: 'cat sat on' → edges: cat-sat, sat-on"
+    }
+  ],
+  "step_explanations": [
+    {
+      "step_id": "tr1",
+      "stage": "input_validation",
+      "title": "Validate Input Text",
+      "description": "Check text is non-empty and has enough content for graph construction.",
+      "input_preview": {
+        "text": "Google was founded by Larry Page..."
+      },
+      "output_preview": {
+        "valid": true,
+        "word_count": 28
+      },
+      "why_it_matters": "TextRank needs sufficient text to build a meaningful word co-occurrence graph.",
+      "visualization_type": "table"
+    },
+    {
+      "step_id": "tr2",
+      "stage": "preprocessing",
+      "title": "Tokenize and Filter Words",
+      "description": "Tokenize text, filter by length and stop words, then build vocabulary.",
+      "input_preview": {
+        "text": "Google was founded by Larry Page..."
+      },
+      "output_preview": {
+        "filtered_words": [
+          "google",
+          "founded",
+          "larry",
+          "page",
+          "..."
+        ]
+      },
+      "why_it_matters": "Filtering removes noise (stop words, short words) that would dilute the graph.",
+      "visualization_type": "table"
+    },
+    {
+      "step_id": "tr3",
+      "stage": "graph_construction",
+      "title": "Build Word Co-occurrence Graph",
+      "description": "Create a graph where nodes are words and edges connect words that co-occur within a sliding window.",
+      "input_preview": {
+        "words": [
+          "..."
+        ],
+        "window_size": 3
+      },
+      "output_preview": {
+        "nodes": 12,
+        "edges": 18,
+        "graph_density": 0.27
+      },
+      "why_it_matters": "The graph captures which words appear together, encoding semantic relationships through co-occurrence.",
+      "visualization_type": "graph"
+    },
+    {
+      "step_id": "tr4",
+      "stage": "computation",
+      "title": "Run PageRank Algorithm",
+      "description": "Iteratively compute PageRank scores for each node until convergence or max iterations.",
+      "formula": "PR(v) = (1-d) + d × Σ PR(u)/|Out(u)|",
+      "input_preview": {
+        "graph": {},
+        "damping": 0.85,
+        "max_iter": 100
+      },
+      "output_preview": {
+        "iterations": 23,
+        "converged": true,
+        "scores": {
+          "pagerank": 0.95
+        }
+      },
+      "why_it_matters": "PageRank identifies words that are central in the co-occurrence network - these are the key concepts in the text.",
+      "visualization_type": "scatter"
+    },
+    {
+      "step_id": "tr5",
+      "stage": "output",
+      "title": "Extract Top Keywords",
+      "description": "Sort words by PageRank score and return the top N as keywords.",
+      "input_preview": {
+        "scores": {},
+        "top_n": 5
+      },
+      "output_preview": {
+        "keywords": [
+          "pagerank",
+          "google",
+          "brin",
+          "page",
+          "algorithm"
+        ]
+      },
+      "why_it_matters": "The top-scoring words represent the most important concepts in the document.",
+      "visualization_type": "bar"
+    }
+  ],
+  "hover_annotations": [
+    {
+      "target": "PageRank",
+      "definition": "Algorithm that ranks nodes in a graph based on the importance of their connections.",
+      "formula_meaning": "PR(v) = (1-d) + d × Σ PR(u)/out_degree(u) - nodes with more/higher-quality links get higher scores",
+      "example": "Google uses PageRank to rank web pages based on which pages link to them",
+      "common_mistake": "Thinking PageRank counts only the number of links (it weights links by the source's own importance)"
+    },
+    {
+      "target": "damping_factor",
+      "definition": "Probability (1-d) that a random surfer stops following links and jumps to a random page.",
+      "formula_meaning": "d=0.85 means 85% chance of following links, 15% chance of random jump",
+      "example": "d=0.85 is standard; lower d means more random jumps (faster mixing but less stable rankings)",
+      "common_mistake": "Setting d too high (close to 1) can cause slow convergence; too low loses graph structure"
+    }
+  ],
+  "references": [
+    {
+      "title": "TextRank: Bringing Order into Texts",
+      "authors": "Mihalcea, R. and Tarau, P.",
+      "year": 2004,
+      "url": "https://aclanthology.org/W04-3252/",
+      "relevance": "Original TextRank paper - applies PageRank to text for keyword extraction and summarization."
+    },
+    {
+      "title": "The PageRank Citation Ranking: Bringing Order to the Web",
+      "authors": "Page, L., Brin, S., Motwani, R., and Winograd, T.",
+      "year": 1999,
+      "url": "https://ilpubs.stanford.edu:8090/422/",
+      "relevance": "Original PageRank paper from Stanford - the foundation for TextRank's graph algorithm."
+    }
+  ],
+  "receiver_mode_explanations": [
+    {
+      "mode": "beginner",
+      "explanation": "TextRank builds a network of words and finds the most 'popular' ones - like finding the most well-connected people at a party.",
+      "teaching_notes": "Use a text about a well-known topic. Show the word graph with nodes and edges."
+    },
+    {
+      "mode": "student",
+      "explanation": "TextRank builds a word co-occurrence graph and runs PageRank. Formula: PR(v) = (1-d) + d × Σ PR(u)/|Out(u)|. Top nodes = keywords.",
+      "technical_detail": "Window size controls edge creation (2-5 words typical). Undirected graph is common. Convergence typically in 20-50 iterations."
+    },
+    {
+      "mode": "researcher",
+      "explanation": "TextRank is unsupervised and domain-independent. Research shows it matches or beats RAKE for long texts but may underperform for very short texts (Wan & Xiao, 2008).",
+      "technical_detail": "Limitations: no global statistics, sensitive to window size and preprocessing. Extensions: PositionRank (incorporates word positions), SingleRank (weighted co-occurrence), TopicRank (topic-based clustering)."
+    },
+    {
+      "mode": "engineer",
+      "explanation": "TextRank is O(V²) for graph construction (V = vocabulary size) and O(E) per PageRank iteration (E = edges). Use NetworkX for graph operations.",
+      "technical_detail": "Complexity: build O(V²) or O(n×w) where n=words, w=window; PageRank O(E×iter). Memory: O(V²) for adjacency matrix or O(E) for sparse. API: networkx.pagerank."
+    },
+    {
+      "mode": "instructor",
+      "explanation": "TextRank introduces graph-based NLP. Students learn how web search algorithms apply to text analysis.",
+      "teaching_notes": "Quiz: Why does PageRank work for keywords? Exercise: Draw the word graph for a 2-sentence text. Compare TextRank vs. RAKE results."
+    }
+  ],
+  "research_context": "TextRank (Mihalcea & Tarau, 2004) adapts Google's PageRank algorithm for NLP. It's a graph-based unsupervised method that can extract both keywords and summary sentences. It's particularly effective for longer texts where co-occurrence patterns are meaningful.",
+  "teaching_notes": {
+    "summary": "TextRank applies PageRank to a word co-occurrence graph to extract important keywords from text.",
+    "quiz_questions": [
+      "How does TextRank build the word graph?",
+      "What does the damping factor control in PageRank?",
+      "Compare TextRank and RAKE: when would you use each?"
+    ],
+    "classroom_demo_tips": [
+      "Visualize the word graph with node sizes proportional to PageRank scores",
+      "Show convergence of PageRank scores over iterations",
+      "Compare keyword extraction with and without stop word removal"
+    ],
+    "common_misconceptions": [
+      "TextRank only works for keyword extraction (false - it also does sentence extraction for summarization)",
+      "More iterations always means better results (false - PageRank typically converges in 20-50 iterations)"
+    ]
+  }
+}

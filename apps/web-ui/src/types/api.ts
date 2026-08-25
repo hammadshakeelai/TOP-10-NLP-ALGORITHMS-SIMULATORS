@@ -134,6 +134,8 @@ export interface RunResponse {
   algorithm_id: AlgorithmID;
   algorithm_version: string;
   input_fingerprint: string;
+  /** Client-side stamp added when the run enters local history (not from the API). */
+  timestamp?: string;
   result: Record<string, unknown>;
   trace: Record<string, unknown> | unknown[];
   visualization_specs: VisualizationSpec[];

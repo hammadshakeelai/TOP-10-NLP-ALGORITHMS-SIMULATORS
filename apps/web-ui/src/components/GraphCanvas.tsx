@@ -66,8 +66,12 @@ export default function GraphCanvas({ data }: Props) {
   }));
 
   return (
-    <div className="h-[360px] overflow-hidden rounded-lg border border-gray-800 bg-gray-950">
-      <ReactFlow nodes={nodes} edges={edges} fitView minZoom={0.2} maxZoom={2}>
+    <div
+      className="h-[360px] overflow-hidden rounded-lg border border-gray-800 bg-gray-950"
+      role="img"
+      aria-label={`Graph with ${nodes.length} nodes and ${edges.length} edges`}
+    >
+      <ReactFlow nodes={nodes} edges={edges} fitView minZoom={0.2} maxZoom={2} proOptions={{ hideAttribution: true }}>
         <Background color="#1f2937" gap={18} />
         <Controls showInteractive={false} />
         <MiniMap pannable zoomable nodeColor="#1e293b" maskColor="rgba(3, 7, 18, 0.65)" />

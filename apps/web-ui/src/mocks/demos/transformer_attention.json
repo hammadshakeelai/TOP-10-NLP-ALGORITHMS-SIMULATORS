@@ -1,0 +1,226 @@
+{
+  "demo_input": {
+    "text": "The cat sat on the mat because it was tired.",
+    "highlight_word": "it"
+  },
+  "auto_parameters": {
+    "num_heads": 1,
+    "d_model": 64,
+    "temperature": 1.0
+  },
+  "expected_output_preview": {
+    "attention_weights": {
+      "it": {
+        "the": 0.3,
+        "cat": 0.45,
+        "mat": 0.15,
+        "tired": 0.1
+      }
+    },
+    "most_attended": "cat",
+    "num_heads": 1
+  },
+  "beginner_explanation": "Transformer attention helps the model figure out which words are related to each other. When reading 'it was tired', the model learns that 'it' probably refers to 'cat' by paying more attention to that word.",
+  "advanced_explanation": "Scaled Dot-Product Attention computes queries Q, keys K, and values V from inputs: Attention(Q,K,V) = softmax(QK^T/√d_k)V. Q, K, V are learned linear projections of the input. The softmax outputs (attention weights) sum to 1 and indicate how much each token should attend to every other token. Multi-head attention runs this h times in parallel with different projections, enabling the model to attend to different relationship types simultaneously.",
+  "formula_cards": [
+    {
+      "title": "Scaled Dot-Product Attention",
+      "formula": "Attention(Q,K,V) = softmax(QK^T/√d_k)V",
+      "explanation": "Compute similarity between queries and keys (QK^T), scale by √d_k, apply softmax to get weights, then weight the values V.",
+      "variables": {
+        "Q": "query matrix",
+        "K": "key matrix",
+        "V": "value matrix",
+        "d_k": "dimension of keys"
+      },
+      "example": "For 'it', Q·K^T gives similarity to all words; softmax gives weights like [0.3, 0.45, 0.15, ...]"
+    },
+    {
+      "title": "Multi-Head Attention",
+      "formula": "MultiHead(Q,K,V) = Concat(head₁, ..., head_h)W^O, where head_i = Attention(QW_i^Q, KW_i^K, VW_i^V)",
+      "explanation": "Run attention h times in parallel with different learned projections, then concatenate and project.",
+      "variables": {
+        "h": "number of heads",
+        "W_i^Q": "query projection for head i",
+        "W^O": "output projection"
+      },
+      "example": "With 8 heads, the model can attend to 8 different relationship types simultaneously (syntax, semantics, coreference, etc.)"
+    },
+    {
+      "title": "Attention Weight Interpretation",
+      "formula": "α_{ij} = softmax(Q_i·K_j/√d_k)",
+      "explanation": "The attention weight α_{ij} represents how much token i attends to token j. Higher weight = stronger relationship.",
+      "variables": {
+        "α_{ij}": "attention weight from token i to token j"
+      },
+      "example": "α_{it,cat} = 0.45 means 'it' attends to 'cat' with weight 0.45 (the strongest connection)"
+    }
+  ],
+  "step_explanations": [
+    {
+      "step_id": "ta1",
+      "stage": "input_validation",
+      "title": "Validate Input and Highlight Word",
+      "description": "Check text is valid and the highlight word exists in the text.",
+      "input_preview": {
+        "text": "The cat sat on the mat because it was tired.",
+        "highlight": "it"
+      },
+      "output_preview": {
+        "valid": true,
+        "sequence_length": 11
+      },
+      "why_it_matters": "Attention needs valid tokens to compute meaningful query-key-value interactions.",
+      "visualization_type": "table"
+    },
+    {
+      "step_id": "ta2",
+      "stage": "preprocessing",
+      "title": "Generate Q, K, V Vectors",
+      "description": "Apply learned linear projections to input embeddings to create Query, Key, and Value vectors for each token.",
+      "formula": "Q = XW^Q, K = XW^K, V = XW^V",
+      "input_preview": {
+        "embeddings": "[11, 64]"
+      },
+      "output_preview": {
+        "Q": "[11,64]",
+        "K": "[11,64]",
+        "V": "[11,64]"
+      },
+      "why_it_matters": "Q, K, V allow the model to compute different types of relationships (Q=what to look for, K=what to match against, V=what info to retrieve).",
+      "visualization_type": "scatter"
+    },
+    {
+      "step_id": "ta3",
+      "stage": "computation",
+      "title": "Compute Attention Scores (QK^T)",
+      "description": "Calculate dot products between Query of each token and Keys of all tokens to measure similarity.",
+      "formula": "scores_{ij} = Q_i·K_j / √d_k",
+      "input_preview": {
+        "Q": "[11,64]",
+        "K": "[11,64]"
+      },
+      "output_preview": {
+        "scores": "[11,11]",
+        "sample": "it→cat: 2.1, it→mat: 0.8, ..."
+      },
+      "why_it_matters": "High QK^T scores mean strong relationship - the query token finds relevant info in the key token.",
+      "visualization_type": "heatmap"
+    },
+    {
+      "step_id": "ta4",
+      "stage": "computation",
+      "title": "Apply Softmax to Get Attention Weights",
+      "description": "Apply softmax to attention scores so weights sum to 1, making them interpretable as percentages.",
+      "formula": "α_{ij} = softmax(scores_{ij}) = exp(scores_{ij}) / Σ_k exp(scores_{ik})",
+      "input_preview": {
+        "scores": "[11,11]"
+      },
+      "output_preview": {
+        "weights": "[11,11]",
+        "it_row": [
+          0.3,
+          0.45,
+          0.15,
+          "..."
+        ]
+      },
+      "why_it_matters": "These weights show exactly which words the model focuses on when processing each word.",
+      "visualization_type": "heatmap"
+    },
+    {
+      "step_id": "ta5",
+      "stage": "output",
+      "title": "Weight Values to Get Output",
+      "description": "Multiply attention weights by Value vectors to produce the final output representation for each token.",
+      "formula": "output_i = Σ_j α_{ij} × V_j",
+      "input_preview": {
+        "weights": "[11,11]",
+        "V": "[11,64]"
+      },
+      "output_preview": {
+        "output": "[11,64]",
+        "it_understands": "cat is the subject"
+      },
+      "why_it_matters": "The weighted sum creates a context-aware representation that incorporates relevant info from all tokens.",
+      "visualization_type": "scatter"
+    }
+  ],
+  "hover_annotations": [
+    {
+      "target": "Q (Query)",
+      "definition": "Vector representing what a token is looking for in other tokens.",
+      "formula_meaning": "Q_i = X_i·W^Q - transformed input that expresses the 'query'",
+      "example": "For 'it', Q might look for nouns that could be the referent (cat, mat, ...)",
+      "common_mistake": "Thinking Q, K, V are the same as input embeddings (they're learned transformations)"
+    },
+    {
+      "target": "attention_weight",
+      "definition": "A number between 0 and 1 showing how much token i focuses on token j. Row sums to 1.",
+      "formula_meaning": "α_{ij} = softmax(Q_i·K_j/√d_k) - high score means strong attention",
+      "example": "α_{it,cat} = 0.45 → 'it' attends to 'cat' with 45% of its attention",
+      "common_mistake": "Thinking high attention always means correct interpretation (it's a statistical pattern, not true understanding)"
+    }
+  ],
+  "references": [
+    {
+      "title": "Attention Is All You Need",
+      "authors": "Vaswani, A., et al.",
+      "year": 2017,
+      "arxiv_id": "1706.03762",
+      "relevance": "Original Transformer paper introducing Scaled Dot-Product Attention and Multi-Head Attention."
+    },
+    {
+      "title": "The Illustrated Transformer",
+      "authors": "Alammar, J.",
+      "year": 2018,
+      "url": "https://jalammar.github.io/illustrated-transformer/",
+      "relevance": "Excellent visual explanation of attention mechanisms with intuitive diagrams."
+    }
+  ],
+  "receiver_mode_explanations": [
+    {
+      "mode": "beginner",
+      "explanation": "Attention is like highlighting text. When the model reads 'it', it highlights 'cat' because that's what 'it' refers to.",
+      "teaching_notes": "Use a sentence with clear coreference. Show the attention heatmap with colors."
+    },
+    {
+      "mode": "student",
+      "explanation": "Attention(Q,K,V) = softmax(QK^T/√d_k)V. Q, K, V are learned projections. Multi-head runs h attention mechanisms in parallel.",
+      "technical_detail": "Scaling by √d_k prevents dot products from getting too large (which would push softmax into regions with tiny gradients)."
+    },
+    {
+      "mode": "researcher",
+      "explanation": "Attention enables global dependency modeling (any token can attend to any other, regardless of distance). Research shows attention patterns: some heads do syntax, some do coreference, some do position. Limitations: O(n²) complexity in sequence length.",
+      "technical_detail": "Limitations: quadratic complexity O(n²·d) in sequence length n. Efficient variants: Sparse Attention, Linformer, Reformer. Interpretability: attention weights are post-hoc explanations, not always faithful (Jain & Wallace, 2019)."
+    },
+    {
+      "mode": "engineer",
+      "explanation": "Attention is O(n²·d) where n=sequence length, d=model dimension. Use torch.nn.MultiheadAttention. Temperature=1.0 is standard; lower = sharper weights.",
+      "technical_detail": "Complexity: O(n²·d) self-attention. Memory: O(n²) for attention matrix. API: torch.nn.MultiheadAttention, tf.keras.layers.MultiHeadAttention."
+    },
+    {
+      "mode": "instructor",
+      "explanation": "Attention is the core innovation of Transformers. Show how it solves the sequential bottleneck of RNNs.",
+      "teaching_notes": "Quiz: What do Q, K, V represent? Exercise: Compute attention manually for a 3-word sentence. Discuss: Why scale by √d_k?"
+    }
+  ],
+  "research_context": "The Transformer (Vaswani et al., 2017) replaced recurrence with attention, enabling parallelization and better long-range dependency modeling. Attention mechanisms have become the foundation of modern NLP, with applications beyond NLP (vision, multimodal).",
+  "teaching_notes": {
+    "summary": "Scaled Dot-Product Attention allows tokens to attend to all other tokens, creating context-aware representations.",
+    "quiz_questions": [
+      "What do Q, K, and V represent in attention?",
+      "Why do we scale by √d_k in the attention formula?",
+      "Compute attention weights manually for a 3-token sentence with d_k=2."
+    ],
+    "classroom_demo_tips": [
+      "Visualize attention as a heatmap with token labels",
+      "Show how attention changes for different heads",
+      "Compare attention patterns for syntax vs. coreference"
+    ],
+    "common_misconceptions": [
+      "Attention weights always show true model reasoning (false - they're correlational, not causal)",
+      "More heads always better (false - diminishing returns, more compute)"
+    ]
+  }
+}

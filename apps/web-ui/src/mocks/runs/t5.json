@@ -1,0 +1,297 @@
+{
+  "run_id": "000e6182-4759-4273-a878-ec07141953c6",
+  "status": "success",
+  "algorithm_id": "t5",
+  "algorithm_version": "t5-v1.0.0",
+  "input_fingerprint": "sha256:4ac4c2831f2edd31",
+  "result": {
+    "task_prefix": "translate English to German:",
+    "target_text": "[Error: We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.\nCheck your internet connection or see how to run the library in offline mode at 'https://huggingface.co/docs/transformers/installation#offline-mode'.]",
+    "source_token_count": 8,
+    "target_token_count": 0,
+    "beam_candidates": []
+  },
+  "trace": {
+    "task_prefix": "translate English to German:",
+    "source_token_count": 8,
+    "target_text": "[Error: We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.\nCheck your internet connection or see how to run the library in offline mode at 'https://huggingface.co/docs/transformers/installation#offline-mode'.]",
+    "target_token_count": 0,
+    "beam_candidates": [],
+    "source_tokens": [
+      "translate",
+      "English",
+      "to",
+      "German:",
+      "The",
+      "house",
+      "is",
+      "beautiful."
+    ],
+    "target_tokens": [],
+    "parameters_used": {
+      "model_name": "t5-small",
+      "num_layers": 6,
+      "hidden_size": 512,
+      "num_heads": 8
+    }
+  },
+  "visualization_specs": [
+    {
+      "type": "diff",
+      "title": "Source → Target (Text-to-Text)",
+      "data": {
+        "source": "translate English to German: The house is beautiful.",
+        "target": "[Error: We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.\nCheck your internet connection or see how to run the library in offline mode at 'https://huggingface.co/docs/transformers/installation#offline-mode'.]"
+      },
+      "config": {}
+    },
+    {
+      "type": "table",
+      "title": "Beam Search Candidates",
+      "data": [],
+      "config": {}
+    },
+    {
+      "type": "bar",
+      "title": "Source vs Target Token Count",
+      "data": [
+        {
+          "label": "Source",
+          "count": 8
+        },
+        {
+          "label": "Target",
+          "count": 0
+        }
+      ],
+      "config": {
+        "x": "label",
+        "y": "count",
+        "color": "#8b5cf6"
+      }
+    }
+  ],
+  "metrics": {
+    "runtime_ms": 40.41,
+    "extra": {}
+  },
+  "warnings": [],
+  "export_links": [],
+  "demo_input": {
+    "text": "translate English to German: The house is beautiful.",
+    "task": "translation"
+  },
+  "auto_parameters": {
+    "model_name": "t5-small",
+    "num_layers": 6,
+    "hidden_size": 512,
+    "num_heads": 8
+  },
+  "step_explanations": [
+    {
+      "step_id": "t5_1",
+      "stage": "input_validation",
+      "title": "Validate Input with Task Prefix",
+      "description": "Check that input has a valid task prefix (translate, summarize, etc.) and text.",
+      "input_preview": {
+        "text": "translate English to German: The house is beautiful."
+      },
+      "output_preview": {
+        "valid": true,
+        "task": "translation",
+        "input_tokens": 10
+      },
+      "why_it_matters": "T5 requires a task prefix to know what to do. Without it, the model doesn't know the expected output format.",
+      "visualization_type": "table"
+    },
+    {
+      "step_id": "t5_2",
+      "stage": "preprocessing",
+      "title": "Tokenize with SentencePiece & Encode",
+      "description": "Use SentencePiece to tokenize input text and convert to token IDs for the encoder.",
+      "input_preview": {
+        "text": "translate English to German: The house is beautiful."
+      },
+      "output_preview": {
+        "encoder_tokens": [
+          "translate",
+          "English",
+          "to",
+          "German",
+          ":",
+          "The",
+          "house",
+          "..."
+        ]
+      },
+      "why_it_matters": "SentencePiece is language-agnostic (no dependency on English tokenization). Works for all languages.",
+      "visualization_type": "timeline"
+    },
+    {
+      "step_id": "t5_3",
+      "stage": "encoder_forward",
+      "title": "T5 Encoder (6 Layers)",
+      "description": "Process input through the encoder's 6 Transformer layers to create contextualized representations of the input.",
+      "formula": "Encoder: SelfAttention → Add&Norm → FeedForward → Add&Norm (×6 layers)",
+      "input_preview": {
+        "encoder_input": "[10]",
+        "encoder_layers": 6
+      },
+      "output_preview": {
+        "encoder_output": "[10, 512]",
+        "last_hidden_states": "[10, 512]"
+      },
+      "why_it_matters": "The encoder creates a rich representation of the input that the decoder will use for generation.",
+      "visualization_type": "scatter"
+    },
+    {
+      "step_id": "t5_4",
+      "stage": "decoder_generation",
+      "title": "T5 Decoder (Autoregressive Generation)",
+      "description": "The decoder generates output tokens autoregressively, using cross-attention to attend to encoder outputs.",
+      "formula": "Decoder: SelfAttention → CrossAttention(encoder_output) → FeedForward (×6 layers)",
+      "input_preview": {
+        "decoder_input": "start token",
+        "encoder_output": "[10, 512]"
+      },
+      "output_preview": {
+        "generated_tokens": [
+          "Das",
+          "Haus",
+          "ist",
+          "wunderschön",
+          "."
+        ]
+      },
+      "why_it_matters": "This is where the actual translation/summarization happens. The decoder uses both its own history and the encoder's input representation.",
+      "visualization_type": "timeline"
+    },
+    {
+      "step_id": "t5_5",
+      "stage": "output",
+      "title": "Decode Output Tokens to Text",
+      "description": "Convert generated token IDs back to text using SentencePiece decoder.",
+      "input_preview": {
+        "decoder_token_ids": [
+          123,
+          456,
+          789,
+          "..."
+        ]
+      },
+      "output_preview": {
+        "output_text": "Das Haus ist wunderschön.",
+        "output_tokens": 5
+      },
+      "why_it_matters": "Final output that users see - the result of the text-to-text transformation.",
+      "visualization_type": "text"
+    }
+  ],
+  "formula_cards": [
+    {
+      "title": "T5 Input Format (Text-to-Text)",
+      "formula": "input = 'task_prefix: original_input'; output = 'target_text'",
+      "explanation": "Every task is cast as text-to-text. The model learns to map input text (with task prefix) to output text.",
+      "variables": {
+        "task_prefix": "e.g., 'translate English to German', 'summarize', 'cola sentence'"
+      },
+      "example": "Input: 'translate English to German: The house is beautiful.' → Output: 'Das Haus ist wunderschön.'"
+    },
+    {
+      "title": "Masked Span Corruption (Pre-training)",
+      "formula": "Input: 'The <X> is <Y>.'; Output: '<X> house <Y> beautiful'",
+      "explanation": "T5 masks random spans (not just single tokens) and predicts the masked spans as a sequence. This teaches the model to understand and generate text.",
+      "variables": {
+        "<X>, <Y>": "masked spans (1-3 tokens each)"
+      },
+      "example": "Original: 'The house is beautiful.' → Masked: 'The <X> is <Y>.' → Target: '<X> house <Y> beautiful'"
+    },
+    {
+      "title": "Encoder-Decoder Attention",
+      "formula": "DecoderAttention(Q_d, K_e, V_e) = softmax(Q_d K_e^T / √d_k) V_e",
+      "explanation": "The decoder attends to the encoder's output (all input tokens), not just previous decoder tokens. This is cross-attention.",
+      "variables": {
+        "Q_d": "decoder query",
+        "K_e, V_e": "encoder key/value (from input processing)"
+      },
+      "example": "When generating 'wunderschön', the decoder looks at all encoder outputs for 'The house is beautiful.'"
+    }
+  ],
+  "hover_annotations": [
+    {
+      "target": "task_prefix",
+      "definition": "A text string at the start of input that tells T5 what task to perform (e.g., 'translate:', 'summarize:').",
+      "formula_meaning": "input = prefix + ': ' + text; model learns to condition on prefix",
+      "example": "'translate English to German: Hello.' → model knows to translate to German",
+      "common_mistake": "Forgetting the colon after the task prefix (T5 expects 'prefix: text' format)"
+    },
+    {
+      "target": "cross-attention",
+      "definition": "Attention mechanism in the decoder that allows it to attend to encoder outputs (the input text representation).",
+      "formula_meaning": "CrossAttention(Q_d, K_e, V_e) - Q comes from decoder, K/V come from encoder",
+      "example": "When generating 'wunderschön', decoder cross-attention focuses on 'beautiful' in the encoder output",
+      "common_mistake": "Thinking decoder only attends to its own previous tokens (it also attends to all encoder outputs via cross-attention)"
+    }
+  ],
+  "references": [
+    {
+      "title": "Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer",
+      "authors": "Raffel, C., et al.",
+      "year": 2019,
+      "arxiv_id": "1910.10683",
+      "relevance": "T5 paper introducing the text-to-text framework that unifies all NLP tasks."
+    },
+    {
+      "title": "T5: Text-To-Text Transfer Transformer (Official Blog)",
+      "authors": "Google AI Blog",
+      "year": 2020,
+      "url": "https://ai.googleblog.com/2020/02/exploring-transfer-learning-with-t5.html",
+      "relevance": "Accessible overview of T5's text-to-text framework and pre-training objectives."
+    }
+  ],
+  "receiver_mode_explanations": [
+    {
+      "mode": "beginner",
+      "explanation": "T5 can do any NLP task if you tell it what to do in words. Say 'translate:' and it translates. Say 'summarize:' and it summarizes.",
+      "teaching_notes": "Demo translation and summarization with simple examples. Show how task prefix changes the output."
+    },
+    {
+      "mode": "student",
+      "explanation": "T5 uses an encoder-decoder Transformer. All tasks are text-to-text: 'task: input' → 'output'. Pre-training: masked span corruption (predict masked spans).",
+      "technical_detail": "Encoder processes input, decoder generates output with cross-attention to encoder. Uses relative position biases instead of absolute positions."
+    },
+    {
+      "mode": "researcher",
+      "explanation": "T5's text-to-text framework is elegant and unified. Research shows span corruption is more sample-efficient than token-level MLM. T5-XXL (11B) was SOTA on many benchmarks. Limitations: slower inference (encoder-decoder), larger than encoder-only models.",
+      "technical_detail": "Limitations: encoder-decoder is slower than encoder-only for understanding tasks. Variants: mT5 (multilingual), ByT5 (byte-level), UL2 (unified pre-training with different corruption strategies)."
+    },
+    {
+      "mode": "engineer",
+      "explanation": "T5-small: 60M params, 6 layers each for encoder/decoder. Use HuggingFace. For inference, it's O((n_enc² + n_dec²)×d) per generation step.",
+      "technical_detail": "Complexity: O(L×n²×d) for both encoder and decoder. API: transformers.T5ForConditionalGeneration, transformers.pipeline('translation', model='t5-small')."
+    },
+    {
+      "mode": "instructor",
+      "explanation": "T5 unifies NLP tasks under one framework. Great for teaching transfer learning and multi-task learning.",
+      "teaching_notes": "Quiz: Why is text-to-text elegant? Exercise: Convert classification, NER, and summarization to text-to-text format. Discuss: When would you use T5 vs. BERT vs. GPT?"
+    }
+  ],
+  "research_context": "T5 (Raffel et al., 2019) unified all NLP tasks into a text-to-text framework, showing that a single model can perform translation, summarization, Q&A, and classification by framing them as text input → text output. This simplified multi-task learning and transfer learning.",
+  "teaching_notes": {
+    "summary": "T5 casts all NLP tasks as text-to-text, using an encoder-decoder Transformer pre-trained with masked span corruption.",
+    "quiz_questions": [
+      "How does T5 unify different NLP tasks into a single framework?",
+      "What is masked span corruption, and how does it differ from BERT's MLM?",
+      "When would you use T5 vs. BERT vs. GPT? Give examples."
+    ],
+    "classroom_demo_tips": [
+      "Demo 3+ tasks (translation, summarization, Q&A) with the same model",
+      "Show encoder-decoder attention visualization",
+      "Compare T5-small, T5-base, T5-large outputs"
+    ],
+    "common_misconceptions": [
+      "T5 is just like BERT (false - it's encoder-decoder, not encoder-only)",
+      "T5 can only do one task (false - it's multi-task via text-to-text framing)"
+    ]
+  }
+}

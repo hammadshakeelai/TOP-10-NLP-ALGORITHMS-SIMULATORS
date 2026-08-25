@@ -1,0 +1,217 @@
+{
+  "demo_input": {
+    "text": "The secret to a happy life is",
+    "max_new_tokens": 20,
+    "temperature": 0.7
+  },
+  "auto_parameters": {
+    "model_name": "gpt2",
+    "num_layers": 12,
+    "hidden_size": 768,
+    "num_heads": 12,
+    "temperature": 0.7
+  },
+  "expected_output_preview": {
+    "generated_text": "The secret to a happy life is finding balance, surrounding yourself with positive people, and pursuing your passions.",
+    "tokens_generated": 15,
+    "perplexity": 25.3
+  },
+  "beginner_explanation": "GPT is like an auto-complete on steroids. You give it the beginning of a sentence, and it predicts what comes next, one word at a time, writing entire paragraphs that sound human-like.",
+  "advanced_explanation": "GPT (Generative Pre-trained Transformer) uses a Transformer decoder architecture with autoregressive language modeling: predict next token given all previous tokens. It uses masked self-attention (causal attention) where each token can only attend to previous tokens, not future ones. Pre-training maximizes L = Σ log P(t_i | t_{<i}). GPT-2 has 1.5B parameters; GPT-3 has 175B. Temperature controls randomness: P_softmax = softmax(logits / T). Lower T = more deterministic; higher T = more random.",
+  "formula_cards": [
+    {
+      "title": "Autoregressive Language Modeling",
+      "formula": "L = Σ_{i=1}^n log P(t_i | t_1, ..., t_{i-1})",
+      "explanation": "GPT maximizes the log-likelihood of each token given all previous tokens. This is causal (left-to-right) modeling.",
+      "variables": {
+        "t_i": "i-th token",
+        "n": "sequence length"
+      },
+      "example": "For 'happy life is', model computes P('happy'|'The'), P('life'|'The happy'), P('is'|'The happy life')"
+    },
+    {
+      "title": "Causal Self-Attention (Masked)",
+      "formula": "Attention(Q,K,V) = softmax((QK^T + M)/√d_k)V, where M_{ij} = -∞ if j > i",
+      "explanation": "Causal masking M prevents attention to future tokens. Each token only attends to itself and previous tokens.",
+      "variables": {
+        "M": "causal mask (upper triangular = -∞)",
+        "i": "query position",
+        "j": "key position"
+      },
+      "example": "When processing 'life' (position 3), it can attend to 'The', 'happy', 'life' but NOT 'is' (future)"
+    },
+    {
+      "title": "Temperature Sampling",
+      "formula": "P_i = softmax(logits_i / T)",
+      "explanation": "Temperature T controls randomness. T=1 is standard softmax; T<1 is sharper (more confident); T>1 is flatter (more random).",
+      "variables": {
+        "T": "temperature (typically 0.1 to 2.0)",
+        "logits_i": "raw model output for token i"
+      },
+      "example": "T=0.7: 'happy' with logit 3.0 → P=0.6; T=2.0: same logit → P=0.35 (more random)"
+    }
+  ],
+  "step_explanations": [
+    {
+      "step_id": "gp1",
+      "stage": "input_validation",
+      "title": "Validate Prompt",
+      "description": "Check that the input prompt is non-empty and within model's context window.",
+      "input_preview": {
+        "text": "The secret to a happy life is",
+        "prompt_tokens": 7
+      },
+      "output_preview": {
+        "valid": true,
+        "prompt_length": 7
+      },
+      "why_it_matters": "GPT needs a valid prompt to start generation. Context window limit is typically 1024-4096 tokens.",
+      "visualization_type": "table"
+    },
+    {
+      "step_id": "gp2",
+      "stage": "preprocessing",
+      "title": "Tokenize with Byte-Pair Encoding (BPE)",
+      "description": "Split prompt into BPE subword tokens and convert to token IDs for the model.",
+      "input_preview": {
+        "text": "The secret to a happy life is"
+      },
+      "output_preview": {
+        "tokens": [
+          "The",
+          "secret",
+          "to",
+          "a",
+          "happy",
+          "life",
+          "is"
+        ],
+        "token_ids": [
+          464,
+          13067,
+          284,
+          257,
+          3139,
+          7966,
+          318
+        ]
+      },
+      "why_it_matters": "BPE handles out-of-vocabulary words. Token IDs are the actual input to the model.",
+      "visualization_type": "timeline"
+    },
+    {
+      "step_id": "gp3",
+      "stage": "generation_loop",
+      "title": "Autoregressive Generation (Step 1 to T)",
+      "description": "At each step, run the Transformer decoder on all previous tokens, predict next token distribution, sample using temperature, and append to sequence.",
+      "formula": "P(t_new | t_1, ..., t_current) = softmax(Transformer(t_1...t_current) / T)",
+      "input_preview": {
+        "current_seq": "[464, 13067, ...]",
+        "step": 1
+      },
+      "output_preview": {
+        "new_token": " finding",
+        "updated_seq": "[..., 1216]"
+      },
+      "why_it_matters": "This is the core generation loop - the model builds the output one token at a time, each prediction conditioned on all previous tokens.",
+      "visualization_type": "timeline"
+    },
+    {
+      "step_id": "gp4",
+      "stage": "output",
+      "title": "Decode Generated Tokens to Text",
+      "description": "Convert generated token IDs back to text using the BPE decoder.",
+      "input_preview": {
+        "generated_token_ids": [
+          1216,
+          11735,
+          4,
+          "..."
+        ]
+      },
+      "output_preview": {
+        "generated_text": "finding balance, surrounding yourself...",
+        "total_tokens": 20
+      },
+      "why_it_matters": "This is the final output that users see - the model's generated continuation of the prompt.",
+      "visualization_type": "text"
+    }
+  ],
+  "hover_annotations": [
+    {
+      "target": "causal_mask",
+      "definition": "A mask that prevents the model from attending to future tokens, ensuring autoregressive generation.",
+      "formula_meaning": "M_{ij} = -∞ if j > i (future positions get -∞ → softmax gives 0 probability)",
+      "example": "When generating token 5, positions 6, 7, 8, ... are masked out (attention = 0)",
+      "common_mistake": "Thinking GPT can see future tokens (it can't - causal mask prevents this by design)"
+    },
+    {
+      "target": "temperature",
+      "definition": "Parameter that controls randomness in sampling. Lower = more deterministic; higher = more random/creative.",
+      "formula_meaning": "softmax(logits / T): T<1 sharpens distribution; T>1 flattens it",
+      "example": "T=0.1: almost greedy (always picks highest logit); T=2.0: very random output",
+      "common_mistake": "Setting T=0 (not actually 0, use argmax instead; T→0 in softmax approaches argmax)"
+    }
+  ],
+  "references": [
+    {
+      "title": "Language Models are Unsupervised Multitask Learners",
+      "authors": "Radford, A., et al.",
+      "year": 2019,
+      "arxiv_id": "1901.07291",
+      "relevance": "GPT-2 paper showing that large-scale generative pre-training enables zero-shot task performance."
+    },
+    {
+      "title": "Language Models are Few-Shot Learners",
+      "authors": "Brown, T., et al.",
+      "year": 2020,
+      "arxiv_id": "2005.14165",
+      "relevance": "GPT-3 paper demonstrating in-context learning with 175B parameters."
+    }
+  ],
+  "receiver_mode_explanations": [
+    {
+      "mode": "beginner",
+      "explanation": "GPT writes text one word at a time, always looking at what it already wrote to decide what comes next. Like predictive text on your phone, but much smarter.",
+      "teaching_notes": "Use a simple prompt. Show how changing temperature affects creativity vs. coherence."
+    },
+    {
+      "mode": "student",
+      "explanation": "GPT uses a Transformer decoder with causal (masked) self-attention. It predicts next token: P(t_i|t_{<i}). Temperature T controls sampling randomness.",
+      "technical_detail": "Causal mask ensures token i only attends to positions ≤ i. BPE tokenization handles OOV. Autoregressive: generate one token at a time."
+    },
+    {
+      "mode": "researcher",
+      "explanation": "GPT demonstrated that scaling autoregressive LMs enables few-shot in-context learning (Brown et al., 2020). Limitations: no bidirectional context, expensive inference (autoregressive can't parallelize). Led to GPT-3, GPT-4, and the modern LLM era.",
+      "technical_detail": "Limitations: quadratic attention, no bidirectional context (worse for understanding tasks), autoregressive bottleneck. Alternatives: encoder-decoder (T5), non-autoregressive generation."
+    },
+    {
+      "mode": "engineer",
+      "explanation": "GPT-2: 1.5B params, O(n²·d) per generation step. Use HuggingFace. For faster inference, use caching (KV cache) to avoid recomputing past keys/values.",
+      "technical_detail": "Complexity: O(L×n²×d) without cache; O(L×n×d) with KV cache. API: transformers.GPT2LMHeadModel, transformers.pipeline('text-generation')."
+    },
+    {
+      "mode": "instructor",
+      "explanation": "GPT introduced the modern LLM paradigm. Show how autoregressive generation differs from bidirectional encoding (BERT).",
+      "teaching_notes": "Quiz: Why can't GPT see future tokens? Exercise: Compare greedy (T→0) vs. creative (T=1.0) generation. Discuss: Why is GPT good for generation but not understanding?"
+    }
+  ],
+  "research_context": "GPT-2 (Radford et al., 2019) showed that large-scale generative pre-training enables zero-shot generalization. GPT-3 (Brown et al., 2020) demonstrated few-shot in-context learning with 175B parameters, launching the modern LLM era. These models use purely autoregressive (left-to-right) generation.",
+  "teaching_notes": {
+    "summary": "GPT uses a Transformer decoder with causal attention to generate text autoregressively, one token at a time.",
+    "quiz_questions": [
+      "Why does GPT use causal (masked) attention instead of bidirectional?",
+      "What does temperature control in sampling, and how do you set it for greedy vs. creative generation?",
+      "Why can't GPT do bidirectional understanding like BERT?"
+    ],
+    "classroom_demo_tips": [
+      "Show generation step-by-step with token predictions at each step",
+      "Compare outputs at different temperatures (0.1, 0.7, 1.5)",
+      "Visualize causal attention mask as a lower-triangular matrix"
+    ],
+    "common_misconceptions": [
+      "GPT understands what it's writing (false - it models statistical patterns, not meaning)",
+      "More parameters always means better generation (false - can lead to repetition or hallucination without proper tuning)"
+    ]
+  }
+}

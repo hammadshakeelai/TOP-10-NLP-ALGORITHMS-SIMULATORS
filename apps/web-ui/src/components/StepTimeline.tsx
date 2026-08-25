@@ -49,30 +49,31 @@ export default function StepTimeline({ steps }: Props) {
 
                 <button
                   onClick={() => setExpanded(isOpen ? null : step.step_id)}
-                  className="w-full text-left bg-gray-800 hover:bg-gray-750 rounded-lg px-4 py-3 transition"
+                  aria-expanded={isOpen}
+                  className="w-full text-left bg-gray-800 hover:bg-gray-750 rounded-lg px-4 py-3 transition focus-ring"
                 >
                   <div className="flex items-center justify-between">
                     <div>
-                      <span className="text-xs text-gray-400 uppercase tracking-wide">{step.stage.replace(/_/g, " ")}</span>
+                      <span className="text-xs text-gray-500 uppercase tracking-wide">{step.stage.replace(/_/g, " ")}</span>
                       <div className="font-medium text-sm mt-0.5">{step.title}</div>
                     </div>
-                    <span className="text-gray-500 text-xs">{isOpen ? "▲" : "▼"}</span>
+                    <span aria-hidden className="text-gray-500 text-xs">{isOpen ? "▲" : "▼"}</span>
                   </div>
                 </button>
 
                 {isOpen && (
                   <div className="mt-2 ml-0 bg-gray-800/50 rounded-lg px-4 py-3 text-sm space-y-3">
-                    <p className="text-gray-300">{step.description}</p>
+                    <p className="text-gray-600 dark:text-gray-300">{step.description}</p>
 
                     {step.formula && (
-                      <div className="bg-gray-900 rounded px-3 py-2 font-mono text-indigo-300 text-xs">
+                      <div className="bg-gray-900 rounded px-3 py-2 font-mono text-indigo-700 dark:text-indigo-300 text-xs overflow-x-auto">
                         {step.formula}
                       </div>
                     )}
 
                     {step.why_it_matters && (
-                      <div className="flex gap-2 text-xs text-amber-300">
-                        <span>💡</span>
+                      <div className="flex gap-2 text-xs text-amber-700 dark:text-amber-300">
+                        <span aria-hidden>💡</span>
                         <span>{step.why_it_matters}</span>
                       </div>
                     )}
@@ -82,7 +83,7 @@ export default function StepTimeline({ steps }: Props) {
                         {!!step.input_preview && (
                           <div>
                             <div className="text-gray-500 mb-1">Input</div>
-                            <pre className="bg-gray-900 rounded p-2 text-gray-300 overflow-auto max-h-24 whitespace-pre-wrap">
+                            <pre className="bg-gray-900 rounded p-2 text-gray-700 dark:text-gray-300 overflow-auto max-h-24 whitespace-pre-wrap">
                               {JSON.stringify(step.input_preview, null, 2)}
                             </pre>
                           </div>
@@ -90,7 +91,7 @@ export default function StepTimeline({ steps }: Props) {
                         {!!step.output_preview && (
                           <div>
                             <div className="text-gray-500 mb-1">Output</div>
-                            <pre className="bg-gray-900 rounded p-2 text-green-300 overflow-auto max-h-24 whitespace-pre-wrap">
+                            <pre className="bg-gray-900 rounded p-2 text-emerald-700 dark:text-green-300 overflow-auto max-h-24 whitespace-pre-wrap">
                               {JSON.stringify(step.output_preview, null, 2)}
                             </pre>
                           </div>

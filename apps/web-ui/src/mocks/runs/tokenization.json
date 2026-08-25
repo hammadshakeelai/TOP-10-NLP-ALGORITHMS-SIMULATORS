@@ -1,0 +1,753 @@
+{
+  "run_id": "5f708e5e-1093-42d9-b862-6ec84564d9e3",
+  "status": "warning",
+  "algorithm_id": "tokenization",
+  "algorithm_version": "tokenization-v1.0.0",
+  "input_fingerprint": "sha256:199207b868824a0f",
+  "result": {
+    "token_count": 17,
+    "vocabulary_size": 17,
+    "cleaned_text": "hello world! this is a sample sentence for tokenization. let's see how it works - 123, test.",
+    "vocabulary": [
+      "-",
+      "123,",
+      "a",
+      "for",
+      "hello",
+      "how",
+      "is",
+      "it",
+      "let's",
+      "sample",
+      "see",
+      "sentence",
+      "test.",
+      "this",
+      "tokenization.",
+      "works",
+      "world!"
+    ],
+    "top_terms": [
+      {
+        "term": "hello",
+        "count": 1
+      },
+      {
+        "term": "world!",
+        "count": 1
+      },
+      {
+        "term": "this",
+        "count": 1
+      },
+      {
+        "term": "is",
+        "count": 1
+      },
+      {
+        "term": "a",
+        "count": 1
+      },
+      {
+        "term": "sample",
+        "count": 1
+      },
+      {
+        "term": "sentence",
+        "count": 1
+      },
+      {
+        "term": "for",
+        "count": 1
+      },
+      {
+        "term": "tokenization.",
+        "count": 1
+      },
+      {
+        "term": "let's",
+        "count": 1
+      },
+      {
+        "term": "see",
+        "count": 1
+      },
+      {
+        "term": "how",
+        "count": 1
+      },
+      {
+        "term": "it",
+        "count": 1
+      },
+      {
+        "term": "works",
+        "count": 1
+      },
+      {
+        "term": "-",
+        "count": 1
+      },
+      {
+        "term": "123,",
+        "count": 1
+      },
+      {
+        "term": "test.",
+        "count": 1
+      }
+    ]
+  },
+  "trace": {
+    "token_count": 17,
+    "vocabulary_size": 17,
+    "sentence_count": 3,
+    "cleaned_text": "hello world! this is a sample sentence for tokenization. let's see how it works - 123, test.",
+    "token_table": [
+      {
+        "index": 0,
+        "text": "Hello",
+        "normalized": "hello",
+        "start": 0,
+        "end": 5,
+        "sentence_id": 0,
+        "is_subword": false
+      },
+      {
+        "index": 1,
+        "text": "world!",
+        "normalized": "world!",
+        "start": 6,
+        "end": 12,
+        "sentence_id": 0,
+        "is_subword": false
+      },
+      {
+        "index": 2,
+        "text": "This",
+        "normalized": "this",
+        "start": 13,
+        "end": 17,
+        "sentence_id": 1,
+        "is_subword": false
+      },
+      {
+        "index": 3,
+        "text": "is",
+        "normalized": "is",
+        "start": 18,
+        "end": 20,
+        "sentence_id": 1,
+        "is_subword": false
+      },
+      {
+        "index": 4,
+        "text": "a",
+        "normalized": "a",
+        "start": 21,
+        "end": 22,
+        "sentence_id": 1,
+        "is_subword": false
+      },
+      {
+        "index": 5,
+        "text": "sample",
+        "normalized": "sample",
+        "start": 23,
+        "end": 29,
+        "sentence_id": 1,
+        "is_subword": false
+      },
+      {
+        "index": 6,
+        "text": "sentence",
+        "normalized": "sentence",
+        "start": 30,
+        "end": 38,
+        "sentence_id": 1,
+        "is_subword": false
+      },
+      {
+        "index": 7,
+        "text": "for",
+        "normalized": "for",
+        "start": 39,
+        "end": 42,
+        "sentence_id": 1,
+        "is_subword": false
+      },
+      {
+        "index": 8,
+        "text": "tokenization.",
+        "normalized": "tokenization.",
+        "start": 43,
+        "end": 56,
+        "sentence_id": 1,
+        "is_subword": false
+      },
+      {
+        "index": 9,
+        "text": "Let's",
+        "normalized": "let's",
+        "start": 57,
+        "end": 62,
+        "sentence_id": 2,
+        "is_subword": false
+      },
+      {
+        "index": 10,
+        "text": "see",
+        "normalized": "see",
+        "start": 63,
+        "end": 66,
+        "sentence_id": 2,
+        "is_subword": false
+      },
+      {
+        "index": 11,
+        "text": "how",
+        "normalized": "how",
+        "start": 67,
+        "end": 70,
+        "sentence_id": 2,
+        "is_subword": false
+      },
+      {
+        "index": 12,
+        "text": "it",
+        "normalized": "it",
+        "start": 71,
+        "end": 73,
+        "sentence_id": 2,
+        "is_subword": false
+      },
+      {
+        "index": 13,
+        "text": "works",
+        "normalized": "works",
+        "start": 74,
+        "end": 79,
+        "sentence_id": 2,
+        "is_subword": false
+      },
+      {
+        "index": 14,
+        "text": "-",
+        "normalized": "-",
+        "start": 80,
+        "end": 81,
+        "sentence_id": 2,
+        "is_subword": false
+      },
+      {
+        "index": 15,
+        "text": "123,",
+        "normalized": "123,",
+        "start": 82,
+        "end": 86,
+        "sentence_id": 2,
+        "is_subword": false
+      },
+      {
+        "index": 16,
+        "text": "test.",
+        "normalized": "test.",
+        "start": 87,
+        "end": 92,
+        "sentence_id": 2,
+        "is_subword": false
+      }
+    ],
+    "frequency_table": [
+      {
+        "term": "hello",
+        "count": 1
+      },
+      {
+        "term": "world!",
+        "count": 1
+      },
+      {
+        "term": "this",
+        "count": 1
+      },
+      {
+        "term": "is",
+        "count": 1
+      },
+      {
+        "term": "a",
+        "count": 1
+      },
+      {
+        "term": "sample",
+        "count": 1
+      },
+      {
+        "term": "sentence",
+        "count": 1
+      },
+      {
+        "term": "for",
+        "count": 1
+      },
+      {
+        "term": "tokenization.",
+        "count": 1
+      },
+      {
+        "term": "let's",
+        "count": 1
+      },
+      {
+        "term": "see",
+        "count": 1
+      },
+      {
+        "term": "how",
+        "count": 1
+      },
+      {
+        "term": "it",
+        "count": 1
+      },
+      {
+        "term": "works",
+        "count": 1
+      },
+      {
+        "term": "-",
+        "count": 1
+      },
+      {
+        "term": "123,",
+        "count": 1
+      },
+      {
+        "term": "test.",
+        "count": 1
+      }
+    ],
+    "subword_merges": [],
+    "vocabulary": [
+      "-",
+      "123,",
+      "a",
+      "for",
+      "hello",
+      "how",
+      "is",
+      "it",
+      "let's",
+      "sample",
+      "see",
+      "sentence",
+      "test.",
+      "this",
+      "tokenization.",
+      "works",
+      "world!"
+    ]
+  },
+  "visualization_specs": [
+    {
+      "type": "table",
+      "title": "Token Boundary Map",
+      "data": [
+        {
+          "index": 0,
+          "text": "Hello",
+          "start": 0,
+          "end": 5,
+          "sentence_id": 0
+        },
+        {
+          "index": 1,
+          "text": "world!",
+          "start": 6,
+          "end": 12,
+          "sentence_id": 0
+        },
+        {
+          "index": 2,
+          "text": "This",
+          "start": 13,
+          "end": 17,
+          "sentence_id": 1
+        },
+        {
+          "index": 3,
+          "text": "is",
+          "start": 18,
+          "end": 20,
+          "sentence_id": 1
+        },
+        {
+          "index": 4,
+          "text": "a",
+          "start": 21,
+          "end": 22,
+          "sentence_id": 1
+        },
+        {
+          "index": 5,
+          "text": "sample",
+          "start": 23,
+          "end": 29,
+          "sentence_id": 1
+        },
+        {
+          "index": 6,
+          "text": "sentence",
+          "start": 30,
+          "end": 38,
+          "sentence_id": 1
+        },
+        {
+          "index": 7,
+          "text": "for",
+          "start": 39,
+          "end": 42,
+          "sentence_id": 1
+        },
+        {
+          "index": 8,
+          "text": "tokenization.",
+          "start": 43,
+          "end": 56,
+          "sentence_id": 1
+        },
+        {
+          "index": 9,
+          "text": "Let's",
+          "start": 57,
+          "end": 62,
+          "sentence_id": 2
+        },
+        {
+          "index": 10,
+          "text": "see",
+          "start": 63,
+          "end": 66,
+          "sentence_id": 2
+        },
+        {
+          "index": 11,
+          "text": "how",
+          "start": 67,
+          "end": 70,
+          "sentence_id": 2
+        },
+        {
+          "index": 12,
+          "text": "it",
+          "start": 71,
+          "end": 73,
+          "sentence_id": 2
+        },
+        {
+          "index": 13,
+          "text": "works",
+          "start": 74,
+          "end": 79,
+          "sentence_id": 2
+        },
+        {
+          "index": 14,
+          "text": "-",
+          "start": 80,
+          "end": 81,
+          "sentence_id": 2
+        },
+        {
+          "index": 15,
+          "text": "123,",
+          "start": 82,
+          "end": 86,
+          "sentence_id": 2
+        },
+        {
+          "index": 16,
+          "text": "test.",
+          "start": 87,
+          "end": 92,
+          "sentence_id": 2
+        }
+      ],
+      "config": {}
+    },
+    {
+      "type": "bar",
+      "title": "Top Token Frequencies",
+      "data": [
+        {
+          "term": "hello",
+          "count": 1
+        },
+        {
+          "term": "world!",
+          "count": 1
+        },
+        {
+          "term": "this",
+          "count": 1
+        },
+        {
+          "term": "is",
+          "count": 1
+        },
+        {
+          "term": "a",
+          "count": 1
+        },
+        {
+          "term": "sample",
+          "count": 1
+        },
+        {
+          "term": "sentence",
+          "count": 1
+        },
+        {
+          "term": "for",
+          "count": 1
+        },
+        {
+          "term": "tokenization.",
+          "count": 1
+        },
+        {
+          "term": "let's",
+          "count": 1
+        },
+        {
+          "term": "see",
+          "count": 1
+        },
+        {
+          "term": "how",
+          "count": 1
+        },
+        {
+          "term": "it",
+          "count": 1
+        },
+        {
+          "term": "works",
+          "count": 1
+        },
+        {
+          "term": "-",
+          "count": 1
+        },
+        {
+          "term": "123,",
+          "count": 1
+        },
+        {
+          "term": "test.",
+          "count": 1
+        }
+      ],
+      "config": {
+        "x": "term",
+        "y": "count",
+        "color": "#6366f1"
+      }
+    },
+    {
+      "type": "diff",
+      "title": "Original vs. Cleaned Text",
+      "data": {
+        "original": "Hello world! This is a sample sentence for tokenization. Let's see how it works - 123, test.",
+        "cleaned": "hello world! this is a sample sentence for tokenization. let's see how it works - 123, test."
+      },
+      "config": {}
+    }
+  ],
+  "metrics": {
+    "runtime_ms": 0.35,
+    "extra": {}
+  },
+  "warnings": [
+    {
+      "code": "UNKNOWN_TOKENIZER",
+      "message": "Unknown tokenizer_type 'word'. Defaulting to 'whitespace'.",
+      "field": "parameters.tokenizer_type"
+    }
+  ],
+  "export_links": [],
+  "demo_input": {
+    "text": "Hello world! This is a sample sentence for tokenization. Let's see how it works - 123, test."
+  },
+  "auto_parameters": {
+    "tokenizer_type": "word",
+    "lowercase": true,
+    "remove_punctuation": false,
+    "split_contractions": true
+  },
+  "step_explanations": [
+    {
+      "step_id": "t1",
+      "stage": "input_validation",
+      "title": "Validate Input Text",
+      "description": "Check that the input text is non-empty and is a valid string.",
+      "input_preview": {
+        "text": "Hello world! This is a sample sentence..."
+      },
+      "output_preview": {
+        "valid": true,
+        "text_length": 85
+      },
+      "why_it_matters": "Invalid input (empty, None, or non-string) would cause downstream errors in tokenization and all subsequent steps.",
+      "visualization_type": "table"
+    },
+    {
+      "step_id": "t2",
+      "stage": "preprocessing",
+      "title": "Normalize Text",
+      "description": "Apply lowercase transformation and initial cleaning if configured.",
+      "input_preview": {
+        "text": "Hello world! This is a sample sentence..."
+      },
+      "output_preview": {
+        "text": "hello world! this is a sample sentence..."
+      },
+      "why_it_matters": "Normalization ensures consistent processing regardless of input casing, improving model robustness.",
+      "visualization_type": "table"
+    },
+    {
+      "step_id": "t3",
+      "stage": "tokenization",
+      "title": "Split into Tokens",
+      "description": "Split the normalized text on whitespace and punctuation boundaries to produce individual tokens.",
+      "formula": "T = split(text)",
+      "input_preview": {
+        "text": "hello world! this is a sample sentence..."
+      },
+      "output_preview": {
+        "tokens": [
+          "hello",
+          "world",
+          "!",
+          "this",
+          "is",
+          "..."
+        ]
+      },
+      "why_it_matters": "Tokens are the fundamental units that all downstream NLP algorithms operate on - like atoms in a molecule.",
+      "visualization_type": "timeline"
+    },
+    {
+      "step_id": "t4",
+      "stage": "output",
+      "title": "Generate Token Statistics",
+      "description": "Compute token count, unique tokens, and optionally remove punctuation or stop words.",
+      "input_preview": {
+        "tokens": [
+          "hello",
+          "world",
+          "!",
+          "..."
+        ]
+      },
+      "output_preview": {
+        "token_count": 21,
+        "unique_tokens": 20
+      },
+      "why_it_matters": "Token statistics help understand text complexity and are used by downstream algorithms like TF-IDF.",
+      "visualization_type": "bar"
+    }
+  ],
+  "formula_cards": [
+    {
+      "title": "Tokenization Function",
+      "formula": "T = tokenize(s) = [w₁, w₂, ..., wₙ]",
+      "explanation": "A tokenization function maps a string s to an ordered list of tokens T.",
+      "variables": {
+        "s": "input string",
+        "T": "list of tokens",
+        "n": "number of tokens"
+      },
+      "example": "tokenize('Hello world!') → ['Hello', 'world', '!']"
+    }
+  ],
+  "hover_annotations": [
+    {
+      "target": "tokens",
+      "definition": "Individual units extracted from text, typically words or subwords.",
+      "formula_meaning": "wᵢ represents the i-th token in the sequence",
+      "example": "In 'Hello world', tokens are ['Hello', 'world']",
+      "common_mistake": "Assuming tokens are always words - punctuation and numbers can also be tokens",
+      "reference_label": "Tokenization (NLP)"
+    },
+    {
+      "target": "token_count",
+      "definition": "The total number of tokens in the tokenized text.",
+      "formula_meaning": "n = |T| where T is the token list",
+      "example": "21 tokens in the demo sentence",
+      "common_mistake": "Counting characters instead of tokens"
+    }
+  ],
+  "references": [
+    {
+      "title": "Speech and Language Processing",
+      "authors": "Jurafsky, D. and Martin, J.H.",
+      "year": 2024,
+      "url": "https://web.stanford.edu/~jurafsky/slp3/",
+      "relevance": "Chapter 2 covers tokenization and text normalization fundamentals."
+    },
+    {
+      "title": "Natural Language Processing with Python",
+      "authors": "Bird, S., Klein, E., and Loper, E.",
+      "year": 2009,
+      "url": "https://www.nltk.org/book/ch03.html",
+      "relevance": "NLTK book chapter on processing raw text and tokenization."
+    }
+  ],
+  "receiver_mode_explanations": [
+    {
+      "mode": "beginner",
+      "explanation": "Tokenization splits text into words. Try changing the sentence and see how the tokens change!",
+      "teaching_notes": "Use the default demo sentence. Ask students to predict token count before running."
+    },
+    {
+      "mode": "student",
+      "explanation": "Tokenization uses regex or whitespace splitting. The formula T = tokenize(s) maps string → list of tokens.",
+      "technical_detail": "Common tokenizers: word_tokenize (NLTK), TokTok, and whitespace split. Subword tokenization uses BPE or WordPiece for OOV handling."
+    },
+    {
+      "mode": "researcher",
+      "explanation": "Tokenization choices affect downstream performance. Subword methods (BPE, WordPiece) handle OOV better than word-level tokenization.",
+      "technical_detail": "Research shows subword tokenization improves performance on morphologically rich languages and rare words (Sennrich et al., 2016)."
+    },
+    {
+      "mode": "engineer",
+      "explanation": "Tokenization is O(n) where n is character count. Use pre-compiled regex patterns for speed. Consider using spaCy or transformers tokenizer for production.",
+      "technical_detail": "Complexity: O(n). Memory: O(n) for token list. API returns token list and statistics."
+    },
+    {
+      "mode": "instructor",
+      "explanation": "Tokenization is the foundation of NLP. Show how punctuation, contractions, and numbers are handled differently.",
+      "teaching_notes": "Quiz: How many tokens in 'I'm learning NLP!'? Discuss why 'I'm' might be 1 or 2 tokens. Demo with different languages."
+    }
+  ],
+  "research_context": "Tokenization is the foundational step in all NLP pipelines. Research has evolved from simple whitespace splitting to subword algorithms (BPE, WordPiece, Unigram) that balance vocabulary size and coverage.",
+  "teaching_notes": {
+    "summary": "Tokenization splits text into meaningful units for NLP processing.",
+    "quiz_questions": [
+      "What is the difference between word and subword tokenization?",
+      "Why might 'I'm' be tokenized as 1 or 2 tokens?",
+      "How does tokenization affect downstream tasks like classification?"
+    ],
+    "classroom_demo_tips": [
+      "Show tokenization of the same sentence in different languages",
+      "Compare whitespace vs. rule-based tokenization",
+      "Highlight challenges with social media text and emojis"
+    ],
+    "common_misconceptions": [
+      "Tokenization always splits on spaces (false - punctuation matters)",
+      "More tokens always means more information (false - stop words add noise)"
+    ]
+  }
+}

@@ -22,21 +22,21 @@ export default function ReferencesPanel({ references }: Props) {
                     href={href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-medium text-sm text-indigo-300 hover:text-indigo-200 underline"
+                    className="font-medium text-sm text-indigo-700 hover:text-indigo-800 dark:text-indigo-300 dark:hover:text-indigo-200 underline focus-ring rounded"
                   >
                     {ref.title}
                   </a>
                 ) : (
-                  <div className="font-medium text-sm text-gray-200">{ref.title}</div>
+                  <div className="font-medium text-sm text-gray-100">{ref.title}</div>
                 )}
-                <div className="text-xs text-gray-400">
+                <div className="text-xs text-gray-500 dark:text-gray-400">
                   {ref.authors && <span>{ref.authors}</span>}
-                  {ref.year && <span className="ml-2 text-gray-500">({ref.year})</span>}
+                  {ref.year && <span className="ml-2 text-gray-500">{ref.year}</span>}
                   {ref.doi && <span className="ml-2 text-gray-600">DOI: {ref.doi}</span>}
                   {ref.arxiv_id && <span className="ml-2 text-gray-600">arXiv: {ref.arxiv_id}</span>}
                 </div>
                 {ref.relevance && (
-                  <div className="text-xs text-gray-400 italic">{ref.relevance}</div>
+                  <div className="text-xs text-gray-500 dark:text-gray-400 italic">{ref.relevance}</div>
                 )}
               </div>
             </div>

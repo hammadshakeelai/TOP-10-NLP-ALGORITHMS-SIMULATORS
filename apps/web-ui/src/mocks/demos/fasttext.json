@@ -1,0 +1,233 @@
+{
+  "demo_input": {
+    "text": "banana apple orange fruit tropical sweet",
+    "mode": "similarity"
+  },
+  "auto_parameters": {
+    "embedding_dim": 100,
+    "window_size": 5,
+    "min_count": 1,
+    "subword_minn": 3,
+    "subword_maxn": 6
+  },
+  "expected_output_preview": {
+    "vocabulary_size": 6,
+    "embedding_dim": 100,
+    "similarity_pairs": [
+      [
+        "banana",
+        "apple",
+        0.78
+      ],
+      [
+        "orange",
+        "fruit",
+        0.82
+      ]
+    ],
+    "oov_word": "bananarama",
+    "oov_similarity": 0.65
+  },
+  "beginner_explanation": "FastText is like Word2Vec but smarter - it looks at small pieces of words (subwords) too. This means it can guess the meaning of new words it's never seen before by looking at their pieces, like 'bananarama' contains 'banana'.",
+  "advanced_explanation": "FastText (Bojanowski et al., 2017) extends Word2Vec by representing each word as a bag of character n-grams (3-6 characters). The word embedding is the sum of its subword embeddings plus the whole-word embedding. This allows handling out-of-vocabulary (OOV) words: 'bananarama' gets embeddings from 'ban', 'ana', 'rama', etc., even if the model never saw 'bananarama' during training. FastText typically uses Skip-gram with negative sampling, same as Word2Vec, but with subword information.",
+  "formula_cards": [
+    {
+      "title": "FastText Word Representation",
+      "formula": "v_w = sum of (subword_n-gram embeddings for w) + whole_word_embedding",
+      "explanation": "Each word is represented by summing embeddings of all its character n-grams (typically 3-6 chars) plus the whole-word embedding.",
+      "variables": {
+        "v_w": "embedding vector for word w",
+        "n-grams": "character sequences like 'ban', 'ana', 'nan', ..."
+      },
+      "example": "'banana' → n-grams: '<ba', 'ban', 'ana', 'nan', 'ana', 'na>' + whole-word 'banana' → sum = v_banana"
+    },
+    {
+      "title": "FastText Skip-gram Objective",
+      "formula": "J(θ) = Σ log P(w_O|w_I) = Σ log σ(v_{w_O}·v_{w_I}) + Σ log σ(-v_{neg}·v_{w_I})",
+      "explanation": "Same as Word2Vec Skip-gram with negative sampling, but v_w now includes subword information.",
+      "variables": {
+        "v_{w_I}": "center word (with subwords)",
+        "v_{w_O}": "context word (with subwords)"
+      },
+      "example": "For 'banana', v_{banana} = sum of '<ba', 'ban', 'ana', ..., 'na>' embeddings"
+    },
+    {
+      "title": "OOV Handling",
+      "formula": "v_oov = Σ embeddings(n-grams in oov)",
+      "explanation": "Out-of-vocabulary words get embeddings from their character n-grams, even if not seen during training.",
+      "variables": {
+        "oov": "out-of-vocabulary word"
+      },
+      "example": "'bananarama' → n-grams include 'banana' overlap with known word 'banana' → meaningful embedding!"
+    }
+  ],
+  "step_explanations": [
+    {
+      "step_id": "ft1",
+      "stage": "input_validation",
+      "title": "Validate Input Text",
+      "description": "Check that input has sufficient words to learn subword patterns.",
+      "input_preview": {
+        "text": "banana apple orange fruit...",
+        "word_count": 6
+      },
+      "output_preview": {
+        "valid": true,
+        "vocab_size": 6
+      },
+      "why_it_matters": "Need enough words to learn meaningful subword representations. More data = better OOV handling.",
+      "visualization_type": "table"
+    },
+    {
+      "step_id": "ft2",
+      "stage": "preprocessing",
+      "title": "Extract Character N-grams",
+      "description": "For each word, extract all character n-grams (typically 3-6 chars) and add word boundaries (<, >).",
+      "input_preview": {
+        "words": [
+          "banana",
+          "apple",
+          "..."
+        ]
+      },
+      "output_preview": {
+        "n-grams": {
+          "banana": [
+            "<ba",
+            "ban",
+            "ana",
+            "na>"
+          ]
+        },
+        "unique_ngrams": 28
+      },
+      "why_it_matters": "Subword n-grams capture morphological information (prefixes, suffixes, roots) that help with OOV and rare words.",
+      "visualization_type": "graph"
+    },
+    {
+      "step_id": "ft3",
+      "stage": "training",
+      "title": "Train with Skip-gram + Negative Sampling",
+      "description": "Learn embeddings for each n-gram and whole word, optimizing the Skip-gram objective with negative sampling.",
+      "formula": "v_w = sum(subword_embeddings) + whole_word_embedding",
+      "input_preview": {
+        "n-grams": [
+          "..."
+        ],
+        "training_pairs": [
+          "..."
+        ]
+      },
+      "output_preview": {
+        "embedding_shape": [
+          34,
+          100
+        ],
+        "loss": 0.28
+      },
+      "why_it_matters": "This is the core learning - the model discovers that subwords carry meaning (e.g., '-ing' = verb, '-tion' = noun).",
+      "visualization_type": "scatter"
+    },
+    {
+      "step_id": "ft4",
+      "stage": "output",
+      "title": "Compute Similarities & Handle OOV",
+      "description": "Measure cosine similarity between word vectors. Demonstrate OOV handling by computing embedding for an unseen word using its n-grams.",
+      "formula": "sim(w₁, w₂) = (v₁·v₂) / (||v₁|| × ||v₂||)",
+      "input_preview": {
+        "embeddings": "[34, 100]",
+        "oov_word": "bananarama"
+      },
+      "output_preview": {
+        "similarities": [
+          [
+            "apple",
+            0.78
+          ],
+          "..."
+        ],
+        "oov_embedding": "computed from n-grams!",
+        "oov_sim": 0.65
+      },
+      "why_it_matters": "OOV handling is FastText's key advantage over Word2Vec - it can embed any word, even never seen during training.",
+      "visualization_type": "bar"
+    }
+  ],
+  "hover_annotations": [
+    {
+      "target": "character_n-grams",
+      "definition": "Substrings of length n (typically 3-6) extracted from words with boundary symbols (<, >).",
+      "formula_meaning": "For 'banana' with n=3: <ba, ban, ana, nan, ana, na> (note: < and > are boundaries)",
+      "example": "'apple' n-grams (n=3): <ap, app, ppl, ple, le>",
+      "common_mistake": "Forgetting word boundaries (<, >) which help distinguish prefixes/suffixes from middle n-grams"
+    },
+    {
+      "target": "OOV (Out-of-Vocabulary)",
+      "definition": "Words not seen during training. FastText can embed them using character n-grams; Word2Vec cannot.",
+      "formula_meaning": "v_oov = Σ embeddings(n-grams in oov) - composes embedding from known subword parts",
+      "example": "'bananarama' → n-grams overlap with 'banana' → gets meaningful embedding despite never being trained",
+      "common_mistake": "Thinking FastText eliminates OOV entirely (it reduces the problem but very rare n-grams may still be unknown)"
+    }
+  ],
+  "references": [
+    {
+      "title": "Enriching Word Vectors with Subword Information",
+      "authors": "Bojanowski, P., Grave, E., Joulin, A., and Mikolov, T.",
+      "year": 2017,
+      "arxiv_id": "1607.04606",
+      "relevance": "FastText paper introducing character n-gram embeddings to handle OOV and improve morphologically rich languages."
+    },
+    {
+      "title": "Bag of Tricks for Efficient Text Classification",
+      "authors": "Joulin, A., Grave, E., Bojanowski, P., and Mikolov, T.",
+      "year": 2017,
+      "arxiv_id": "1607.01759",
+      "relevance": "FastText for text classification - shows how subword info improves performance on rare words and morphologically rich languages."
+    }
+  ],
+  "receiver_mode_explanations": [
+    {
+      "mode": "beginner",
+      "explanation": "FastText looks at pieces of words (like 'ban', 'ana') to understand meaning. This helps it understand new words it hasn't seen before!",
+      "teaching_notes": "Show OOV word prediction. Compare with Word2Vec which can't handle OOV."
+    },
+    {
+      "mode": "student",
+      "explanation": "FastText = Word2Vec + subword info. Each word = sum of character n-gram (3-6) embeddings + whole-word embedding. Handles OOV via n-grams.",
+      "technical_detail": "N-gram range: minn=3, maxn=6 typical. Skip-gram with negative sampling. For OOV 'bananarama', sum embeddings of '<ba', 'ban', ..., 'rama', 'ma>' (if seen during training)."
+    },
+    {
+      "mode": "researcher",
+      "explanation": "FastText's subword approach is especially beneficial for morphologically rich languages (Turkish, Finnish, Arabic) and rare words. Research shows 10-20% improvement on rare words vs. Word2Vec. Limitations: more parameters, slower training. Led to subword-based models like BPE in BERT/GPT.",
+      "technical_detail": "Limitations: more memory (need n-gram embeddings), slower training. Comparison: BPE (used in BERT/GPT) is another subword approach but merges frequent pairs instead of using character n-grams."
+    },
+    {
+      "mode": "engineer",
+      "explanation": "FastText trains slower than Word2Vec (more parameters for n-grams). Use gensim or Facebook's original implementation. OOV is automatic - just pass any word.",
+      "technical_detail": "Complexity: O(N×w×(V+Ngrams)×d). Memory: O((V+Ngrams)×d). API: gensim.models.FastText, or load pre-trained: fasttext.util.load_model('cc.en.300.bin')."
+    },
+    {
+      "mode": "instructor",
+      "explanation": "FastText introduces subword linguistics to embeddings. Show how morphology (prefixes, suffixes) helps with rare and OOV words.",
+      "teaching_notes": "Quiz: How does FastText handle OOV? Exercise: Manually compute n-grams for 'running'. Compare Word2Vec vs. FastText on rare words."
+    }
+  ],
+  "research_context": "FastText (Bojanowski et al., 2017) addressed Word2Vec's OOV limitation by incorporating character n-gram information. It's particularly effective for morphologically rich languages and rare words. The subword idea influenced modern tokenization in BERT (WordPiece) and GPT (BPE).",
+  "teaching_notes": {
+    "summary": "FastText extends Word2Vec with character n-gram embeddings, enabling out-of-vocabulary word handling and better rare word representations.",
+    "quiz_questions": [
+      "How does FastText represent a word using subwords?",
+      "Why can FastText handle OOV words while Word2Vec cannot?",
+      "What are the typical n-gram sizes used in FastText, and why?"
+    ],
+    "classroom_demo_tips": [
+      "Visualize subword n-grams for a morphologically complex word",
+      "Compare OOV handling: FastText succeeds, Word2Vec fails",
+      "Show similarity improvements on rare words vs. Word2Vec"
+    ],
+    "common_misconceptions": [
+      "FastText eliminates OOV entirely (false - very rare n-grams may still be unknown)",
+      "FastText is always better than Word2Vec (false - for common words, they're similar; FastText is slower to train)"
+    ]
+  }
+}

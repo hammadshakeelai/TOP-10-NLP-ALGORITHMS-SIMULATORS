@@ -170,11 +170,15 @@ class BERTSimulator(BaseSimulator):
     def visualize(self, trace: dict[str, Any], result: BERTResult, request: RunRequest) -> list[VisualizationSpec]:
         specs: list[VisualizationSpec] = []
 
+        # When the transformers pipeline is unavailable, predictions carry an
+        # {"error": ...} entry instead of task fields — skip charting those.
+        valid = [p for p in result.predictions if "error" not in p]
+
         if result.task == "mlm":
             specs.append(VisualizationSpec(
                 type="bar",
                 title="Masked Token Predictions",
-                data=[{"token": p["token"], "score": p["score"]} for p in result.predictions],
+                data=[{"token": p["token"], "score": p["score"]} for p in valid],
                 config={"x": "token", "y": "score", "color": "#6366f1"},
             ))
 
@@ -182,7 +186,7 @@ class BERTSimulator(BaseSimulator):
             specs.append(VisualizationSpec(
                 type="bar",
                 title="Sentiment Probabilities",
-                data=[{"label": p["label"], "score": p["score"]} for p in result.predictions],
+                data=[{"label": p["label"], "score": p["score"]} for p in valid],
                 config={"x": "label", "y": "score", "color": "#10b981"},
             ))
 

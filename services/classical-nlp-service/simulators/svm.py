@@ -6,6 +6,7 @@ dual coef approximation for LinearSVC), and top/bottom features per class.
 """
 from __future__ import annotations
 
+from collections import Counter
 from dataclasses import dataclass, field
 from typing import Any
 
@@ -71,8 +72,12 @@ class SVMSimulator(BaseSimulator):
         stratify = labels if len(unique) > 1 and all(labels.count(l) > 1 for l in unique) else None
 
         if len(texts) >= 4:
+            # A stratified hold-out needs at least one test sample per class;
+            # widen test_size for tiny corpora so train_test_split stays valid.
+            min_test = len(unique) if stratify is not None else 1
+            effective_test = max(test_size, min_test / len(texts))
             X_train, X_test, y_train, y_test = train_test_split(
-                texts, labels, test_size=test_size, random_state=42, stratify=stratify
+                texts, labels, test_size=effective_test, random_state=42, stratify=stratify
             )
         else:
             X_train, X_test, y_train, y_test = texts, texts, labels, labels
@@ -97,26 +102,37 @@ class SVMSimulator(BaseSimulator):
         query_vec = vectorizer.transform([preprocessed["query_text"]])
 
         base_clf = LinearSVC(C=C, class_weight=class_weight, max_iter=2000)
-        # Calibrated for probability estimates
-        clf = CalibratedClassifierCV(base_clf, cv=min(3, len(set(preprocessed["y_train"]))))
-        clf.fit(X_train_vec, preprocessed["y_train"])
+        # Calibrated probabilities need >= 2 training examples per class for
+        # the internal cross-validation; tiny corpora use the raw SVC instead.
+        min_class_count = min(Counter(preprocessed["y_train"]).values())
+        use_calibration = min_class_count >= 2
 
-        predicted_class = clf.predict(query_vec)[0]
-        probs = clf.predict_proba(query_vec)[0].tolist()
-        predicted_probabilities = dict(zip(clf.classes_, [round(p, 4) for p in probs]))
+        if use_calibration:
+            clf = CalibratedClassifierCV(base_clf, cv=min(3, min_class_count))
+            clf.fit(X_train_vec, preprocessed["y_train"])
+            predicted_class = clf.predict(query_vec)[0]
+            probs = clf.predict_proba(query_vec)[0].tolist()
+            predicted_probabilities = dict(zip(clf.classes_, [round(p, 4) for p in probs]))
+            # Decision scores from base LinearSVC
+            inner_clf: LinearSVC = clf.calibrated_classifiers_[0].estimator  # type: ignore
+            classes = list(clf.classes_)
+        else:
+            base_clf.fit(X_train_vec, preprocessed["y_train"])
+            predicted_class = base_clf.predict(query_vec)[0]
+            predicted_probabilities = {}
+            inner_clf = base_clf
+            classes = list(base_clf.classes_)
 
-        # Decision scores from base LinearSVC
-        inner_clf: LinearSVC = clf.calibrated_classifiers_[0].estimator  # type: ignore
         decision_scores_raw = inner_clf.decision_function(query_vec)[0]
-        if len(clf.classes_) == 2 and np.asarray(decision_scores_raw).ndim == 0:
+        if len(classes) == 2 and np.asarray(decision_scores_raw).ndim == 0:
             score = float(decision_scores_raw)
             decision_scores = {
-                clf.classes_[0]: round(-score, 4),
-                clf.classes_[1]: round(score, 4),
+                classes[0]: round(-score, 4),
+                classes[1]: round(score, 4),
             }
         else:
             decision_scores_raw = np.atleast_1d(decision_scores_raw)
-            decision_scores = {cls: round(float(s), 4) for cls, s in zip(clf.classes_, decision_scores_raw)}
+            decision_scores = {cls: round(float(s), 4) for cls, s in zip(classes, decision_scores_raw)}
 
         # Top features per class (LinearSVC coef_)
         feature_names = vectorizer.get_feature_names_out()
@@ -136,8 +152,8 @@ class SVMSimulator(BaseSimulator):
                 for j in sorted_idx[:-11:-1]
             ]
 
-        y_pred = clf.predict(X_test_vec)
-        cm = confusion_matrix(preprocessed["y_test"], y_pred, labels=list(clf.classes_)).tolist()
+        y_pred = inner_clf.predict(X_test_vec)
+        cm = confusion_matrix(preprocessed["y_test"], y_pred, labels=classes).tolist()
         report = classification_report(preprocessed["y_test"], y_pred, output_dict=True, zero_division=0)
 
         return SVMResult(
@@ -147,7 +163,7 @@ class SVMSimulator(BaseSimulator):
             top_positive_features=top_pos,
             top_negative_features=top_neg,
             confusion_matrix=cm,
-            class_labels=list(clf.classes_),
+            class_labels=classes,
             classification_report=report,
             C_value=C,
         )

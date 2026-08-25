@@ -1,0 +1,735 @@
+{
+  "run_id": "89372a82-6f81-490d-8901-22cc4aaa0203",
+  "status": "success",
+  "algorithm_id": "tfidf",
+  "algorithm_version": "tfidf-v1.0.0",
+  "input_fingerprint": "sha256:96bc71f4668b6ec9",
+  "result": {
+    "document_count": 3,
+    "vocabulary_size": 7,
+    "top_terms_per_doc": [
+      {
+        "doc_id": "d1",
+        "terms": [
+          {
+            "term": "mat",
+            "score": 0.622766
+          },
+          {
+            "term": "sat",
+            "score": 0.622766
+          },
+          {
+            "term": "cat",
+            "score": 0.47363
+          }
+        ]
+      },
+      {
+        "doc_id": "d2",
+        "terms": [
+          {
+            "term": "ball",
+            "score": 0.622766
+          },
+          {
+            "term": "played",
+            "score": 0.622766
+          },
+          {
+            "term": "dog",
+            "score": 0.47363
+          }
+        ]
+      },
+      {
+        "doc_id": "d3",
+        "terms": [
+          {
+            "term": "friends",
+            "score": 0.680919
+          },
+          {
+            "term": "cat",
+            "score": 0.517856
+          },
+          {
+            "term": "dog",
+            "score": 0.517856
+          }
+        ]
+      }
+    ],
+    "cosine_similarity_matrix": [
+      [
+        1.0,
+        0.0,
+        0.2453
+      ],
+      [
+        0.0,
+        1.0,
+        0.2453
+      ],
+      [
+        0.2453,
+        0.2453,
+        1.0
+      ]
+    ],
+    "query_results": []
+  },
+  "trace": {
+    "document_count": 3,
+    "vocabulary_size": 7,
+    "parameters": {
+      "max_features": 1000,
+      "min_df": 1,
+      "max_df": 1.0,
+      "use_idf": true,
+      "smooth_idf": true,
+      "sublinear_tf": false
+    },
+    "tf_table": [
+      {
+        "doc_id": "d1",
+        "term": "cat",
+        "tf": 1.0
+      },
+      {
+        "doc_id": "d1",
+        "term": "sat",
+        "tf": 1.0
+      },
+      {
+        "doc_id": "d1",
+        "term": "mat",
+        "tf": 1.0
+      },
+      {
+        "doc_id": "d2",
+        "term": "dog",
+        "tf": 1.0
+      },
+      {
+        "doc_id": "d2",
+        "term": "played",
+        "tf": 1.0
+      },
+      {
+        "doc_id": "d2",
+        "term": "ball",
+        "tf": 1.0
+      },
+      {
+        "doc_id": "d3",
+        "term": "cat",
+        "tf": 1.0
+      },
+      {
+        "doc_id": "d3",
+        "term": "dog",
+        "tf": 1.0
+      },
+      {
+        "doc_id": "d3",
+        "term": "friends",
+        "tf": 1.0
+      }
+    ],
+    "idf_table": [
+      {
+        "term": "ball",
+        "idf": 1.693147,
+        "doc_count": 1
+      },
+      {
+        "term": "cat",
+        "idf": 1.287682,
+        "doc_count": 2
+      },
+      {
+        "term": "dog",
+        "idf": 1.287682,
+        "doc_count": 2
+      },
+      {
+        "term": "friends",
+        "idf": 1.693147,
+        "doc_count": 1
+      },
+      {
+        "term": "mat",
+        "idf": 1.693147,
+        "doc_count": 1
+      },
+      {
+        "term": "played",
+        "idf": 1.693147,
+        "doc_count": 1
+      },
+      {
+        "term": "sat",
+        "idf": 1.693147,
+        "doc_count": 1
+      }
+    ],
+    "tfidf_matrix": [
+      {
+        "doc_id": "d1",
+        "term": "cat",
+        "score": 0.47363
+      },
+      {
+        "doc_id": "d1",
+        "term": "mat",
+        "score": 0.622766
+      },
+      {
+        "doc_id": "d1",
+        "term": "sat",
+        "score": 0.622766
+      },
+      {
+        "doc_id": "d2",
+        "term": "ball",
+        "score": 0.622766
+      },
+      {
+        "doc_id": "d2",
+        "term": "dog",
+        "score": 0.47363
+      },
+      {
+        "doc_id": "d2",
+        "term": "played",
+        "score": 0.622766
+      },
+      {
+        "doc_id": "d3",
+        "term": "cat",
+        "score": 0.517856
+      },
+      {
+        "doc_id": "d3",
+        "term": "dog",
+        "score": 0.517856
+      },
+      {
+        "doc_id": "d3",
+        "term": "friends",
+        "score": 0.680919
+      }
+    ],
+    "top_terms_per_doc": [
+      {
+        "doc_id": "d1",
+        "terms": [
+          {
+            "term": "mat",
+            "score": 0.622766
+          },
+          {
+            "term": "sat",
+            "score": 0.622766
+          },
+          {
+            "term": "cat",
+            "score": 0.47363
+          }
+        ]
+      },
+      {
+        "doc_id": "d2",
+        "terms": [
+          {
+            "term": "ball",
+            "score": 0.622766
+          },
+          {
+            "term": "played",
+            "score": 0.622766
+          },
+          {
+            "term": "dog",
+            "score": 0.47363
+          }
+        ]
+      },
+      {
+        "doc_id": "d3",
+        "terms": [
+          {
+            "term": "friends",
+            "score": 0.680919
+          },
+          {
+            "term": "cat",
+            "score": 0.517856
+          },
+          {
+            "term": "dog",
+            "score": 0.517856
+          }
+        ]
+      }
+    ],
+    "cosine_similarity_matrix": [
+      [
+        1.0,
+        0.0,
+        0.2453
+      ],
+      [
+        0.0,
+        1.0,
+        0.2453
+      ],
+      [
+        0.2453,
+        0.2453,
+        1.0
+      ]
+    ],
+    "query_results": [],
+    "formula": {
+      "tf": "raw count (configurable via tf_scheme)",
+      "idf": "log((1+N)/(1+df)) + 1  [smooth=True]  |  log(N/df) + 1  [smooth=False]",
+      "tfidf": "tf * idf",
+      "cosine": "dot(a,b) / (||a|| * ||b||)"
+    }
+  },
+  "visualization_specs": [
+    {
+      "type": "heatmap",
+      "title": "TF-IDF Matrix Heatmap",
+      "data": {
+        "terms": [
+          "friends",
+          "mat",
+          "sat",
+          "ball",
+          "played",
+          "cat",
+          "dog"
+        ],
+        "rows": [
+          {
+            "doc_id": "d1",
+            "values": [
+              0.0,
+              0.6228,
+              0.6228,
+              0.0,
+              0.0,
+              0.4736,
+              0.0
+            ]
+          },
+          {
+            "doc_id": "d2",
+            "values": [
+              0.0,
+              0.0,
+              0.0,
+              0.6228,
+              0.6228,
+              0.0,
+              0.4736
+            ]
+          },
+          {
+            "doc_id": "d3",
+            "values": [
+              0.6809,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.5179,
+              0.5179
+            ]
+          }
+        ]
+      },
+      "config": {
+        "colorscale": "Blues"
+      }
+    },
+    {
+      "type": "bar",
+      "title": "Top Terms — d1",
+      "data": [
+        {
+          "term": "mat",
+          "score": 0.622766
+        },
+        {
+          "term": "sat",
+          "score": 0.622766
+        },
+        {
+          "term": "cat",
+          "score": 0.47363
+        }
+      ],
+      "config": {
+        "x": "term",
+        "y": "score",
+        "color": "#10b981"
+      }
+    },
+    {
+      "type": "heatmap",
+      "title": "Document Cosine Similarity Matrix",
+      "data": {
+        "labels": [
+          "d1",
+          "d2",
+          "d3"
+        ],
+        "matrix": [
+          [
+            1.0,
+            0.0,
+            0.2453
+          ],
+          [
+            0.0,
+            1.0,
+            0.2453
+          ],
+          [
+            0.2453,
+            0.2453,
+            1.0
+          ]
+        ]
+      },
+      "config": {
+        "colorscale": "Viridis",
+        "symmetric": true
+      }
+    },
+    {
+      "type": "bar",
+      "title": "IDF Values (top 30 terms)",
+      "data": [
+        {
+          "term": "ball",
+          "idf": 1.693147,
+          "doc_count": 1
+        },
+        {
+          "term": "friends",
+          "idf": 1.693147,
+          "doc_count": 1
+        },
+        {
+          "term": "mat",
+          "idf": 1.693147,
+          "doc_count": 1
+        },
+        {
+          "term": "played",
+          "idf": 1.693147,
+          "doc_count": 1
+        },
+        {
+          "term": "sat",
+          "idf": 1.693147,
+          "doc_count": 1
+        },
+        {
+          "term": "cat",
+          "idf": 1.287682,
+          "doc_count": 2
+        },
+        {
+          "term": "dog",
+          "idf": 1.287682,
+          "doc_count": 2
+        }
+      ],
+      "config": {
+        "x": "term",
+        "y": "idf",
+        "color": "#f59e0b"
+      }
+    }
+  ],
+  "metrics": {
+    "runtime_ms": 0.92,
+    "extra": {}
+  },
+  "warnings": [],
+  "export_links": [],
+  "demo_input": {
+    "documents": [
+      {
+        "id": "d1",
+        "text": "The cat sat on the mat."
+      },
+      {
+        "id": "d2",
+        "text": "The dog played with the ball."
+      },
+      {
+        "id": "d3",
+        "text": "The cat and dog are friends."
+      }
+    ]
+  },
+  "auto_parameters": {
+    "max_features": 1000,
+    "min_df": 1,
+    "max_df": 1.0,
+    "use_idf": true,
+    "smooth_idf": true,
+    "sublinear_tf": false
+  },
+  "step_explanations": [
+    {
+      "step_id": "tf1",
+      "stage": "input_validation",
+      "title": "Validate Document Collection",
+      "description": "Ensure at least one document is provided and all documents have valid text.",
+      "input_preview": {
+        "document_count": 3,
+        "documents": [
+          "The cat sat...",
+          "The dog played...",
+          "..."
+        ]
+      },
+      "output_preview": {
+        "valid": true,
+        "total_terms": 15
+      },
+      "why_it_matters": "TF-IDF requires multiple documents to compute meaningful IDF scores. Single-document input produces degenerate results.",
+      "visualization_type": "table"
+    },
+    {
+      "step_id": "tf2",
+      "stage": "preprocessing",
+      "title": "Tokenize and Build Vocabulary",
+      "description": "Tokenize each document and build a global vocabulary of unique terms.",
+      "input_preview": {
+        "documents": [
+          "..."
+        ]
+      },
+      "output_preview": {
+        "vocabulary_size": 7,
+        "terms": [
+          "cat",
+          "dog",
+          "sat",
+          "..."
+        ]
+      },
+      "why_it_matters": "The vocabulary defines the feature space dimension. Larger vocabularies capture more information but increase computational cost.",
+      "visualization_type": "bar"
+    },
+    {
+      "step_id": "tf3",
+      "stage": "computation",
+      "title": "Compute Term Frequencies (TF)",
+      "description": "Calculate how often each term appears in each document, normalized by document length.",
+      "formula": "TF(t, d) = f_{t,d} / Σ f_{t',d}",
+      "input_preview": {
+        "tokenized_docs": [
+          "..."
+        ]
+      },
+      "output_preview": {
+        "tf_matrix_shape": [
+          3,
+          7
+        ],
+        "sample": {
+          "cat": [
+            0.33,
+            0,
+            0.33
+          ]
+        }
+      },
+      "why_it_matters": "TF captures local importance - terms that appear frequently in a document are likely important to that document's topic.",
+      "visualization_type": "heatmap"
+    },
+    {
+      "step_id": "tf4",
+      "stage": "computation",
+      "title": "Compute Inverse Document Frequency (IDF)",
+      "description": "Calculate how rare each term is across all documents. Rare terms get higher scores.",
+      "formula": "IDF(t) = log(N / df(t))",
+      "input_preview": {
+        "vocabulary": [
+          "..."
+        ],
+        "doc_freqs": {}
+      },
+      "output_preview": {
+        "idf_scores": {
+          "cat": 1.0,
+          "sat": 1.7
+        }
+      },
+      "why_it_matters": "IDF downweights common words (like 'the') that appear in every document and don't help distinguish topics.",
+      "visualization_type": "bar"
+    },
+    {
+      "step_id": "tf5",
+      "stage": "computation",
+      "title": "Compute TF-IDF Matrix",
+      "description": "Multiply TF and IDF scores element-wise to get the final TF-IDF matrix.",
+      "formula": "TF-IDF(t, d) = TF(t, d) × IDF(t)",
+      "input_preview": {
+        "tf_matrix": [
+          "..."
+        ],
+        "idf_vector": [
+          "..."
+        ]
+      },
+      "output_preview": {
+        "tfidf_shape": [
+          3,
+          7
+        ],
+        "sample_row": [
+          0.33,
+          0,
+          "..."
+        ]
+      },
+      "why_it_matters": "The TF-IDF matrix is a numerical representation of documents that can be used for clustering, classification, and similarity search.",
+      "visualization_type": "heatmap"
+    }
+  ],
+  "formula_cards": [
+    {
+      "title": "Term Frequency (TF)",
+      "formula": "TF(t, d) = f_{t,d} / Σ_{t'∈d} f_{t',d}",
+      "explanation": "TF measures how frequently a term t appears in document d, normalized by the total number of terms in d.",
+      "variables": {
+        "t": "term",
+        "d": "document",
+        "f_{t,d}": "raw frequency of term t in document d"
+      },
+      "example": "In 'cat cat dog', TF('cat') = 2/3, TF('dog') = 1/3"
+    },
+    {
+      "title": "Inverse Document Frequency (IDF)",
+      "formula": "IDF(t) = log(N / df(t))",
+      "explanation": "IDF measures how rare a term is across all N documents. Rare terms get higher IDF scores.",
+      "variables": {
+        "N": "total number of documents",
+        "df(t)": "number of documents containing term t"
+      },
+      "example": "With 3 docs, if 'cat' appears in 2 docs: IDF('cat') = log(3/2) ≈ 0.405"
+    },
+    {
+      "title": "TF-IDF Score",
+      "formula": "TF-IDF(t, d) = TF(t, d) × IDF(t)",
+      "explanation": "The final TF-IDF score combines term frequency and inverse document frequency.",
+      "variables": {
+        "TF(t,d)": "term frequency",
+        "IDF(t)": "inverse document frequency"
+      },
+      "example": "TF-IDF('cat', doc1) = (1/3) × log(3/2) ≈ 0.135"
+    }
+  ],
+  "hover_annotations": [
+    {
+      "target": "TF",
+      "definition": "Term Frequency - how often a term appears in a document.",
+      "formula_meaning": "TF(t,d) = raw_count(t,d) / total_terms(d)",
+      "example": "If 'cat' appears 2 times in a 10-word doc, TF = 0.2",
+      "common_mistake": "Forgetting to normalize by document length (raw counts bias long documents)"
+    },
+    {
+      "target": "IDF",
+      "definition": "Inverse Document Frequency - measures term rarity across documents.",
+      "formula_meaning": "IDF(t) = log(N / df(t)) where N is total docs and df(t) is docs containing t",
+      "example": "If 'cat' is in 2 of 3 docs, IDF = log(3/2) ≈ 0.405",
+      "common_mistake": "Using log without smoothing (add 1 to df to avoid division by zero)"
+    },
+    {
+      "target": "tfidf_matrix",
+      "definition": "A matrix where rows are documents and columns are terms, with TF-IDF scores as values.",
+      "formula_meaning": "M[d, t] = TF(t,d) × IDF(t)",
+      "example": "3 docs × 7 terms = 3×7 matrix with TF-IDF scores",
+      "common_mistake": "Thinking higher values always mean more important (context matters)"
+    }
+  ],
+  "references": [
+    {
+      "title": "A Vector Space Model for Automatic Indexing",
+      "authors": "Salton, G., Wong, A., and Yang, C.S.",
+      "year": 1975,
+      "doi": "10.1145/361219.361220",
+      "relevance": "Original vector space model paper that introduced term weighting for information retrieval."
+    },
+    {
+      "title": "Term-weighting approaches in automated text retrieval",
+      "authors": "Salton, G. and Buckley, C.",
+      "year": 1988,
+      "doi": "10.1080/101060201300347930",
+      "relevance": "Comprehensive study of TF-IDF and its variants for document retrieval."
+    },
+    {
+      "title": "Scikit-learn: Machine Learning in Python",
+      "authors": "Pedregosa, F., et al.",
+      "year": 2011,
+      "arxiv_id": "1201.0490",
+      "relevance": "Section 5.2.3 documents scikit-learn's TF-IDF implementation details."
+    }
+  ],
+  "receiver_mode_explanations": [
+    {
+      "mode": "beginner",
+      "explanation": "TF-IDF finds important words by checking: Is this word common in this document? Is it rare across all documents?",
+      "teaching_notes": "Start with 3 simple documents. Show how 'the' gets a low score and unique words get high scores."
+    },
+    {
+      "mode": "student",
+      "explanation": "TF-IDF = Term Frequency × Inverse Document Frequency. Formula: TF(t,d) × log(N/df(t)).",
+      "technical_detail": "TF normalizes by document length. IDF uses log to dampen the effect of very rare terms. Smoothing: IDF = log((N+1)/(df+1)) + 1."
+    },
+    {
+      "mode": "researcher",
+      "explanation": "TF-IDF assumes term independence and doesn't capture semantics. It's a bag-of-words approach. Research shows BM25 (a TF-IDF variant) often outperforms vanilla TF-IDF for retrieval.",
+      "technical_detail": "Limitations: no term ordering, no semantic similarity, sensitive to document length. Variants: BM25, TF-IDF with cosine normalization, sublinear TF (log(1+tf))."
+    },
+    {
+      "mode": "engineer",
+      "explanation": "TF-IDF is O(N×L) where N=docs and L=avg doc length. Sparse matrix storage (scipy.sparse) is essential for large vocabularies. Use sklearn.feature_extraction.text.TfidfVectorizer.",
+      "technical_detail": "Complexity: fit O(NL), transform O(NL). Memory: sparse matrix with shape (N, vocab_size). API returns matrix as list of lists or sparse format."
+    },
+    {
+      "mode": "instructor",
+      "explanation": "TF-IDF bridges text and math. Show how changing one document affects all IDF scores. Compare with simple word counts.",
+      "teaching_notes": "Quiz: Why does 'the' get a low TF-IDF score? Exercise: Add a 4th document with only 'cat' - how do IDF scores change? Discuss when TF-IDF works well vs. poorly."
+    }
+  ],
+  "research_context": "TF-IDF was introduced by Salton et al. (1975) as part of the vector space model for information retrieval. It remains a strong baseline for text classification and retrieval tasks, though neural embeddings have surpassed it for semantic understanding.",
+  "teaching_notes": {
+    "summary": "TF-IDF transforms text into numerical vectors by weighing term frequency against document rarity.",
+    "quiz_questions": [
+      "Why does IDF use log? What would happen without it?",
+      "Calculate TF-IDF for 'cat' in a 3-document corpus (hint: draw the table first)",
+      "When might TF-IDF fail to capture document similarity?"
+    ],
+    "classroom_demo_tips": [
+      "Show TF-IDF heatmap with 3-5 documents",
+      "Add a document with all common words - watch scores drop",
+      "Compare TF-IDF vectors using cosine similarity"
+    ],
+    "common_misconceptions": [
+      "TF-IDF captures word order (false - it's bag-of-words)",
+      "Higher TF-IDF always means more important (false - depends on context and task)"
+    ]
+  }
+}

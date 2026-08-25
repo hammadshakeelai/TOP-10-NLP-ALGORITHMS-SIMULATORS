@@ -29,11 +29,13 @@ word_embeddings_demo = DemoMetadata(
         "mode": "similarity",
     },
     auto_parameters={
-        "embedding_dim": 100,
-        "window_size": 5,
+        "model_type": "toy_svd",
+        "vector_dim": 5,
+        "context_window": 2,
         "min_count": 1,
-        "algorithm": "skipgram",
-        "negative_samples": 5,
+        "target_word": "king",
+        "top_k_neighbors": 5,
+        "analogy": {"a": "king", "b": "man", "c": "woman"},
     },
     expected_output_preview={
         "vocabulary_size": 6,

@@ -1,0 +1,697 @@
+{
+  "run_id": "fb40126d-b0df-4e9e-8fd5-c4018f113408",
+  "status": "success",
+  "algorithm_id": "svm",
+  "algorithm_version": "svm-v1.0.0",
+  "input_fingerprint": "sha256:53f4c9865d44c5f5",
+  "result": {
+    "predicted_class": "positive",
+    "decision_scores": {
+      "negative": -0.0,
+      "positive": 0.0
+    },
+    "predicted_probabilities": {},
+    "accuracy": 0.5,
+    "confusion_matrix": [
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ]
+    ],
+    "class_labels": [
+      "negative",
+      "positive"
+    ]
+  },
+  "trace": {
+    "predicted_class": "positive",
+    "decision_scores": {
+      "negative": -0.0,
+      "positive": 0.0
+    },
+    "C_value": 1.0,
+    "kernel": "linear (LinearSVC)",
+    "predicted_probabilities": {},
+    "top_positive_features": {
+      "negative": [
+        {
+          "feature": "worst",
+          "coef": 0.3333
+        },
+        {
+          "feature": "poor",
+          "coef": 0.3333
+        },
+        {
+          "feature": "miserable",
+          "coef": 0.3333
+        },
+        {
+          "feature": "disgusting",
+          "coef": 0.3333
+        },
+        {
+          "feature": "wonderful",
+          "coef": -0.2981
+        },
+        {
+          "feature": "love",
+          "coef": -0.2981
+        },
+        {
+          "feature": "joy",
+          "coef": -0.2981
+        },
+        {
+          "feature": "happy",
+          "coef": -0.2981
+        },
+        {
+          "feature": "great",
+          "coef": -0.2981
+        }
+      ],
+      "positive": [
+        {
+          "feature": "wonderful",
+          "coef": 0.2981
+        },
+        {
+          "feature": "great",
+          "coef": 0.2981
+        },
+        {
+          "feature": "love",
+          "coef": 0.2981
+        },
+        {
+          "feature": "happy",
+          "coef": 0.2981
+        },
+        {
+          "feature": "joy",
+          "coef": 0.2981
+        },
+        {
+          "feature": "worst",
+          "coef": -0.3333
+        },
+        {
+          "feature": "poor",
+          "coef": -0.3333
+        },
+        {
+          "feature": "miserable",
+          "coef": -0.3333
+        },
+        {
+          "feature": "disgusting",
+          "coef": -0.3333
+        }
+      ]
+    },
+    "top_negative_features": {
+      "negative": [
+        {
+          "feature": "great",
+          "coef": -0.2981
+        },
+        {
+          "feature": "happy",
+          "coef": -0.2981
+        },
+        {
+          "feature": "joy",
+          "coef": -0.2981
+        },
+        {
+          "feature": "love",
+          "coef": -0.2981
+        },
+        {
+          "feature": "wonderful",
+          "coef": -0.2981
+        },
+        {
+          "feature": "disgusting",
+          "coef": 0.3333
+        },
+        {
+          "feature": "miserable",
+          "coef": 0.3333
+        },
+        {
+          "feature": "poor",
+          "coef": 0.3333
+        },
+        {
+          "feature": "worst",
+          "coef": 0.3333
+        }
+      ],
+      "positive": [
+        {
+          "feature": "disgusting",
+          "coef": -0.3333
+        },
+        {
+          "feature": "miserable",
+          "coef": -0.3333
+        },
+        {
+          "feature": "poor",
+          "coef": -0.3333
+        },
+        {
+          "feature": "worst",
+          "coef": -0.3333
+        },
+        {
+          "feature": "joy",
+          "coef": 0.2981
+        },
+        {
+          "feature": "happy",
+          "coef": 0.2981
+        },
+        {
+          "feature": "love",
+          "coef": 0.2981
+        },
+        {
+          "feature": "great",
+          "coef": 0.2981
+        },
+        {
+          "feature": "wonderful",
+          "coef": 0.2981
+        }
+      ]
+    },
+    "confusion_matrix": [
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ]
+    ],
+    "class_labels": [
+      "negative",
+      "positive"
+    ],
+    "classification_report": {
+      "negative": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 1.0
+      },
+      "positive": {
+        "precision": 0.5,
+        "recall": 1.0,
+        "f1-score": 0.6666666666666666,
+        "support": 1.0
+      },
+      "accuracy": 0.5,
+      "macro avg": {
+        "precision": 0.25,
+        "recall": 0.5,
+        "f1-score": 0.3333333333333333,
+        "support": 2.0
+      },
+      "weighted avg": {
+        "precision": 0.25,
+        "recall": 0.5,
+        "f1-score": 0.3333333333333333,
+        "support": 2.0
+      }
+    }
+  },
+  "visualization_specs": [
+    {
+      "type": "bar",
+      "title": "Decision Scores",
+      "data": [
+        {
+          "class": "negative",
+          "score": -0.0
+        },
+        {
+          "class": "positive",
+          "score": 0.0
+        }
+      ],
+      "config": {
+        "x": "class",
+        "y": "score",
+        "diverging": true,
+        "zero_line": true
+      }
+    },
+    {
+      "type": "bar",
+      "title": "Feature Coefficients — negative",
+      "data": [
+        {
+          "feature": "great",
+          "coef": -0.2981
+        },
+        {
+          "feature": "happy",
+          "coef": -0.2981
+        },
+        {
+          "feature": "joy",
+          "coef": -0.2981
+        },
+        {
+          "feature": "love",
+          "coef": -0.2981
+        },
+        {
+          "feature": "wonderful",
+          "coef": -0.2981
+        },
+        {
+          "feature": "disgusting",
+          "coef": 0.3333
+        },
+        {
+          "feature": "miserable",
+          "coef": 0.3333
+        },
+        {
+          "feature": "poor",
+          "coef": 0.3333
+        },
+        {
+          "feature": "worst",
+          "coef": 0.3333
+        },
+        {
+          "feature": "worst",
+          "coef": 0.3333
+        },
+        {
+          "feature": "poor",
+          "coef": 0.3333
+        },
+        {
+          "feature": "miserable",
+          "coef": 0.3333
+        },
+        {
+          "feature": "disgusting",
+          "coef": 0.3333
+        },
+        {
+          "feature": "wonderful",
+          "coef": -0.2981
+        },
+        {
+          "feature": "love",
+          "coef": -0.2981
+        },
+        {
+          "feature": "joy",
+          "coef": -0.2981
+        },
+        {
+          "feature": "happy",
+          "coef": -0.2981
+        },
+        {
+          "feature": "great",
+          "coef": -0.2981
+        }
+      ],
+      "config": {
+        "x": "feature",
+        "y": "coef",
+        "diverging": true
+      }
+    },
+    {
+      "type": "bar",
+      "title": "Feature Coefficients — positive",
+      "data": [
+        {
+          "feature": "disgusting",
+          "coef": -0.3333
+        },
+        {
+          "feature": "miserable",
+          "coef": -0.3333
+        },
+        {
+          "feature": "poor",
+          "coef": -0.3333
+        },
+        {
+          "feature": "worst",
+          "coef": -0.3333
+        },
+        {
+          "feature": "joy",
+          "coef": 0.2981
+        },
+        {
+          "feature": "happy",
+          "coef": 0.2981
+        },
+        {
+          "feature": "love",
+          "coef": 0.2981
+        },
+        {
+          "feature": "great",
+          "coef": 0.2981
+        },
+        {
+          "feature": "wonderful",
+          "coef": 0.2981
+        },
+        {
+          "feature": "wonderful",
+          "coef": 0.2981
+        },
+        {
+          "feature": "great",
+          "coef": 0.2981
+        },
+        {
+          "feature": "love",
+          "coef": 0.2981
+        },
+        {
+          "feature": "happy",
+          "coef": 0.2981
+        },
+        {
+          "feature": "joy",
+          "coef": 0.2981
+        },
+        {
+          "feature": "worst",
+          "coef": -0.3333
+        },
+        {
+          "feature": "poor",
+          "coef": -0.3333
+        },
+        {
+          "feature": "miserable",
+          "coef": -0.3333
+        },
+        {
+          "feature": "disgusting",
+          "coef": -0.3333
+        }
+      ],
+      "config": {
+        "x": "feature",
+        "y": "coef",
+        "diverging": true
+      }
+    },
+    {
+      "type": "heatmap",
+      "title": "Confusion Matrix",
+      "data": {
+        "labels": [
+          "negative",
+          "positive"
+        ],
+        "matrix": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            1
+          ]
+        ]
+      },
+      "config": {
+        "colorscale": "Blues",
+        "annotate": true
+      }
+    }
+  ],
+  "metrics": {
+    "runtime_ms": 17.87,
+    "extra": {}
+  },
+  "warnings": [],
+  "export_links": [],
+  "demo_input": {
+    "documents": [
+      {
+        "id": "d1",
+        "text": "Happy joy love great wonderful",
+        "label": "positive"
+      },
+      {
+        "id": "d2",
+        "text": "Sad bad terrible awful horrible",
+        "label": "negative"
+      },
+      {
+        "id": "d3",
+        "text": "Amazing fantastic brilliant excellent",
+        "label": "positive"
+      },
+      {
+        "id": "d4",
+        "text": "Poor worst disgusting miserable",
+        "label": "negative"
+      }
+    ],
+    "labels": [
+      "positive",
+      "negative"
+    ]
+  },
+  "auto_parameters": {
+    "kernel": "linear",
+    "C": 1.0,
+    "max_iter": 1000
+  },
+  "step_explanations": [
+    {
+      "step_id": "sv1",
+      "stage": "input_validation",
+      "title": "Validate Training Data",
+      "description": "Ensure labeled documents exist for at least 2 classes.",
+      "input_preview": {
+        "documents": 4,
+        "classes": [
+          "positive",
+          "negative"
+        ]
+      },
+      "output_preview": {
+        "valid": true
+      },
+      "why_it_matters": "SVM is a supervised classifier requiring labeled training data.",
+      "visualization_type": "table"
+    },
+    {
+      "step_id": "sv2",
+      "stage": "preprocessing",
+      "title": "Vectorize Documents",
+      "description": "Convert text to TF-IDF vectors, creating a numerical feature matrix.",
+      "input_preview": {
+        "texts": [
+          "..."
+        ]
+      },
+      "output_preview": {
+        "X_shape": [
+          4,
+          8
+        ],
+        "y": [
+          "positive",
+          "negative",
+          "..."
+        ]
+      },
+      "why_it_matters": "SVM operates on numerical vectors, not raw text.",
+      "visualization_type": "table"
+    },
+    {
+      "step_id": "sv3",
+      "stage": "training",
+      "title": "Find Maximum-Margin Hyperplane",
+      "description": "Optimize the SVM objective to find the weight vector w and bias b that maximize the margin.",
+      "formula": "min ½||w||² + C×Σξᵢ",
+      "input_preview": {
+        "X": [
+          "..."
+        ],
+        "y": [
+          "..."
+        ]
+      },
+      "output_preview": {
+        "w": [
+          0.5,
+          -0.3,
+          0.8,
+          "..."
+        ],
+        "b": -0.2,
+        "n_support": 3
+      },
+      "why_it_matters": "The hyperplane defined by w and b is the actual classifier - it determines all future predictions.",
+      "visualization_type": "scatter"
+    },
+    {
+      "step_id": "sv4",
+      "stage": "prediction",
+      "title": "Predict New Document",
+      "description": "Compute decision value f(x) = w·x + b and predict class based on sign.",
+      "formula": "f(x) = w·x + b",
+      "input_preview": {
+        "new_vector": [
+          0.2,
+          0.1,
+          0.3,
+          "..."
+        ]
+      },
+      "output_preview": {
+        "decision_value": 1.25,
+        "predicted": "positive"
+      },
+      "why_it_matters": "This is the actual classification step used on new, unseen documents.",
+      "visualization_type": "bar"
+    }
+  ],
+  "formula_cards": [
+    {
+      "title": "SVM Decision Function",
+      "formula": "f(x) = sign(w·x + b)",
+      "explanation": "The SVM predicts class based on the sign of the decision function, where w is the weight vector and b is the bias.",
+      "variables": {
+        "w": "weight vector (normal to hyperplane)",
+        "x": "input feature vector",
+        "b": "bias term"
+      },
+      "example": "f([tfidf_vector]) = 1.25 → positive class (since > 0)"
+    },
+    {
+      "title": "Maximum Margin Objective",
+      "formula": "min ½||w||² + C×Σξᵢ",
+      "explanation": "SVM minimizes weight magnitude (for large margin) plus a penalty for misclassified examples.",
+      "variables": {
+        "C": "regularization parameter (higher = less regularization)",
+        "ξᵢ": "slack variable for sample i"
+      },
+      "example": "C=1.0 balances margin width and classification errors"
+    },
+    {
+      "title": "Kernel Trick",
+      "formula": "K(xᵢ, xⱼ) = φ(xᵢ)·φ(xⱼ)",
+      "explanation": "Kernels implicitly map features to higher-dimensional space where classes are separable.",
+      "variables": {
+        "φ": "feature map to higher dimension",
+        "K": "kernel function"
+      },
+      "example": "RBF kernel: K(x,y) = exp(-γ||x-y||²) maps to infinite-dimensional space"
+    }
+  ],
+  "hover_annotations": [
+    {
+      "target": "C",
+      "definition": "Regularization parameter - controls trade-off between margin width and classification errors.",
+      "formula_meaning": "Larger C = less regularization = fewer training errors but potentially overfitting",
+      "example": "C=1.0 is default; C=100 means almost no regularization",
+      "common_mistake": "Thinking larger C always improves performance (it can cause overfitting)"
+    },
+    {
+      "target": "support_vectors",
+      "definition": "Training samples that lie on or within the margin boundary - they define the decision boundary.",
+      "formula_meaning": "Only support vectors affect the decision function f(x) = Σ αᵢyᵢK(xᵢ,x) + b",
+      "example": "3 support vectors means only 3 training samples matter for predictions",
+      "common_mistake": "Thinking all training samples are support vectors (most have αᵢ=0)"
+    }
+  ],
+  "references": [
+    {
+      "title": "Support-Vector Networks",
+      "authors": "Cortes, C. and Vapnik, V.",
+      "year": 1995,
+      "doi": "10.1007/BF00994018",
+      "relevance": "Original SVM paper introducing the soft margin and kernel trick."
+    },
+    {
+      "title": "A Tutorial on Support Vector Machines for Pattern Recognition",
+      "authors": "Burges, C.J.C.",
+      "year": 1998,
+      "doi": "10.1023/A:1009715923555",
+      "relevance": "Comprehensive tutorial on SVM theory, kernels, and applications to text classification."
+    },
+    {
+      "title": "Text Classification using SVMs: Fast Training, Practical Application",
+      "authors": "Joachims, T.",
+      "year": 1998,
+      "url": "https://www.cs.cornell.edu/people/tj/publications/joachims_98a.pdf",
+      "relevance": "Shows linear SVMs with TF-IDF features are highly effective for text classification."
+    }
+  ],
+  "receiver_mode_explanations": [
+    {
+      "mode": "beginner",
+      "explanation": "SVM draws a line between positive and negative reviews, keeping it as far from both groups as possible.",
+      "teaching_notes": "Visualize with 2D features first. Show how the margin works."
+    },
+    {
+      "mode": "student",
+      "explanation": "SVM solves min ½||w||² + C×Σξᵢ to find the maximum-margin hyperplane. Prediction: f(x) = w·x + b.",
+      "technical_detail": "Linear kernel is standard for text (high-dim sparse features). RBF kernel can model non-linear boundaries but is rarely needed for text."
+    },
+    {
+      "mode": "researcher",
+      "explanation": "Linear SVMs are state-of-the-art for high-dimensional sparse text features. Research shows they often match or beat deep learning on small-to-medium text datasets (Wang & Manning, 2012).",
+      "technical_detail": "Limitations: no probability output by default (use Platt scaling), sensitive to feature scaling. For text, scaling is less critical since TF-IDF is already normalized."
+    },
+    {
+      "mode": "engineer",
+      "explanation": "LinearSVC in sklearn is O(n_samples × n_features) per iteration. Use hinge loss with SGD for large datasets. C=1.0 is a reasonable default.",
+      "technical_detail": "Complexity: train O(n×d×iterations), predict O(d). Memory: O(d) for weight vector. API: sklearn.svm.LinearSVC or sklearn.svm.SVC(kernel='linear')."
+    },
+    {
+      "mode": "instructor",
+      "explanation": "SVM introduces the concept of margins and support vectors. Great for teaching optimization in ML.",
+      "teaching_notes": "Quiz: What's the effect of C? Exercise: Plot decision boundary with 2D features. Show support vectors vs. other points."
+    }
+  ],
+  "research_context": "SVMs were introduced by Cortes & Vapnik (1995) and became the dominant ML algorithm in the 1990s-2000s. For text classification, linear SVMs with TF-IDF features consistently rank among the best methods, even in the deep learning era.",
+  "teaching_notes": {
+    "summary": "SVM finds the maximum-margin hyperplane to separate text classes in feature space.",
+    "quiz_questions": [
+      "What does the C parameter control in SVM?",
+      "Why are linear kernels preferred over RBF for text classification?",
+      "What are support vectors and why do they matter?"
+    ],
+    "classroom_demo_tips": [
+      "Visualize the margin with 2D features (reduce TF-IDF to 2D with PCA for demo)",
+      "Show how C affects the decision boundary",
+      "Compare number of support vectors with training set size"
+    ],
+    "common_misconceptions": [
+      "SVM always needs a kernel trick (false - linear SVM is most common for text)",
+      "More support vectors = better model (false - fewer is often better, indicating wider margin)"
+    ]
+  }
+}

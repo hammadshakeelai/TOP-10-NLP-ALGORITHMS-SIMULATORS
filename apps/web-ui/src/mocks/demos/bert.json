@@ -1,0 +1,233 @@
+{
+  "demo_input": {
+    "text": "The scientist [MASK] the experiment carefully and recorded the results.",
+    "masked_tokens": [
+      "conducted",
+      "designed",
+      "observed"
+    ]
+  },
+  "auto_parameters": {
+    "model_name": "bert-base-uncased",
+    "num_layers": 12,
+    "hidden_size": 768,
+    "num_heads": 12
+  },
+  "expected_output_preview": {
+    "predicted_token": "conducted",
+    "top_predictions": [
+      [
+        "conducted",
+        0.65
+      ],
+      [
+        "designed",
+        0.18
+      ],
+      [
+        "observed",
+        0.12
+      ]
+    ],
+    "attention_pattern": "focused on 'scientist' and 'experiment'"
+  },
+  "beginner_explanation": "BERT reads text in both directions (left-to-right and right-to-left at the same time) and fills in missing words. It's like a fill-in-the-blank test that understands the full context around the blank.",
+  "advanced_explanation": "BERT (Bidirectional Encoder Representations from Transformers) uses a deep Transformer encoder (12-24 layers) to create contextualized word representations. Pre-training uses Masked Language Modeling (MLM): randomly mask 15% of tokens and predict them using bidirectional context, and Next Sentence Prediction (NSP): predict if sentence B follows sentence A. The input is [CLS] + tokens + [SEP] with segment embeddings and position embeddings. Fine-tuning adds a task-specific head on top of the [CLS] token or token outputs.",
+  "formula_cards": [
+    {
+      "title": "BERT Input Representation",
+      "formula": "E = TokenEmbed + SegmentEmbed + PositionEmbed",
+      "explanation": "BERT combines three embeddings: wordpiece token embeddings, segment (sentence A/B) embeddings, and position embeddings.",
+      "variables": {
+        "TokenEmbed": "wordpiece embedding",
+        "SegmentEmbed": "sentence A/B embedding",
+        "PositionEmbed": "position in sequence"
+      },
+      "example": "Input: [CLS] The scientist [MASK] ... → sum of token + segment + position embeddings"
+    },
+    {
+      "title": "Masked Language Modeling (MLM) Loss",
+      "formula": "L_MLM = -Σ log P(masked_token | context)",
+      "explanation": "Pre-training objective: maximize probability of correct masked tokens given bidirectional context.",
+      "variables": {
+        "P(masked_token|context)": "predicted probability from BERT output"
+      },
+      "example": "For 'The scientist [MASK]...', model predicts 'conducted' with P=0.65"
+    },
+    {
+      "title": "Self-Attention in BERT",
+      "formula": "head_i = Attention(XW_i^Q, XW_i^K, XW_i^V); MultiHead = Concat(all heads)W^O",
+      "explanation": "Each of BERT's 12 layers has 12 attention heads. Each head learns different relationships (syntax, semantics, coreference).",
+      "variables": {
+        "X": "input to the layer",
+        "W_i^*": "learned projection for head i"
+      },
+      "example": "Layer 6, Head 8 might focus on subject-verb agreement; Head 3 might track coreference"
+    }
+  ],
+  "step_explanations": [
+    {
+      "step_id": "bt1",
+      "stage": "input_validation",
+      "title": "Validate Input with [MASK] Token",
+      "description": "Check that input text contains [MASK] token for MLM prediction.",
+      "input_preview": {
+        "text": "The scientist [MASK] the experiment...",
+        "mask_count": 1
+      },
+      "output_preview": {
+        "valid": true,
+        "sequence_length": 14
+      },
+      "why_it_matters": "BERT's MLM pre-training requires masked tokens to predict. Without [MASK], it's just encoding.",
+      "visualization_type": "table"
+    },
+    {
+      "step_id": "bt2",
+      "stage": "preprocessing",
+      "title": "Tokenize with WordPiece & Add Special Tokens",
+      "description": "Split text into WordPiece subwords, add [CLS] at start, [SEP] between sentences, and convert to token IDs.",
+      "input_preview": {
+        "text": "The scientist [MASK] ..."
+      },
+      "output_preview": {
+        "tokens": [
+          "[CLS]",
+          "the",
+          "scientist",
+          "[MASK]",
+          "..."
+        ],
+        "token_ids": [
+          101,
+          1996,
+          2925,
+          103,
+          "..."
+        ]
+      },
+      "why_it_matters": "WordPiece handles out-of-vocabulary words by splitting into subwords. Special tokens provide structure.",
+      "visualization_type": "timeline"
+    },
+    {
+      "step_id": "bt3",
+      "stage": "forward_pass",
+      "title": "BERT Encoder (12 Layers of Transformer)",
+      "description": "Pass input through 12 Transformer layers, each with multi-head self-attention and feed-forward networks.",
+      "formula": "Each layer: MultiHeadAttention → Add&Norm → FeedForward → Add&Norm",
+      "input_preview": {
+        "input_ids": "[14]",
+        "token_embeddings": "[14, 768]"
+      },
+      "output_preview": {
+        "last_hidden": "[14, 768]",
+        "cls_output": "[768]"
+      },
+      "why_it_matters": "Each layer refines representations by attending to different contextual relationships. Deep layers capture high-level semantics.",
+      "visualization_type": "scatter"
+    },
+    {
+      "step_id": "bt4",
+      "stage": "prediction",
+      "title": "Predict Masked Token",
+      "description": "Take the [MASK] position's output, apply the MLM head (linear + softmax), and get top predictions.",
+      "formula": "P(token|context) = softmax(MLM_head(h_{[MASK]}))",
+      "input_preview": {
+        "mask_position_output": "[768]"
+      },
+      "output_preview": {
+        "predicted": "conducted",
+        "top_5": [
+          [
+            "conducted",
+            0.65
+          ],
+          [
+            "designed",
+            0.18
+          ],
+          "..."
+        ]
+      },
+      "why_it_matters": "This shows BERT's contextual understanding - it predicts tokens based on full bidirectional context.",
+      "visualization_type": "bar"
+    }
+  ],
+  "hover_annotations": [
+    {
+      "target": "[MASK]",
+      "definition": "Special token that BERT learns to predict during pre-training. During fine-tuning, it can be used for fill-in-the-blank tasks.",
+      "formula_meaning": "P(masked_token|context) = softmax(W·h_{mask} + b)",
+      "example": "'The scientist [MASK]...' → BERT predicts 'conducted' with highest probability",
+      "common_mistake": "Using [MASK] during inference on tasks it wasn't trained for (it's specifically for MLM pre-training)"
+    },
+    {
+      "target": "[CLS] token",
+      "definition": "Special token at the start of every BERT input. The final layer's [CLS] output is used for classification tasks.",
+      "formula_meaning": "h_{[CLS]}^{final} encodes the entire input sequence for classification",
+      "example": "For sentiment analysis, a linear classifier takes h_{[CLS]}^{final} (768-dim) → positive/negative",
+      "common_mistake": "Using [CLS] for token-level tasks (use token outputs instead)"
+    }
+  ],
+  "references": [
+    {
+      "title": "BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding",
+      "authors": "Devlin, J., Chang, M.W., Lee, K., and Toutanova, K.",
+      "year": 2019,
+      "arxiv_id": "1810.04805",
+      "relevance": "Original BERT paper introducing bidirectional pre-training with MLM and NSP objectives."
+    },
+    {
+      "title": "Visualizing and Understanding the BERT Modelf",
+      "authors": "Rogers, A., Kovaleva, O., and Rumshisky, A.",
+      "year": 2020,
+      "arxiv_id": "1904.13579",
+      "relevance": "Comprehensive analysis of what BERT learns across its layers and attention heads."
+    }
+  ],
+  "receiver_mode_explanations": [
+    {
+      "mode": "beginner",
+      "explanation": "BERT reads text in both directions and fills in blanks. It understands context from both left and right sides of a word.",
+      "teaching_notes": "Use a simple fill-in-the-blank sentence. Show top predictions with probabilities."
+    },
+    {
+      "mode": "student",
+      "explanation": "BERT uses 12-24 Transformer encoder layers with MLM pre-training: randomly mask 15% of tokens and predict them using bidirectional context.",
+      "technical_detail": "Input: [CLS] + tokens + [SEP]. Representations: Token + Segment + Position embeddings. Output: contextualized embeddings for each token."
+    },
+    {
+      "mode": "researcher",
+      "explanation": "BERT's bidirectional pre-training was a breakthrough, achieving SOTA on 11 NLP tasks. Research shows lower layers capture syntax, upper layers capture semantics. Limitations: fixed input length (512 tokens), compute cost. Led to RoBERTa, ALBERT, ELECTRA improvements.",
+      "technical_detail": "Limitations: quadratic attention O(n²), not generative (encoder-only). Alternatives: RoBERTa (better pre-training), ALBERT (parameter sharing), ELECTRA (discriminator-based pre-training)."
+    },
+    {
+      "mode": "engineer",
+      "explanation": "BERT-base: 12 layers, 768 hidden, 12 heads, 110M params. Use HuggingFace transformers. Inference: O(L×n²×d) where L=layers, n=seq_len, d=hidden.",
+      "technical_detail": "Complexity: O(L×n²×d). Memory: O(L×n×d) for activations. API: transformers.AutoModelForMaskedLM, transformers.pipeline('fill-mask')."
+    },
+    {
+      "mode": "instructor",
+      "explanation": "BERT introduced bidirectional pre-training. Show how context from both sides improves predictions vs. left-to-right only.",
+      "teaching_notes": "Quiz: Why is bidirectional better than left-to-right? Exercise: Compare BERT predictions with/without right context. Discuss: Why 15% masking?"
+    }
+  ],
+  "research_context": "BERT (Devlin et al., 2019) revolutionized NLP by introducing deep bidirectional pre-training. It achieved state-of-the-art on 11 NLP tasks and spawned an entire family of models (RoBERTa, ALBERT, ELECTRA, DeBERTa). Its success demonstrated the power of transfer learning in NLP.",
+  "teaching_notes": {
+    "summary": "BERT uses bidirectional Transformer encoders pre-trained with masked language modeling to create contextualized word representations.",
+    "quiz_questions": [
+      "Why is bidirectional context better than left-to-right for understanding 'The scientist [MASK]...'?",
+      "What does the [CLS] token represent, and when do we use it?",
+      "Why was the 15% masking rate chosen for MLM pre-training?"
+    ],
+    "classroom_demo_tips": [
+      "Visualize attention weights across layers and heads",
+      "Show how predictions change as you add more context",
+      "Compare BERT-base vs. BERT-large predictions"
+    ],
+    "common_misconceptions": [
+      "BERT understands language (false - it models statistical patterns, not meaning)",
+      "BERT can generate text (false - it's encoder-only, not autoregressive)"
+    ]
+  }
+}
