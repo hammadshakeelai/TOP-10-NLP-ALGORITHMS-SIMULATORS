@@ -2,7 +2,7 @@ name: Deploy static demo to GitHub Pages
 
 on:
   push:
-    branches: [main, codex/nlp-simulator-platform]
+    branches: [main]
     paths:
       - "apps/web-ui/**"
       - ".github/workflows/deploy-pages.yml"
