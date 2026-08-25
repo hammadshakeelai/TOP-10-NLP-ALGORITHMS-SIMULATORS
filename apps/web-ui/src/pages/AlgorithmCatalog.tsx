@@ -1,20 +1,24 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppSelector, useAppDispatch } from "../store/hooks";
-import { selectAlgorithm } from "../store/simulationSlice";
+import { selectAlgorithm, loadCatalog } from "../store/simulationSlice";
 import type { AlgorithmEntry } from "../types/api";
+import { isStaticMode } from "../api/client";
 
 const FAMILY_COLORS: Record<string, string> = {
-  preprocessing:  "bg-blue-900/60 text-blue-200 ring-blue-700/40",
-  vectorization:  "bg-purple-900/60 text-purple-200 ring-purple-700/40",
-  classification: "bg-emerald-900/60 text-emerald-200 ring-emerald-700/40",
-  extraction:     "bg-amber-900/60 text-amber-200 ring-amber-700/40",
-  sequence:       "bg-rose-900/60 text-rose-200 ring-rose-700/40",
-  transformer:    "bg-indigo-900/60 text-indigo-200 ring-indigo-700/40",
+  preprocessing:  "bg-blue-100 text-blue-800 ring-blue-300 dark:bg-blue-900/60 dark:text-blue-200 dark:ring-blue-700/40",
+  vectorization:  "bg-purple-100 text-purple-800 ring-purple-300 dark:bg-purple-900/60 dark:text-purple-200 dark:ring-purple-700/40",
+  classification: "bg-emerald-100 text-emerald-800 ring-emerald-300 dark:bg-emerald-900/60 dark:text-emerald-200 dark:ring-emerald-700/40",
+  extraction:     "bg-amber-100 text-amber-800 ring-amber-300 dark:bg-amber-900/60 dark:text-amber-200 dark:ring-amber-700/40",
+  sequence:       "bg-rose-100 text-rose-800 ring-rose-300 dark:bg-rose-900/60 dark:text-rose-200 dark:ring-rose-700/40",
+  transformer:    "bg-indigo-100 text-indigo-800 ring-indigo-300 dark:bg-indigo-900/60 dark:text-indigo-200 dark:ring-indigo-700/40",
 };
 
 function familyChip(family: string) {
-  return FAMILY_COLORS[family] ?? "bg-gray-800 text-gray-300 ring-gray-700/40";
+  return (
+    FAMILY_COLORS[family] ??
+    "bg-gray-200 text-gray-800 ring-gray-400 dark:bg-gray-800 dark:text-gray-300 dark:ring-gray-700/40"
+  );
 }
 
 const FAMILY_ORDER = [
@@ -49,9 +53,27 @@ export default function AlgorithmCatalog() {
   const status   = useAppSelector((s) => s.simulation.catalogStatus);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const searchRef = useRef<HTMLInputElement>(null);
 
   const [query, setQuery] = useState("");
   const [activeFamily, setActiveFamily] = useState<string | "all">("all");
+
+  useEffect(() => {
+    document.title = "NLP Algorithm Simulator";
+  }, []);
+
+  // Press "/" anywhere on the catalog to jump to search.
+  useEffect(() => {
+    function onKeyDown(e: KeyboardEvent) {
+      if (e.key !== "/" || e.metaKey || e.ctrlKey || e.altKey) return;
+      const target = e.target as HTMLElement | null;
+      if (target && /^(input|textarea|select)$/i.test(target.tagName)) return;
+      e.preventDefault();
+      searchRef.current?.focus();
+    }
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, []);
 
   const families = useMemo(() => {
     const present = new Set(catalog.map((a) => a.family));
@@ -97,8 +119,8 @@ export default function AlgorithmCatalog() {
     <div className="max-w-7xl mx-auto animate-fade-in">
       {/* Hero */}
       <section className="mb-10 text-center md:text-left">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/30 text-indigo-300 text-xs font-medium mb-4">
-          <span className="h-1.5 w-1.5 rounded-full bg-indigo-400 animate-pulse" />
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/30 text-indigo-700 dark:text-indigo-300 text-xs font-medium mb-4">
+          <span className="h-1.5 w-1.5 rounded-full bg-indigo-400 animate-pulse" aria-hidden />
           Interactive learning platform
         </div>
         <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight mb-3">
@@ -129,10 +151,11 @@ export default function AlgorithmCatalog() {
             ⌕
           </span>
           <input
+            ref={searchRef}
             type="search"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search algorithms, descriptions, use cases…"
+            placeholder="Search algorithms…  (press /)"
             className="w-full bg-gray-950/60 border border-gray-800 rounded-lg pl-9 pr-3 py-2 text-sm placeholder:text-gray-500 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 outline-none transition"
             aria-label="Search algorithms"
           />
@@ -157,10 +180,23 @@ export default function AlgorithmCatalog() {
 
       {status === "error" && (
         <div className="panel p-8 text-center">
-          <div className="text-rose-300 font-medium mb-1">Failed to load catalog.</div>
-          <p className="text-sm text-gray-400">
-            Make sure the API is running at <code className="text-gray-300">127.0.0.1:8000</code>, then refresh.
+          <div className="text-rose-700 dark:text-rose-300 font-medium mb-1">Failed to load catalog.</div>
+          <p className="text-sm text-gray-400 mb-4">
+            {isStaticMode() ? (
+              <>Bundled demo data could not be read. Reloading the page usually clears this.</>
+            ) : (
+              <>
+                Make sure the API is running at{" "}
+                <code className="text-gray-600 dark:text-gray-300">127.0.0.1:8000</code>.
+              </>
+            )}
           </p>
+          <button
+            onClick={() => dispatch(loadCatalog())}
+            className="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 rounded-lg text-sm font-semibold transition focus-ring"
+          >
+            Retry
+          </button>
         </div>
       )}
 
@@ -217,7 +253,9 @@ function FamilyPill({
       onClick={onClick}
       className={`text-xs font-medium px-3 py-1 rounded-full ring-1 transition focus-ring capitalize ${
         active
-          ? `${colorClass ?? "bg-indigo-500/20 text-indigo-200 ring-indigo-400/50"} ring-2`
+          ? `${
+              colorClass ?? "bg-indigo-100 text-indigo-800 ring-indigo-300 dark:bg-indigo-500/20 dark:text-indigo-200 dark:ring-indigo-400/50"
+            } ring-2`
           : "bg-gray-900/60 text-gray-400 ring-gray-800 hover:text-gray-100 hover:ring-gray-600"
       }`}
     >
@@ -237,7 +275,7 @@ function CatalogCard({ entry, onClick }: { entry: AlgorithmEntry; onClick: () =>
         aria-hidden
       />
       <div className="flex items-start justify-between gap-3 mb-2">
-        <span className="font-semibold text-white group-hover:text-indigo-300 transition">
+        <span className="font-semibold text-gray-50 group-hover:text-indigo-700 dark:group-hover:text-indigo-300 transition">
           {entry.name}
         </span>
         <span className={`chip ring-1 ${familyChip(entry.family)}`}>{entry.family}</span>
@@ -257,7 +295,7 @@ function CatalogCard({ entry, onClick }: { entry: AlgorithmEntry; onClick: () =>
         <span className="text-gray-500">
           Complexity: <span className="text-gray-300">{entry.complexity}</span>
         </span>
-        <span className="text-gray-600 group-hover:text-indigo-300 transition">Open →</span>
+        <span className="text-gray-600 group-hover:text-indigo-700 dark:group-hover:text-indigo-300 transition">Open →</span>
       </div>
     </button>
   );
