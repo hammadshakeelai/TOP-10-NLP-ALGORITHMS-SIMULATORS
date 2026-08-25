@@ -1,87 +1,100 @@
-# TOP-10-NLP-ALGORITHMS-SIMULATORS
+<p align="center">
+  <img src="docs/assets/banner.svg" alt="NLP Algorithm Simulator — thirteen algorithms, visualised step by step" width="100%">
+</p>
 
-Interactive NLP Algorithm Simulator Platform for learning, testing, tracing, visualizing, and exporting NLP algorithm behavior.
+<p align="center">
+  <a href="https://hammadshakeelai.github.io/TOP-10-NLP-ALGORITHMS-SIMULATORS/"><img alt="Live demo" src="https://img.shields.io/badge/demo-live-10b981?style=flat-square&logo=githubpages&logoColor=white"></a>
+  <a href="../../actions/workflows/deploy-pages.yml"><img alt="Deploy" src="https://img.shields.io/github/actions/workflow/status/hammadshakeelai/TOP-10-NLP-ALGORITHMS-SIMULATORS/deploy-pages.yml?branch=main&style=flat-square&label=pages"></a>
+  <img alt="Python" src="https://img.shields.io/badge/python-3.11%2B-3776ab?style=flat-square&logo=python&logoColor=white">
+  <img alt="React" src="https://img.shields.io/badge/react-18-61dafb?style=flat-square&logo=react&logoColor=black">
+  <img alt="FastAPI" src="https://img.shields.io/badge/fastapi-009688?style=flat-square&logo=fastapi&logoColor=white">
+  <a href="LICENSE"><img alt="License" src="https://img.shields.io/badge/license-MIT-blue?style=flat-square"></a>
+</p>
 
-## What This Project Does
+<h3 align="center">
+  <a href="https://hammadshakeelai.github.io/TOP-10-NLP-ALGORITHMS-SIMULATORS/">→ Open the live simulator</a>
+</h3>
 
-The platform exposes a common simulator API for NLP algorithms. A user can choose an algorithm, enter text or small datasets, configure parameters, run the simulation, inspect intermediate trace data, view charts/graphs, and export results.
+---
 
-The implementation is based on the SRS in `NLP_Algorithm_Simulators_SRS.docx`.
+An interactive platform for **learning how NLP algorithms actually work**. Pick an
+algorithm, feed it text, tune its parameters, then step through every intermediate
+stage — token offsets, IDF weights, attention heads, LSTM gates, PageRank
+iterations — with formulas, explanations and charts attached to each step.
 
-## Implemented Algorithms
+Every simulator explains itself at five levels: **Beginner, Student, Researcher,
+Engineer, Instructor**. The same run reads as a plain-language walkthrough or as a
+formal treatment with references, depending on which you pick.
 
-Classical NLP:
+## The live demo runs without a backend
 
-- Tokenization - whitespace, regex, toy BPE, toy WordPiece, offsets, token traces
-- TF-IDF - from-scratch TF, IDF, TF-IDF, cosine similarity, query ranking
-- Naive Bayes - MultinomialNB, priors, likelihoods, probabilities, confusion matrix
-- SVM - LinearSVC with calibrated probabilities, margins, top features
-- RAKE - from-scratch candidate phrases, word degree/frequency scores, co-occurrence graph
-- TextRank - keyword and summary modes with PageRank convergence trace
+The hosted site is a **static build**. It ships a pre-computed reference run for
+each of the 13 algorithms and makes **no network requests at all** — no API, no
+Python, no model downloads.
 
-Transformer and neural simulators:
+> [!IMPORTANT]
+> In the static demo, entering your own text **replays the pre-computed reference
+> run** rather than simulating what you typed. Every result carries a
+> `STATIC_MODE` warning saying so. To simulate your own inputs, run the platform
+> locally with the backend — see [Quick start](#quick-start).
 
-- Word embeddings - toy SVD embeddings, optional pretrained vectors, PCA projection, analogy
-- LSTM - toy recurrent gate trace with hidden/cell states
-- Transformer attention - multi-head attention from scratch, positional encodings, causal mask
-- BERT - HuggingFace pipeline wrapper for MLM/sentiment/NER/QA
-- GPT - HuggingFace generation wrapper with decoding parameters
-- T5 - text-to-text wrapper with beam candidates
-- FastText - subword breakdown and supervised classification path
+Full details in [`docs/STATIC_DEPLOY.md`](docs/STATIC_DEPLOY.md).
 
-## Repository Layout
+## Algorithms
 
-```text
-apps/
-  api-gateway/          FastAPI gateway
-  web-ui/               React + TypeScript + Vite UI
-datasets/examples/      sample datasets
-docs/                   implementation documentation
-infra/                  Docker Compose and Dockerfiles
-packages/
-  shared-schemas/       original Pydantic schema source
-  shared_schemas/       importable Python package alias
-services/
-  classical-nlp-service/
-  transformer-service/
-  export-service/
-tests/
-  unit/
-  golden/
-  integration/
-```
+### Classical
 
-## Quick Start
+| Algorithm | What you can watch happen |
+|---|---|
+| **Tokenization** | Whitespace, regex, toy BPE and toy WordPiece side by side, with character offsets and per-token traces |
+| **TF-IDF** | TF, IDF and TF-IDF computed from scratch, then cosine similarity and query ranking |
+| **Naive Bayes** | Class priors, per-feature likelihoods, posterior probabilities, confusion matrix |
+| **SVM** | LinearSVC with calibrated probabilities, margin distances and top contributing features |
+| **RAKE** | Candidate phrase extraction, word degree/frequency scoring, co-occurrence graph |
+| **TextRank** | Keyword and summary modes, with the PageRank convergence trace exposed |
 
-For the most detailed Windows run instructions, see `docs/RUNBOOK.md`.
+### Neural and transformer
+
+| Algorithm | What you can watch happen |
+|---|---|
+| **Word embeddings** | Toy SVD embeddings or pretrained vectors, PCA projection, analogy arithmetic |
+| **LSTM** | A toy recurrent cell with forget/input/output gate values at every timestep |
+| **Transformer attention** | Multi-head attention from scratch — Q/K/V, positional encodings, causal masking |
+| **BERT** | HuggingFace pipelines for masked LM, sentiment, NER and extractive QA |
+| **GPT** | Autoregressive generation with temperature, top-k and top-p decoding |
+| **T5** | Text-to-text transfer with beam candidates |
+| **FastText** | Subword n-gram breakdown and supervised classification |
+
+## Quick start
+
+Full Windows instructions live in [`docs/RUNBOOK.md`](docs/RUNBOOK.md).
 
 ### Backend
 
 ```powershell
-cd C:\Users\HP\Documents\GitHub\ai-ml\TOP-10-NLP-ALGORITHMS-SIMULATORS
 pip install -r services/classical-nlp-service/requirements.txt
 uvicorn main:app --app-dir apps/api-gateway --reload --port 8000
 ```
 
-Open:
+- Health: `http://127.0.0.1:8000/health`
+- Catalog: `http://127.0.0.1:8000/algorithms/`
+- OpenAPI docs: `http://127.0.0.1:8000/docs`
 
-- `http://127.0.0.1:8000/health`
-- `http://127.0.0.1:8000/algorithms/`
-- `http://127.0.0.1:8000/docs`
+`http://127.0.0.1:8000/` returns `404` by design — the API defines no homepage route.
 
-`http://127.0.0.1:8000/` returns `404 Not Found`; this is normal because the API does not define a homepage route.
+The transformer simulators need heavier dependencies (`torch`, `transformers`,
+`gensim`, `fasttext`). Each degrades gracefully with an explanatory warning when
+its library is missing, so the platform still runs without them.
 
 ### Frontend
 
 ```powershell
-cd C:\Users\HP\Documents\GitHub\ai-ml\TOP-10-NLP-ALGORITHMS-SIMULATORS\apps\web-ui
+cd apps/web-ui
 npm install
 npm run dev
 ```
 
-Open:
-
-- `http://localhost:5173`
+Open `http://localhost:5173`.
 
 ### Docker Compose
 
@@ -89,77 +102,82 @@ Open:
 docker compose -f infra/docker-compose.yml up --build
 ```
 
-Services:
+Brings up the gateway (`:8000`), classical (`:8001`) and transformer (`:8002`)
+service placeholders, PostgreSQL (`:5432`) and Redis (`:6379`).
 
-- API gateway: `http://localhost:8000`
-- Classical service placeholder: `http://localhost:8001`
-- Transformer service placeholder: `http://localhost:8002`
-- PostgreSQL: `localhost:5432`
-- Redis: `localhost:6379`
-
-## Running Tests
-
-Install backend dependencies first:
+## Building the static site
 
 ```powershell
-pip install -r services/classical-nlp-service/requirements.txt
-python -m pytest tests -q
+cd apps/web-ui
+$env:VITE_STATIC_MODE = "true"
+$env:VITE_BASE_PATH = "/TOP-10-NLP-ALGORITHMS-SIMULATORS/"
+npm run build
 ```
 
-Build the frontend:
+| Variable | Default | Purpose |
+|---|---|---|
+| `VITE_STATIC_MODE` | unset | `"true"` builds the backend-free bundle |
+| `VITE_BASE_PATH` | `/` | Sub-path for project-site hosting |
+| `VITE_API_URL` | `http://localhost:8000` | Gateway URL; ignored in static mode |
+
+Leaving all three unset produces the normal backend-connected build. See
+[`apps/web-ui/.env.example`](apps/web-ui/.env.example).
+
+Pushing to `main` triggers [`deploy-pages.yml`](.github/workflows/deploy-pages.yml),
+which builds this bundle and publishes it to GitHub Pages.
+
+## Testing
+
+```powershell
+pip install -r services/classical-nlp-service/requirements.txt pytest
+python -m pytest tests -q
+```
 
 ```powershell
 cd apps/web-ui
 npm run build
 ```
 
-Expected verification status:
+The suite covers unit tests per simulator, golden-output tests and API
+integration tests.
 
-- `python -m pytest tests -q` -> `36 passed`
-- `npm run build` -> successful Vite build
+> [!NOTE]
+> Two simulators — `lstm` and `transformer_attention` — seed their toy weights
+> partly from Python's `hash()` of each token. Python randomises string hashing
+> per process unless `PYTHONHASHSEED` is pinned, so their outputs are **not
+> reproducible across restarts**. Treat their goldens accordingly.
 
-## Troubleshooting
+## Repository layout
 
-If the frontend says `Failed to load catalog. Is the API running?`, open:
-
-- `http://127.0.0.1:8000/health`
-- `http://127.0.0.1:8000/algorithms/`
-
-If `/health` works but `/algorithms/` fails, restart the backend:
-
-```powershell
-CTRL+C
-uvicorn main:app --app-dir apps\api-gateway --reload --port 8000
+```text
+.github/workflows/      Pages build and deploy
+apps/
+  api-gateway/          FastAPI gateway — health, algorithms, runs, exports
+  web-ui/               React + TypeScript + Vite UI
+    src/mocks/          pre-computed snapshots powering the static demo
+datasets/examples/      sample datasets
+docs/                   runbook, implementation status, static deploy guide
+infra/                  Docker Compose and Dockerfiles
+packages/
+  shared-schemas/       canonical Pydantic schema source
+  shared_schemas/       importable Python package alias
+services/
+  classical-nlp-service/
+  transformer-service/
+  export-service/
+tests/                  unit, golden, integration
 ```
 
-Then refresh `http://localhost:5173`.
-
-## API Overview
-
-Catalog:
+## API overview
 
 ```http
-GET /algorithms/
-GET /algorithms/{algorithm_id}
-```
-
-Runs:
-
-```http
+GET  /health
+GET  /algorithms/
+GET  /algorithms/{algorithm_id}
+GET  /algorithms/{algorithm_id}/demo
 POST /runs/
-GET /runs/{run_id}
-```
-
-Exports:
-
-```http
+GET  /runs/{run_id}
 POST /exports/{run_id}
-```
-
-Health:
-
-```http
-GET /health
 ```
 
 Example run request:
@@ -172,21 +190,38 @@ Example run request:
     {"id": "d1", "text": "NLP transforms text into features."},
     {"id": "d2", "text": "TF-IDF ranks important terms in documents."}
   ],
-  "parameters": {
-    "top_n": 10,
-    "smooth_idf": true
-  },
+  "parameters": { "top_n": 10, "smooth_idf": true },
   "trace_level": "full"
 }
 ```
 
-## Implementation Notes
+## Implementation notes
 
-- All simulators return shared Pydantic `RunResponse` objects.
-- Visualization output is carried through `visualization_specs`.
-- Frontend dispatches `bar`, `heatmap`, `scatter`, `line`, `table`, `diff`, and `graph` specs.
-- `@xyflow/react` powers graph visualization for RAKE and TextRank.
-- Exports currently return JSON and CSV payloads from in-memory run data.
-- Persistent storage is not wired yet.
+- Every simulator returns a shared Pydantic `RunResponse`.
+- Visualizations travel as `visualization_specs`; the frontend dispatches
+  `bar`, `heatmap`, `scatter`, `line`, `table`, `diff` and `graph`.
+- `@xyflow/react` renders the RAKE and TextRank co-occurrence graphs.
+- Exports produce JSON and CSV from in-memory run data — persistent storage is
+  not wired up yet.
 
-See `docs/IMPLEMENTATION_STATUS.md` for a full implementation log, verification notes, and known follow-up work.
+See [`docs/IMPLEMENTATION_STATUS.md`](docs/IMPLEMENTATION_STATUS.md) for the full
+implementation log and follow-up work.
+
+## Troubleshooting
+
+**"Failed to load catalog"** — check `http://127.0.0.1:8000/health` and
+`http://127.0.0.1:8000/algorithms/`. If `/health` responds but `/algorithms/`
+does not, restart the gateway.
+
+**The UI shows an "Offline demo" badge** — the frontend could not reach the
+backend and fell back to bundled snapshots. Start the gateway and reload. A badge
+reading "Static demo" instead is expected: that build was compiled backend-free
+on purpose.
+
+**`npm ci` fails with `Missing: yaml@2.9.0 from lock file`** — you are on Node 20
+(npm 10). Use Node 24; `yaml@2` is an optional peer of `postcss-load-config` that
+the two npm versions disagree about.
+
+## License
+
+[MIT](LICENSE) © hammadai

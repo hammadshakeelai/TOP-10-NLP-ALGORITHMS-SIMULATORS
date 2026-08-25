@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 340" width="1200" height="340" role="img" aria-label="NLP Algorithm Simulator - 13 algorithms visualised step by step">
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#080d1c"/><stop offset="55%" stop-color="#0f1630"/><stop offset="100%" stop-color="#161d3d"/></linearGradient>
+<linearGradient id="brand" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#818cf8"/><stop offset="50%" stop-color="#e879f9"/><stop offset="100%" stop-color="#38bdf8"/></linearGradient>
+<radialGradient id="glowA" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#6366f1" stop-opacity="0.55"/><stop offset="100%" stop-color="#6366f1" stop-opacity="0"/></radialGradient>
+<radialGradient id="glowB" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#d946ef" stop-opacity="0.42"/><stop offset="100%" stop-color="#d946ef" stop-opacity="0"/></radialGradient>
+<linearGradient id="rule" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#6366f1" stop-opacity="0"/><stop offset="35%" stop-color="#a78bfa" stop-opacity="0.85"/><stop offset="100%" stop-color="#38bdf8" stop-opacity="0"/></linearGradient>
+</defs>
+<rect width="1200" height="340" fill="url(#bg)"/>
+<ellipse cx="215" cy="70" rx="420" ry="250" fill="url(#glowA)"/>
+<ellipse cx="1015" cy="285" rx="400" ry="240" fill="url(#glowB)"/>
+<rect x="946" y="40" width="11" height="11" rx="2" fill="#a5b4fc" opacity="0.050"/>
+<rect x="961" y="40" width="11" height="11" rx="2" fill="#a5b4fc" opacity="0.190"/>
+<rect x="976" y="40" width="11" height="11" rx="2" fill="#a5b4fc" opacity="0.134"/>
+<rect x="991" y="40" width="11" height="11" rx="2" fill="#a5b4fc" opacity="0.078"/>
+<rect x="1006" y="40" width="11" height="11" rx="2" fill="#a5b4fc" opacity="0.218"/>
+<rect x="1021" y="40" width="11" height="11" rx="2" fill="#a5b4fc" opacity="0.162"/>
+<rect x="1036" y="40" width="11" height="11" rx="2" fill="#a5b4fc" opacity="0.106"/>
+<rect x="1051" y="40" width="11" height="11" rx="2" fill="#a5b4fc" opacity="0.050"/>
+<rect x="946" y="55" width="11" height="11" rx="2" fill="#a5b4fc" opacity="0.134"/>
+<rect x="961" y="55" width="11" height="11" rx="2" fill="#a5b4fc" opacity="0.078"/>
+<rect x="976" y="55" width="11" height="11" rx="2" fill="#a5b4fc" opacity="0.218"/>
+<rect x="991" y="55" width="11" height="11" rx="2" fill="#a5b4fc" opacity="0.162"/>
+<rect x="1006" y="55" width="11" height="11" rx="2" fill="#a5b4fc" opacity="0.106"/>
+<rect x="1021" y="55" width="11" height="11" rx="2" fill="#a5b4fc" opacity="0.050"/>
+<rect x="1036" y="55" width="11" height="11" rx="2" fill="#a5b4fc" opacity="0.190"/>
+<rect x="1051" y="55" width="11" height="11" rx="2" fill="#a5b4fc" opacity="0.134"/>
+<rect x="946" y="70" width="11" height="11" rx="2" fill="#a5b4fc" opacity="0.218"/>
+<rect x="961" y="70" width="11" height="11" rx="2" fill="#a5b4fc" opacity="0.162"/>
+<rect x="976" y="70" width="11" height="11" rx="2" fill="#a5b4fc" opacity="0.106"/>
+<rect x="991" y="70" width="11" height="11" rx="2" fill="#a5b4fc" opacity="0.050"/>
+<rect x="1006" y="70" width="11" height="11" rx="2" fill="#a5b4fc" opacity="0.190"/>
+<rect x="1021" y="70" width="11" height="11" rx="2" fill="#a5b4fc" opacity="0.134"/>
+<rect x="1036" y="70" width="11" height="11" rx="2" fill="#a5b4fc" opacity="0.078"/>
+<rect x="1051" y="70" width="11" height="11" rx="2" fill="#a5b4fc" opacity="0.218"/>
+<rect x="946" y="85" width="11" height="11" rx="2" fill="#a5b4fc" opacity="0.106"/>
+<rect x="961" y="85" width="11" height="11" rx="2" fill="#a5b4fc" opacity="0.050"/>
+<rect x="976" y="85" width="11" height="11" rx="2" fill="#a5b4fc" opacity="0.190"/>
+<rect x="991" y="85" width="11" height="11" rx="2" fill="#a5b4fc" opacity="0.134"/>
+<rect x="1006" y="85" width="11" height="11" rx="2" fill="#a5b4fc" opacity="0.078"/>
+<rect x="1021" y="85" width="11" height="11" rx="2" fill="#a5b4fc" opacity="0.218"/>
+<rect x="1036" y="85" width="11" height="11" rx="2" fill="#a5b4fc" opacity="0.162"/>
+<rect x="1051" y="85" width="11" height="11" rx="2" fill="#a5b4fc" opacity="0.106"/>
+<rect x="946" y="100" width="11" height="11" rx="2" fill="#a5b4fc" opacity="0.190"/>
+<rect x="961" y="100" width="11" height="11" rx="2" fill="#a5b4fc" opacity="0.134"/>
+<rect x="976" y="100" width="11" height="11" rx="2" fill="#a5b4fc" opacity="0.078"/>
+<rect x="991" y="100" width="11" height="11" rx="2" fill="#a5b4fc" opacity="0.218"/>
+<rect x="1006" y="100" width="11" height="11" rx="2" fill="#a5b4fc" opacity="0.162"/>
+<rect x="1021" y="100" width="11" height="11" rx="2" fill="#a5b4fc" opacity="0.106"/>
+<rect x="1036" y="100" width="11" height="11" rx="2" fill="#a5b4fc" opacity="0.050"/>
+<rect x="1051" y="100" width="11" height="11" rx="2" fill="#a5b4fc" opacity="0.190"/>
+<rect x="946" y="115" width="11" height="11" rx="2" fill="#a5b4fc" opacity="0.078"/>
+<rect x="961" y="115" width="11" height="11" rx="2" fill="#a5b4fc" opacity="0.218"/>
+<rect x="976" y="115" width="11" height="11" rx="2" fill="#a5b4fc" opacity="0.162"/>
+<rect x="991" y="115" width="11" height="11" rx="2" fill="#a5b4fc" opacity="0.106"/>
+<rect x="1006" y="115" width="11" height="11" rx="2" fill="#a5b4fc" opacity="0.050"/>
+<rect x="1021" y="115" width="11" height="11" rx="2" fill="#a5b4fc" opacity="0.190"/>
+<rect x="1036" y="115" width="11" height="11" rx="2" fill="#a5b4fc" opacity="0.134"/>
+<rect x="1051" y="115" width="11" height="11" rx="2" fill="#a5b4fc" opacity="0.078"/>
+<rect x="946" y="130" width="11" height="11" rx="2" fill="#a5b4fc" opacity="0.162"/>
+<rect x="961" y="130" width="11" height="11" rx="2" fill="#a5b4fc" opacity="0.106"/>
+<rect x="976" y="130" width="11" height="11" rx="2" fill="#a5b4fc" opacity="0.050"/>
+<rect x="991" y="130" width="11" height="11" rx="2" fill="#a5b4fc" opacity="0.190"/>
+<rect x="1006" y="130" width="11" height="11" rx="2" fill="#a5b4fc" opacity="0.134"/>
+<rect x="1021" y="130" width="11" height="11" rx="2" fill="#a5b4fc" opacity="0.078"/>
+<rect x="1036" y="130" width="11" height="11" rx="2" fill="#a5b4fc" opacity="0.218"/>
+<rect x="1051" y="130" width="11" height="11" rx="2" fill="#a5b4fc" opacity="0.162"/>
+<rect x="946" y="145" width="11" height="11" rx="2" fill="#a5b4fc" opacity="0.050"/>
+<rect x="961" y="145" width="11" height="11" rx="2" fill="#a5b4fc" opacity="0.190"/>
+<rect x="976" y="145" width="11" height="11" rx="2" fill="#a5b4fc" opacity="0.134"/>
+<rect x="991" y="145" width="11" height="11" rx="2" fill="#a5b4fc" opacity="0.078"/>
+<rect x="1006" y="145" width="11" height="11" rx="2" fill="#a5b4fc" opacity="0.218"/>
+<rect x="1021" y="145" width="11" height="11" rx="2" fill="#a5b4fc" opacity="0.162"/>
+<rect x="1036" y="145" width="11" height="11" rx="2" fill="#a5b4fc" opacity="0.106"/>
+<rect x="1051" y="145" width="11" height="11" rx="2" fill="#a5b4fc" opacity="0.050"/>
+<rect x="72" y="62" width="46" height="46" rx="12" fill="url(#brand)"/>
+<text x="95" y="94" font-family="ui-sans-serif,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="26" font-weight="800" fill="#0b1020" text-anchor="middle">N</text>
+<text x="134" y="82" font-family="ui-sans-serif,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12" font-weight="700" fill="#94a3b8" letter-spacing="3.4">TOP-10 ALGORITHMS</text>
+<text x="134" y="102" font-family="ui-sans-serif,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12" font-weight="500" fill="#64748b" letter-spacing="1.2">INTERACTIVE SIMULATOR PLATFORM</text>
+<text x="72" y="176" font-family="ui-sans-serif,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="54" font-weight="800" fill="url(#brand)">NLP Algorithm Simulator</text>
+<rect x="72" y="196" width="620" height="2" rx="1" fill="url(#rule)"/>
+<text x="72" y="228" font-family="ui-sans-serif,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="19" font-weight="400" fill="#cbd5e1">Thirteen algorithms, visualised step by step — tokenization to transformers.</text>
+<rect x="72.0" y="258.0" width="111.8" height="26.0" rx="13" fill="#818cf8" fill-opacity="0.11" stroke="#818cf8" stroke-opacity="0.34"/>
+<text x="127.9" y="275.5" font-family="ui-sans-serif,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="13" font-weight="600" fill="#818cf8" text-anchor="middle">Tokenization</text>
+<rect x="191.8" y="258.0" width="68.9" height="26.0" rx="13" fill="#818cf8" fill-opacity="0.11" stroke="#818cf8" stroke-opacity="0.34"/>
+<text x="226.2" y="275.5" font-family="ui-sans-serif,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="13" font-weight="600" fill="#818cf8" text-anchor="middle">TF-IDF</text>
+<rect x="268.7" y="258.0" width="104.7" height="26.0" rx="13" fill="#818cf8" fill-opacity="0.11" stroke="#818cf8" stroke-opacity="0.34"/>
+<text x="321.0" y="275.5" font-family="ui-sans-serif,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="13" font-weight="600" fill="#818cf8" text-anchor="middle">Naive Bayes</text>
+<rect x="381.4" y="258.0" width="47.5" height="26.0" rx="13" fill="#818cf8" fill-opacity="0.11" stroke="#818cf8" stroke-opacity="0.34"/>
+<text x="405.1" y="275.5" font-family="ui-sans-serif,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="13" font-weight="600" fill="#818cf8" text-anchor="middle">SVM</text>
+<rect x="436.8" y="258.0" width="54.6" height="26.0" rx="13" fill="#818cf8" fill-opacity="0.11" stroke="#818cf8" stroke-opacity="0.34"/>
+<text x="464.1" y="275.5" font-family="ui-sans-serif,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="13" font-weight="600" fill="#818cf8" text-anchor="middle">RAKE</text>
+<rect x="499.4" y="258.0" width="83.2" height="26.0" rx="13" fill="#818cf8" fill-opacity="0.11" stroke="#818cf8" stroke-opacity="0.34"/>
+<text x="541.0" y="275.5" font-family="ui-sans-serif,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="13" font-weight="600" fill="#818cf8" text-anchor="middle">TextRank</text>
+<rect x="590.6" y="258.0" width="133.2" height="26.0" rx="13" fill="#e879f9" fill-opacity="0.11" stroke="#e879f9" stroke-opacity="0.34"/>
+<text x="657.2" y="275.5" font-family="ui-sans-serif,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="13" font-weight="600" fill="#e879f9" text-anchor="middle">Word Embeddings</text>
+<rect x="731.9" y="258.0" width="54.6" height="26.0" rx="13" fill="#e879f9" fill-opacity="0.11" stroke="#e879f9" stroke-opacity="0.34"/>
+<text x="759.1" y="275.5" font-family="ui-sans-serif,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="13" font-weight="600" fill="#e879f9" text-anchor="middle">LSTM</text>
+<rect x="72.0" y="293.0" width="90.4" height="26.0" rx="13" fill="#e879f9" fill-opacity="0.11" stroke="#e879f9" stroke-opacity="0.34"/>
+<text x="117.2" y="310.5" font-family="ui-sans-serif,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="13" font-weight="600" fill="#e879f9" text-anchor="middle">Attention</text>
+<rect x="170.4" y="293.0" width="54.6" height="26.0" rx="13" fill="#e879f9" fill-opacity="0.11" stroke="#e879f9" stroke-opacity="0.34"/>
+<text x="197.7" y="310.5" font-family="ui-sans-serif,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="13" font-weight="600" fill="#e879f9" text-anchor="middle">BERT</text>
+<rect x="233.0" y="293.0" width="47.5" height="26.0" rx="13" fill="#e879f9" fill-opacity="0.11" stroke="#e879f9" stroke-opacity="0.34"/>
+<text x="256.7" y="310.5" font-family="ui-sans-serif,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="13" font-weight="600" fill="#e879f9" text-anchor="middle">GPT</text>
+<rect x="288.4" y="293.0" width="40.3" height="26.0" rx="13" fill="#e879f9" fill-opacity="0.11" stroke="#e879f9" stroke-opacity="0.34"/>
+<text x="308.6" y="310.5" font-family="ui-sans-serif,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="13" font-weight="600" fill="#e879f9" text-anchor="middle">T5</text>
+<rect x="336.7" y="293.0" width="83.2" height="26.0" rx="13" fill="#e879f9" fill-opacity="0.11" stroke="#e879f9" stroke-opacity="0.34"/>
+<text x="378.3" y="310.5" font-family="ui-sans-serif,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="13" font-weight="600" fill="#e879f9" text-anchor="middle">FastText</text>
+<rect x="946" y="176" width="182" height="34" rx="17" fill="#10b981" fill-opacity="0.13" stroke="#34d399" stroke-opacity="0.45"/>
+<circle cx="966" cy="193" r="4.5" fill="#34d399"/>
+<text x="980" y="198" font-family="ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,'Liberation Mono',monospace" font-size="12.5" font-weight="700" fill="#6ee7b7" letter-spacing="1.5">LIVE STATIC DEMO</text>
+</svg>
